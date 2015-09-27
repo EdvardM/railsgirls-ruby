@@ -1,0 +1,16 @@
+1. Perusteet
+  - Perusteet:
+  - Tietotyypit (numerot, merkkijonot, taulukot)
+  - Ehtolause ja toisto
+  - Lausekkeet / paluuarvot
+  - Funktiot
+  - Luokat, oliot, metodit
+  - Tärkeimmät suunnitteluperiaatteet (separation of concerns, DRY, top-down, refaktorointi)
+
+2. Ideoi mielenkiintoinen sovellus, joka on riittävän yksinkertainen ja pedagogisesti mielekäs
+
+3. Rails-koodausta yhdessä
+
+4. Katoja, esim. http://codingdojo.org/cgi-bin/index.pl?KataCatalogue
+
+
