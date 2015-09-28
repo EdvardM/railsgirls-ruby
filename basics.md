@@ -256,29 +256,40 @@ So, now we know -- or at least have seen -- three things:
 
 Imagine you are programming a robot that needs to brew and serve coffee. With
 some cream, cinnamon and chocolate chips with a tad of sugar frosting on the
-top. Also imagine I was actually able to actually _draw_ pictures and here
-would be an artsy nice picture of a jolly good robot pouring a hot cup of Old
-Joe. With all that sweet stuff on top. So there.
+top.
 
-With that picture in your head, imagine you had programmed the robot to pour 80cl of coffee and 40cl of cream to each cup. Now, the code might look roughly like this:
+Also imagine I was actually able to actually _draw_ pictures, and here would
+be an artsy, nice picture of a jolly good robot pouring a hot cup of Old Joe.
+So there.
+
+With the picture in your head, imagine you had programmed the robot to pour
+exactly 80cl of coffee and 40cl of cream to each cup. The code might look roughly
+like this:
 
 ```ruby
 bot = Robot.new("Jeeves the Valiant Valet")
 
-bot.pour_coffee(800) # Our robot uses millilitres as the basic fluid unit
+bot.pour_coffee(800) # Our robot uses millilitres as the basic unit for fluds
 bot.spray_whipped_cream(400)
 bot.sprinkle_chocolate_chips(5) # grams maybe
-bot.sprinkle_cinnamon(1)
+bot.sprinkle_cinnamon(1) # still grams (what's LD50 for cinnamon???)
 bot.frost_with_sugar
 ```
 
-Given everything is ok, our sympathetic friend would happily crank and whirr about, making the delicious serving. All fine so far.
+Given everything is ok, our metallic friend would happily crank and whirr
+about, making the delicious serving. All fine so far.
 
-Now imagine some poor hapless fellow would accidentally bump the coffee cup so that it would no longer be under the Robot's nozzles that pour the coffee. What would happen is that all that scalding hot stuff would end up in the floor, messing your carpet. Or maybe even worse, it might end up hurting that furry [Scottish Fold](http://www.scottishfoldlove.com/) of yours :( What can we do?
+Now imagine some poor hapless fellow would accidentally bump the coffee cup so
+that it would no longer be under the Robot's coffee-pouring nozzles. Then all
+that scalding hot stuff would end up in the floor, messing your carpet. Or
+even worse, it might end up hurting that furry
+[Scottish Fold](http://www.scottishfoldlove.com/) of yours :( What can we do?
 
-In order to avoid further feline mishaps, we need to have some sort way for doing things _conditionally_. Given condition, do this. Otherwise do that.
+In order to avoid further feline mishaps, we need to have some sort way for
+doing things _conditionally_. Given condition, do this. Otherwise do that.
 
-All programming languages have some sort of means to do that. There are often even several means of doing that, most common being the `if` statement:
+All programming languages have some sort of means to do that. There are even
+several means of doing that, most common being the `if` statement:
 
 ```ruby
 if <condition>
@@ -288,16 +299,21 @@ else
 end
 ```
 
-Note that the syntax `<stuff>` means that `stuff` should not be written literally, but with appropriate expression. Here it should be some Ruby code that is equal to value `false`.
+Note that the notation `<stuff>` means that `stuff` should not be written
+literally, but with appropriate expression. Here it should be some Ruby code
+that is equal to value `false`.
 
-Let's assume all the functions our metallic companion uses to put stuff into the cup use a separate function to do exactly that, eg.
+Let's assume all the functions our robot Jeeves uses to fill the cup
+take advantage of a single utility function `inject`:
 
 ```ruby
 nozzle.inject('coffee', amount: 800, manner: 'pour')
 nozzle.inject('cream', amount: 400, manner: 'spray')
 ```
 
-Obviously all our methods would need to be able to detect if the cup is no longer under the nozzle, so we would edit the `inject` method for nozzles as follows:
+To avoid accitents, all our methods would need to detect if the cup is no
+longer under the nozzle. So we would edit the `inject` method for nozzles as
+follows:
 
 ```ruby
 def inject(substance, options)
@@ -311,15 +327,24 @@ def inject(substance, options)
 end
 ```
 
-Now we have fixed the problem! Well, not _quite_. Why?
+Now we have fixed the problem! If `sensors.cup_detected?` has the value
+`true`, it calls `actuall_inject_stuf`. Otherwise it alerts the user. But we
+did not _quite_ fix it yet. Why?
 
-If the cup is moved during the `actually_inject_stuff` we don't detect that, because we check for `sensors.cup_detected?` only just before we start injecting stuff. But at least we check it know just before each phase.
+If the cup is moved during the `actually_inject_stuff` call we won't detect
+that, because we check `sensors.cup_detected?` only just before we start
+injecting stuff. But at least we check it now just before each phase.
 
 ### Of things True and False
 
-I mentioned before that `if` executes the first section only if `<condition>` is true. What is true? In Ruby, anything that is equal to `false` or `nil`. You want to ignore `nil` for now though.
+I mentioned before that `if` executes the first section only if `<condition>`
+is true. What is true? In Ruby, anything that is equal to `false` or `nil`.
+You can ignore `nil` for now though (it simply means lack of meaningful
+value).
 
-Maybe one of the most common way to get a value that is `true` or `false` is to compare things. Like any programming language, Ruby gives us many ways to do just that, and return a respective value:
+Maybe one of the most common way to get a value that is `true` or `false` is
+by comparing things. Like any programming language, Ruby gives us many ways to
+do just that, and return a respective value:
 
 ```ruby
 # conditions.rb
@@ -333,30 +358,52 @@ Maybe one of the most common way to get a value that is `true` or `false` is to 
 'cute kitten' == 'cute ' + 'kitten' # true
 ```
 
-The reason why both `40 >= 38 + 2` and 'cute kitten' == 'cute ' + 'kitten' work is because they don't compare the _literal code_ you typed, but Ruby _evaluates_ the code in the both sides of the comparison operator, like `==` or `>`.
+The reason why both `40 >= 38 + 2` and 'cute kitten' == 'cute ' + 'kitten'
+work is because they don't compare the _literal code_ you typed, but Ruby
+_evaluates_ the code in the both sides of the comparison operator, like `==`
+or `>`.
 
-Almost any valid code you write in Ruby is an _expression_ (or list of several expressions), and that expression has a value, when it is evaluated. For example, value of vsimple expression `2` is just `2`. Value of `'kitten'` is `'kitten'`, as well with any other literal values. Expression like `38 + 2` _evaluates_ to 40, so it is equal to value `40`. Same for `'cute ' + 'kitten'` that evaluates to `'cute kitten'`.
+Almost any valid code you write in Ruby is an _expression_ (or list of several
+expressions), and that expression has a value, when it is evaluated. For
+example, value of a simple expression `2` is just `2`. Value of `'kitten'` is
+`'kitten'`, as well with any other literal values. Expression like `38 + 2`
+_evaluates_ to 40, so it is equal to value `40`. Same for `'cute ' + 'kitten'`
+that evaluates to `'cute kitten'`.
 
-A good way to get familiar with expressions is to toy with things in `irb` or `pry`. Now, start either of those and type some stuff, either simple values or
-more complex combinations of those. Stuff that you write are expressions, and things you get back are values computed by Ruby!
+A good way to get familiar with expressions is to toy with things in `pry`.
+Now go ahead and compare some things to get a taste of using comparison
+operators. Note also that every individual line you write is an expression,
+and things you get back prom Pry are _values_ of those expressions, computed by Ruby!
 
-Often you will hear the term "boolean" when talking about things that are true or false. That is due to a logician George Boole, and computer scientists often talk about "Boolean logic". We will talk more about that too, when we get to more complex conditions.
+{tip-begin}
+Often you will hear the term "boolean" when talking about things that are true
+or false. That is due to a logician George Boole, and computer scientists
+often talk about "Boolean logic". We will talk more about that too, when we
+get to more complex conditions.
+{tip-end}
 
 ### Wrapping up
 
-In normal language we talk about "programming" the microwave or washing machine, but in this context it's not what we like to call programming, but merely setting up some actions that are always done in exactly the same way.
+In normal languages we talk about "programming" the microwave or washing
+machine, but in this context it's not precisely programming, but merely
+setting up or _sequencing_ some actions that are always executed in exactly
+the same way.
 
-When we talk about computers, we need basically three things in order to be able to do anything (and by anything, I really mean anything that is theoretically possible):
+When we talk about computers, we need basically three things in order to be
+able to do **anything** (and by anything, I really mean anything that is
+theoretically possible):
 
 1. Do stuff in sequence. Doing some task first, then some other tasks.
 2. Do something conditionally. Given this, do this. Otherwise, do something else
 3. Repetition
 
-For the latter, we now know of `if` expressions that allow to act us smart by checking arbitrary conditions. Next we will talk about the missing third part.
+For the second part, we now know of `if` expressions that allow us to act
+smart by checking arbitrary conditions. Next we will talk about the missing
+third part.
 
 ## Repeating things
 
-Imagine you have list things to do you want to print by formatting it nicely:
+Imagine you have a list things to do, and you want to format those nicely when printing:
 
 ```ruby
 # todo.rb
@@ -369,9 +416,14 @@ puts "TODO item: " + todo_list[2]
 puts "TODO item: " + todo_list[3]
 ```
 
-That code would print all the items, but it sure looks awkward. It's repetitive, and imagine what it would look like if there are 100 entries. Surely we can do better.
+That code would print all the items, but it sure looks awkward. It's
+repetitive, and imagine what it would look like if there are 100 entries.
+Surely we can do better.
 
-In Ruby, all data types that contain stuff (CS folks talk about _collections_ or things you can _iterate_ over) support method `each`. Arrays are collections of things, so we can replace the code above with much cleaner version:
+In Ruby, all data types that _contain_ stuff (CS folks talk about
+_collections_ or things you can _iterate_ over) support method `each`. Arrays
+are collections of things, so we can replace the code above with much cleaner
+version:
 
 ```ruby
 # todo2.rb
@@ -382,10 +434,13 @@ todo_list.each do |entry|
 end
 ```
 
-Don't worry about funny pipe characters ('|') yet. First consider the benefits: due to the loop we don't need to care about
-array size. That code would work with list containing only one entry, with list containing 100000000000 entries and even an empty list (it would just print nothing).
+Don't worry about funny pipe characters ('|') yet. First consider the
+benefits: due to the loop we don't need to care about array size. That code
+would work with list containing only one entry, with list containing
+100000000000 entries and even an empty list; it would just print nothing.
 
-Now let's talk about the syntax a bit. It's not that hard, once you get used to it. Another example:
+Now let's talk about the syntax a bit. It's not that hard, once you get used
+to it. Another example:
 
 ```ruby
 # countdown.rb
@@ -396,8 +451,12 @@ end
 puts "go!"
 ```
 
-That `do` starts a _block_. A Ruby block is just, well, blob of code like any other ruby code. The interesting stuff is between pipes. Ruby automatically passes _each_ (yeah, that's why the name) item in the collection to that block in turn, and executes that block _for each entry_.
-So, here `puts` is called five times.
+That `do` starts a _block_. A Ruby block is just, well, blob of code like any
+other ruby code. The interesting stuff is between pipes. Ruby automatically
+passes _each_ (yeah, that's why the name) item in the collection to that block
+in turn, assigning it to the given variable name, and executes that block _for
+each entry_. So, here `puts` is called five times, with `n` being assigned each
+of the numbers in turn.
 
 There are other kinds of loops, though they are maybe not that common. For example, sometimes you know that you want to do something a fixed number of times, no matter what.
 
