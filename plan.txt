@@ -1,8 +1,9 @@
 1. Perusteet
-  - Perusteet:
   - Tietotyypit (numerot, merkkijonot, taulukot)
   - Ehtolause ja toisto
   - Lausekkeet / paluuarvot
+
+1.1.
   - Funktiot
   - Luokat, oliot, metodit
   - Tärkeimmät suunnitteluperiaatteet (separation of concerns, DRY, top-down, refaktorointi)
