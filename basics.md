@@ -217,7 +217,7 @@ Now we have fixed the problem! Well, not _quite_. Why?
 
 If the cup is moved during the `actually_inject_stuff` we don't detect that, because we check for `sensors.cup_detected?` only just before we start injecting stuff. But at least we check it know just before each phase.
 
-## Of things True and False
+### Of things True and False
 
 I mentioned before that `if` executes the first section only if `<condition>` is true. What is true? In Ruby, anything that is equal to `false` or `nil`. You want to ignore `nil` for now though.
 
