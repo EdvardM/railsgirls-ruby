@@ -316,7 +316,7 @@ end
 
 We really need to fix Jeeeves. But that'll need to wait. At least it's only 3 times.
 
-Third very important loop has the ability to both repeat and check conditions. It's like each with steroids. Kind of. Enter `while`.
+Third very important loop has the ability to both repeat and check conditions. It's like `each` with steroids. Kind of. Enter `while`.
 
 ```ruby
 # while.rb
@@ -331,11 +331,29 @@ Can you guess what it does? First it gets the current time, and stores that to v
 
 Put more simply, it repeats the loop for 3 seconds, sleeping half a second after each print. Note that it does not matter for while what the condition is, as long as it is something that is either false or true. The condition could compare water level in a reservoir if it is below certain limit. It could check if there is enough tuna for Fluffy the Cat. It could check the periapsis for current orbital trajectory, or whatever. As long as it returns value that can be interpreted as true or false (remember, that actually _anything_ in Ruby that is not `false` or `nil` is true).
 
+It is important to understand that while loop iterates over the code between while... end as long as condition is true. The condition is checked every time again after it reaches the last line in while, and it _will repeat indefinitely_ if condition never becomes false. For example, this code never terminates:
 
+```ruby
+while true
+  puts "repeating this ad infinitum"
+end
+```
 
+The only way to end the program is by terminating it by force. Fortunately, you can do this simply by pressing `CTRL+C` in the terminal, if you try that.
 
+Now you should take a deep breath, as we have reached a very important milestone: you know all the concepts that are required to write _any kind of computer program_ ever. We have actions like calculating things, joining strings, assigning values to variables. Then we have the ability do decide on what kind of actions to do with conditions. And last, we have the ability to repeat things.
 
+Note: people sometimes use the terms "programming" and "coding" in a mixed manner. HTML is not strictly programming, though it can be talked of as _coding_. You cannot have conditionals in HTML, nor can you repeat things. It is also sort of a stretch to say that any HTML is about 'doing actions', but one could think of say, `title` element being an 'action' to show title. Sort of.
 
+### Wrapping up
+
+We now learned of the last important part, repetition. We had three kinds of loops:
+
+1. `each` we can use with any collection, not needing to know how many items there are
+2. `times` which allows us to do things a fixed number of.. duh, times
+3. `while` that allows repeating things by checking first
+
+Go get a nice, warm cup of your favorite beverage now! You've deserved it. Maybe ponder all this stuff a bit. Please pet your doggy dog or cat if you have any.
 
 
 [^fn-array] Yeah, there's no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.
