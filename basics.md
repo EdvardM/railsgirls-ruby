@@ -258,10 +258,84 @@ For the latter, we now know of `if` expressions that allow to act us smart by ch
 
 ## Repeating things
 
-```ruby
-puts "foo"
-puts "bar"
+Imagine you have list things to do you want to print by formatting it nicely:
 
+```ruby
+# todo.rb
+todo_list = ['clean up the kitchen', 'buy some milk', 'make time for learning Ruby', 'consider acquiring a kitten']
+
+# remember that indexes start from zero
+puts "TODO item: " + todo_list[0]
+puts "TODO item: " + todo_list[1]
+puts "TODO item: " + todo_list[2]
+puts "TODO item: " + todo_list[3]
 ```
+
+That code would print all the items, but it sure looks awkward. It's repetitive, and imagine what it would look like if there are 100 entries. Surely we can do better.
+
+In Ruby, all data types that contain stuff (CS folks talk about _collections_ or things you can _iterate_ over) support method `each`. Arrays are collections of things, so we can replace the code above with much cleaner version:
+
+```ruby
+# todo2.rb
+todo_list = ['clean up the kitchen', 'buy some milk', 'make time for learning Ruby', 'consider acquiring a kitten']
+
+todo_list.each do |entry|
+  puts "TODO item: " + entry
+end
+```
+
+Don't worry about funny pipe characters ('|') yet. First consider the benefits: due to the loop we don't need to care about
+array size. That code would work with list containing only one entry, with list containing 100000000000 entries and even an empty list (it would just print nothing).
+
+Now let's talk about the syntax a bit. It's not that hard, once you get used to it. Another example:
+
+```ruby
+# countdown.rb
+put "countdown started"
+[5, 4, 3, 2, 1].each do |n|
+  puts n
+end
+puts "go!"
+```
+
+That `do` starts a _block_. A Ruby block is just, well, blob of code like any other ruby code. The interesting stuff is between pipes. Ruby automatically passes _each_ (yeah, that's why the name) item in the collection to that block in turn, and executes that block _for each entry_.
+So, here `puts` is called five times.
+
+There are other kinds of loops, though they are maybe not that common. For example, sometimes you know that you want to do something a fixed number of times, no matter what.
+
+For example, suppose our robot reminds us of stuff, and it does so exactly 3 times. Yeah, somewhat annoying, and also a contrived exmaple. I'm not having enough coffee. Which is the fuel of programmers. I digress. Soooo, the Ruby code in our robot could look like this:
+
+```ruby
+3.times do
+  item = TodoList.most_urgent_item
+  puts "Not wanting to appear imprudent, but there's this thing which requires your attention: " + item
+
+  sleep 3600 # 60*60 = 3600, one hour!
+end
+```
+
+We really need to fix Jeeeves. But that'll need to wait. At least it's only 3 times.
+
+Third very important loop has the ability to both repeat and check conditions. It's like each with steroids. Kind of. Enter `while`.
+
+```ruby
+# while.rb
+start_time = Time.now
+while (Time.now - start_time) < 3
+  puts "I should really learn this Ruby stuff."
+  sleep 0.5
+end
+```
+
+Can you guess what it does? First it gets the current time, and stores that to variable `start_time`. Then it loops over until difference between current time and that `start_time` is at least 3.
+
+Put more simply, it repeats the loop for 3 seconds, sleeping half a second after each print. Note that it does not matter for while what the condition is, as long as it is something that is either false or true. The condition could compare water level in a reservoir if it is below certain limit. It could check if there is enough tuna for Fluffy the Cat. It could check the periapsis for current orbital trajectory, or whatever. As long as it returns value that can be interpreted as true or false (remember, that actually _anything_ in Ruby that is not `false` or `nil` is true).
+
+
+
+
+
+
+
 
 [^fn-array] Yeah, there's no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.
