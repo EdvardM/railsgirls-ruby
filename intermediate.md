@@ -1,13 +1,22 @@
 ## Functions schmunctions
 
-Like mentioned before, functions are means of doing things of data. They can be very simple
-(like joining two strings together) or very complex. Usually we want to avoid complexity though
-by splitting a complex function to several smaller, less complex ones.
+Like mentioned before, functions are means of doing things with data. They can
+be very simple (like joining two strings together) or highly complex, and
+naturally functions can call other functions.
+
+Many functions are built-in to the language, and huge amount of useful
+functions are in the so-called _standard library_ grouped by category. Things
+like getting current time, work with files, reading contents of a web page,
+convert things from format into another, manage concurrency, compute
+trigonometric functions, compress things so that they take less space and so
+on. I encourage you to look at [Rubydoc stdlib page](http://www.rubydoc.info/stdlib)
+to get an idea of things you have at your disposal, without installing any
+software (that is, your Ruby installation already has all that stuff).
 
 Usually functions are introduced by doing arithmetic with numbers. Let's
-change that  by doing things with strings. In particular, lets make a function
-that return the  longest string in a list, and let's first write a small
-program to find out _how we wish it would work_.
+change that now by doing things with strings. In particular, lets make a
+function that return the  longest string in a list, and let's first write a
+small program to find out _how we wish it would work_.
 
 ```ruby
 longest_string(['apple', 'banana', 'mango', 'pear']) # 'banana'
@@ -160,12 +169,19 @@ should behave
 ```ruby
 get_me_some_ice_cream('Ben & Jerry', 'Chunky Monkey')
 ```
-
 it is easy then to find out how the function definition starts:
-
 
 ```ruby
 def get_me_some_ice_cream(brand, flavor)
   ...
 end
 ```
+Now is a good time to fire up Pry, and try writing some simple functions and call those to see how they work.
+Some suggestions:
+
+* function to convert inches to cents, and vise versa
+* function to find out if a string is too short
+* function to compute BMI
+* function to find out if a string is a palindrome
+* function to find out if a given number is prime (intermediate)
+* function to print out all permutations of list of strings (intermediate)
