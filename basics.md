@@ -545,7 +545,7 @@ of. But you should at least cringe a bit when saying that.
 We now learned of the last part, repetition. We had two kinds of loops:
 
 1. `each` we can use with any collection, not needing to know how many items there are
-2. `while` that allows repeating things by checking first
+2. `while` that allows repeating things by checking a condition first before each pass
 
 Technically you could do any looping with `while`, but `each` is more
 convenient and less verbose when you have a collection to process.
