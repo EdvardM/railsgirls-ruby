@@ -2,14 +2,26 @@
 
 ## Introduction
 
-Welcome to the wonderful world of Programming! While there are practically no limits to magic of what one can accomplish with programs, even the most wonderful, complex programs are built of components that in turn contain more simple components, those containing more simple things and so on, eventually to the point where we deal with just very simple language primitives.
+Welcome to the wonderful world of Programming!
 
-These simple primitives are building blocks of all programs, and quite complex
-things can be done easily by using just those.
+Programming is all about abstracting complex things. While there are
+practically no limits to what one can accomplish with programming, even the
+most complex ones contain components that consist of more simple components,
+until the component deals with just basic language primitives.
+
+Those basic primitives are things that every program contains, and quite
+complex things can be done easily by using just those.
 
 ### Why yet another tutorial?
 
-There are several much better tutorials, but I find even the shortest of those a bit too long and involved. [Why The Lucky Stiff's](http://mislav.uniqpath.com/poignant-guide/book/chapter-1.html) is an excellent one and far from dry, but it's long (still recommend it though!). My attempt is to introduce the least amount of things to begin programming, trusting that missing parts are easily explained when needed. So, lets get started!
+There are several better tutorials, but I find even the shortest of those tag
+too long. [Why The Lucky Stiff's](http://mislav.uniqpath.com/poignant-
+guide/book/chapter-1.html) is an excellent one and far from dry, but it's long
+(still recommend it though!).
+
+My attempt is to cover the least amount of knowledge to begin programming,
+trusting that missing parts are easily explained when needed. So, lets get
+started!
 
 ### Notations used
 
@@ -20,21 +32,33 @@ By default, anything that looks like
 puts "Howdy" # here we have some Ruby code
 ```
 
-is something you can type into Ruby interpreter. That is, open up some sort of terminal and type `pry` or `irb`. "irb" stands for "interactive Ruby interpreter" and allow you to try out code immediately. Pry is a tool that makes working with irb much more nice, has fancy colours and whatnot. From now on I'll assume you use Pry, but you can just use irb if you like.
+is something you can type into Ruby interpreter. That is, open up a
+terminal and type `pry` or `irb`.
 
-If the code can be tried as-is, I'll write suggested filename to the top of the file (somefile.rb above). You may use any name you wish, but then you need to take that into account when you try running the examples.
+"irb" stands for "interactive Ruby interpreter" and allows you to try out code
+immediately. Pry is a tool that makes working with irb much more nice, has
+fancy colours and whatnot. From now on I'll assume you use Pry, but you can
+use irb if you like.
+
+If the code can be tried as-is, I'll write suggested filename to the top of
+the file, like `somefile.rb` above. You may use any name you wish, but you need
+to take that into account when you try running the examples.
 
 Anything that looks like
 
 > cd projects/ruby-tutorial
 
-is meant to be typed into the terminal (that is, NOT to irb or pry)
+is meant to be typed into the terminal, that is, NOT in irb or pry.
 
-So, you might want to keep three windows open: one editor window, and two terminal windows in the same directory. The other terminal would have pry open, whereas from the other you could run code written in the editor. This way you don't need to open and close pry in between.
+You also might want to keep three windows open: one editor window, and two
+terminal windows in the same directory. The other terminal would have pry/irb
+open, whereas from the other you could run code written in the editor. This
+way you don't need to open and reopen things all the time.
 
 ### Tools
 
-You only need Ruby for this. Any version at or greater than 1.9.3 should be ok, though 2.2 and is recommended. You can find out your version by typing
+You only need Ruby for this. Any version at or greater than 1.9.3 should be
+ok, though 2.2 and is recommended. You can find out your version by typing
 
 > ruby -v
 
@@ -42,7 +66,9 @@ TBD: installation of pry, link to install script
 
 ## Data types
 
-All programs consist basically of two things: data and functions that do stuff with that data. Let's look at the most simple program that has both of these elements and does something when you run that.
+All programs consist of two things: **data** and **functions** that do stuff
+with that data. Let's look at a very simple program that has both of these
+elements and does something when it is executed.
 
 ```ruby
 # hello.rb
@@ -52,22 +78,40 @@ puts "Kittens are " + " so fluffy"
 puts "moar kittens in examples!".upcase
 ```
 
-_Data_ is just information, like text, numbers, images, videos. It does not do nothing by itself. Even simple text needs to printed for someone to be able to read it. Here the _string_ "Oh my, cinnamon buns!" is the data. `puts` is the function that does something with data, which is just printing whatever is fed to the function.
+_Data_ is just information, like text, numbers, images, videos. It does not do
+nothing by itself. Even simple text needs to printed for someone to be able to
+read it. Here the **string** `"Oh my, cinnamon buns!"` is the data, as well as
+`"Kittens are "`, `"so fluffy"` and so on. `puts` is the function that _does
+something with data_, which is just printing whatever is fed to the function.
+`upcase` is also a kind function, acting on the string itself.
 
-The second example joins (or _concatenates_) two strings together by using `+` operator. Note that I needed to add trailing space to the first string, otherwise it would have printed `Kittens areso fluffy`.
+While the first example just prints a string, the second joins (or
+_concatenates_) two strings together by using `+` operator (in Ruby that's
+also a function!). Note that I needed to add trailing space to the string
+`"Kittens are "`, otherwise it would have printed `Kittens areso fluffy`.
 
-The last part prints something to the screen in rather demanding manner, due to `upcase` "service" that is available to strings.
+The last part prints something to the screen in rather demanding manner, due
+to `upcase` function that is 'tied' to strings.
 
-Last but not least, note that you can have either zero or any number of blank lines between Ruby code. Use blank lines to group
-things logically, just like in writing human languages. Ruby does not care: you could write all Ruby programs in one really long line if you wanted, but readability is for humans; machine doesn't care. Clarity is important.
+Also note that you can have either zero or any number of blank lines between
+lines of Ruby code. Use blank lines to group things logically, just like in
+writing human languages. Ruby does not care: you could write all Ruby programs
+in one really long line if you wanted, but readability is for humans; machine
+doesn't care. Clarity is important. I added one blank line after the first example
+as it is something that does not do anything to strings except print it; the two
+after it are a bit more complex, though still simple.
 
 If you wrote that in editor, try it out by saying
 
 > ruby hello.rb
 
-Note that when you pass string data to Ruby in your code, you need to surround it with double (") or single (') quotes. For now it doesn't matter which, but try to be consistent.
+Note that when you pass string data to Ruby in your code, you need to surround
+it with double (") or single (') quotes. For now it doesn't matter which, but
+try to be consistent.
 
-Numbers are also very common. Actually there are several types of numbers to deal with certain issues, but we don't need to care about those yet. For example:
+**Numbers** are also very common. Actually there are several types of numbers to
+deal with certain issues, but we don't need to care about those yet. For
+example:
 
 ```ruby
 # numbers.rb
@@ -84,7 +128,10 @@ As before, given you have a terminal open in the same directory, save the file i
 
 > ruby numbers.rb
 
-Now we know there are numbers and strings. What about things that have many of those? Well, we have lists. Or more precisely we talk of _arrays_ in Ruby. You can do lots of things with those, and they are at the very core of almost all programs:
+Now we know there are numbers and strings. What about things that have many of
+those? Well, we have lists. Or more precisely we talk of _arrays_ in Ruby. You
+can do lots of things with those, and they are at the very core of almost all
+programs:
 
 ```ruby
 # arrays.rb
@@ -111,9 +158,16 @@ not_even_funny = [2, 'bananas', [4, 5]]
 puts not_even_funny[-1]
 ```
 
-OK. So now we can have _strings_, _numbers_ and _arrays_ of those. But what's with the funny things like `.length` and `.sort`? They are aforementioned _functions_ to do things with the data. Or more precisely, as those functions are "attached" to the data are, they are called _methods_. At this point it doesn't matter which term you use.
+OK. So now we can have _strings_, _numbers_ and _arrays_. But what about funny
+things like `.length` and `.sort`? They are aforementioned _functions_ to do
+things with the data, just like `upcase` before. Or more precisely, as those
+functions are "attached" or "tied" to the data, they are called _methods_. At this
+point it doesn't matter much which term you use.
 
-There was something else too. That `some_stuff` is a _variable_. You use them to simply give shorter names to things that longer to type or that are relatively expensive to compute. But arguably the most common reason to use those is to give descriptive names to things. Consider the following code:
+There was something else too. That `some_stuff` is a _variable_. You use them
+to give shorter, descriptive names to things that are longer to type or
+relatively expensive to compute. But arguably the most common reason to use
+those is to give things descriptive names. Consider the following:
 
 ```ruby
 User.all.select { |u| !u.admin? && u.created_at >= Time.now - 7.days }.each do |u|
@@ -121,7 +175,9 @@ User.all.select { |u| !u.admin? && u.created_at >= Time.now - 7.days }.each do |
 end
 ```
 
-Unless the reader is quite familiar with Ruby and Rails, it is not easy to see what is being printed. Now consider the version that splits up that a bit using hopefully more proper variable names:
+Unless the reader is quite familiar with Ruby and Rails, it is not easy to see
+what is actually printed. Next consider the version that splits up that a bit,
+using hopefully more human-readable variable names:
 
 ```ruby
 min_creation_time = Time.now - 7.days
@@ -132,35 +188,77 @@ recent_non_admins.each do |user|
 end
 ```
 
-There are actually even better ways to make that more descriptive or elegant, but we don't have tools for that yet. However, we already gained something important: `recent_normal_users` communicates to the reader that this variable holds actually list of users that are not administrators. If you need to change how users are actually printed, you may safely ignore a bit involved expression of getting non-admin
-users. You only need to focus on the printing part. Note also that to introduce a new variable, you simply write that variable and assign a value to it. Some languages require you to declare those separately, but in Ruby, you just start using those by assigning them to stuff.
+There are even better ways to make that more descriptive or elegant, but we
+don't have tools for that yet. However, we already gained something important:
+`recent_normal_users` communicates to the reader that this variable holds
+actually a list of users that are not administrators. If you need to change
+how users are printed, then you may safely ignore ther more involved
+expression of getting those users, knowing know what it does. You only need to
+focus on the printing part.
 
-Computer programs are hard to write, but they are often even harder to read, even your own code. Even after few weeks or so it is easy to lose track of how a particular piece of code works. Some say you should comment your code, but even more important is to write readable code. Naming things properly is very important.
+Also note that to introduce a new variable, you simply write that variable and
+assign a value to it. Some languages require you to declare those separately,
+but in Ruby, you just start using those by assigning them to stuff. In Ruby,
+you always assign things to labels by using the equal symbol `=`.
 
-Also note that all variable names are totally arbitrary. While `a` or `z` are not very descriptive names, they are valid names for variables. So is `a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow`. Anything consisting of letters a to z, numbers and underscore '_'. The only constraint is that you cannot start it with a number. So `kitteh_42` is a valid variable name, but `42_kitteh` isn't.
+Computer programs are hard to write, but they are often even harder to read,
+even your own code. Even after few weeks or so it is easy to lose track of how
+a particular piece of code works. Some say you should comment your code, but
+even more important is to write readable code. Problem with comments is that
+code interpreters and compilers _ignore those_, and they get easily outdated.
+Ideal code is self-documenting using descriptive names for variables and
+functions. While comments are sometimes the best way to explain things to the
+reader, they are seldom needed if you name things well.
+
+Can you use any names for things, then? In practice, yes. All variable names
+are totally arbitrary. While `a` or `z` are not very descriptive names, they
+are valid names for variables. So is
+`a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow`. Anything
+consisting of letters a to z, numbers and underscore '_'. The only constraint
+is that you cannot start it with a number. So `kitteh_42` is a valid variable
+name, but `42_kitteh` isn't.
+
+Same rules apply for your own methods and functions.
 
 {tip-begin}
-In Ruby, you should Use underscore to separate words in variable names, and always use downcase letters. Upcase is reserved for constants, classes and other things we'll talk about later.
+In Ruby, you should Use underscore to separate words in variable names, and
+always use downcase letters. Upcase is reserved for constants, classes and
+other things we'll talk about later.
 
-You _could_ also use Finnish to name things, which actually works nowadays much better due to UTF character set being common enough. Which means you can actually use variable names like `ämpäri`, which was still impossible only few years back and still is with some languages. It diesn't mean you _should_. English is _lingua franca_ of computing, and using any other language to name things will be frowned upon. Though it could be also argued that using non-Eglish names for things that you write makes it more apparent what comes from language and standard libraries, and what is your own code. But I'd still recommend against it.
+You _could_ also use Finnish to name things if you like, which actually works
+nowadays due to UTF character set being common. So, you can actually use
+variable names like `ämpäri`, which was not that possible only few years back,
+and is still impossible with some languages. It doesn't mean you _should_ do
+that, though. English is _lingua franca_ of computing, and using any other
+language to name things will be frowned upon. With stiff upper lip.
+
+Even though it could be argued that using non-Eglish names for things that you
+write makes it more apparent what comes from language and standard libraries,
+and what is your own code. I'd still recommend against it. Just stick to English.
 {tip-end}
 
 
 ### Wrapping up
 
-So, now we know -- or at least have seen -- two things:
+So, now we know -- or at least have seen -- three things:
 
 1. Data. There are different types of if, and we have seen three of those:
   * Strings
   * Numbers
   * Arrays, which can contain any data structures, including other arrays[^fn-array]
 2. Methods to do things with the data
-  * In the example above, we used to _array methods_ to get the length of the array, and _sort_ to get array contents in alphabetic order. We will talk more about methods a bit later.
+  * In the example above, we used _array methods_ to get the length of the array with `length`,
+    and `sort` to get array contents in alphabetic order. `upcase` converted string to upper case.
+  * We will talk more about methods a bit later.
 3. We quickly glanced at variables that are just short, descriptive labels for things
 
 ## Acting in an intelligent fashion
 
-Imagine you are programming a robot that needs to brew and serve coffee. With some cream, cinnamon and chocolate chips with a tad of sugar frosting on the top. Also imagine I was actually able to actually _draw_ pictures and here would be an artsy nice picture of a jolly good robot pouring a hot cup of Old Joe. With all that sweet stuff on top. So there.
+Imagine you are programming a robot that needs to brew and serve coffee. With
+some cream, cinnamon and chocolate chips with a tad of sugar frosting on the
+top. Also imagine I was actually able to actually _draw_ pictures and here
+would be an artsy nice picture of a jolly good robot pouring a hot cup of Old
+Joe. With all that sweet stuff on top. So there.
 
 With that picture in your head, imagine you had programmed the robot to pour 80cl of coffee and 40cl of cream to each cup. Now, the code might look roughly like this:
 
