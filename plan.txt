@@ -11,6 +11,8 @@
 
 3. Rails-koodausta yhdessä
 
-4. Katoja, esim. http://codingdojo.org/cgi-bin/index.pl?KataCatalogue
+4. Katoja, esim.
+  * http://codingdojo.org/cgi-bin/index.pl?KataCatalogue
+  * http://codekata.com/
 
 

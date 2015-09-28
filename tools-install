@@ -5,7 +5,7 @@
 
 echo "installing pry and awesome_print"
 gem install -q --no-ri --no-rdoc \
-    pry pry-doc awesome_print
+    pry pry-doc pry-coolline awesome_print
 
 # Nifty pry config copied from https://github.com/dotphiles/dotphiles/blob/master/ruby/aprc
 
