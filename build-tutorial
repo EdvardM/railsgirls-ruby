@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+
+# Given input text, expand custom macros to Github Markdown / HTML
+class PreProcessor
+  def initialize(src)
+    @src = src
+  end
+
+  BEGIN_TIP_TAG = '{tip-begin}'
+  END_TIP_TAG = '{tip-end}'
+  BEGIN_TIP_REPLACEMENT = '<div class="tip">'
+  END_TIP_REPLACEMENT = '</div>'
+  def run
+    out = []
+    out.concat(@src.each_line.map do |line|
+      line
+        .sub(BEGIN_TIP_TAG, BEGIN_TIP_REPLACEMENT)
+        .sub(END_TIP_TAG, END_TIP_REPLACEMENT)
+    end)
+
+    out.join
+  end
+
+  private
+end
+
+file = ARGV.first
+pproc = PreProcessor.new(File.read(file))
+puts pproc.run
