@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The Very Basics of Ruby</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css"/>
+    <style>
+      body {
+        background-color: #f6f6f6;
+        padding-top: 30px;
+      }
+      .main {
+        background-color: #fff;
+        border: 1px solid #CCC;
+        padding: 40px;
+      }
+      .container {
+        width: 1100px;
+      }
+      .nav-list {
+        font-size: 17px;
+      }
+      .nav-header {
+        font-size: 17px;
+        text-transform: none;
+        line-height: 30px;
+      }
+    </style>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/book.css"/>
+  </head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3"><ul class="nav nav-list">
+    <li><a href="#the-very-basics-of-ruby">The Very Basics of Ruby</a></li>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#why-yet-another-tutorial-">Why yet another tutorial?</a></li>
+    <li><a href="#notations-used">Notations used</a></li>
+    <li><a href="#tools">Tools</a></li>
+    <li><a href="#data-types">Data types</a></li>
+    <li><a href="#wrapping-up">Wrapping up</a></li>
+    <li><a href="#acting-in-an-intelligent-fashion">Acting in an intelligent fashion</a></li>
+    <li><a href="#of-things-true-and-false">Of things True and False</a></li>
+    <li><a href="#wrapping-up">Wrapping up</a></li>
+    <li><a href="#repeating-things">Repeating things</a></li>
+    <li><a href="#wrapping-up">Wrapping up</a></li>
+</ul>
+      </div>
+      <div class="span9 main"><h1 id="the-very-basics-of-ruby"><a class="header-link" href="#the-very-basics-of-ruby"></a>The Very Basics of Ruby</h1>
+<h2 id="introduction"><a class="header-link" href="#introduction"></a>Introduction</h2>
+<p>Welcome to the wonderful world of Programming!</p>
+<p>Programming is all about <strong>abstracting complex</strong> things. While there are
+practically no limits to what one can accomplish with programming, even the
+most complex ones contain components that consist of more simple components,
+until the component deals with just basic language primitives.</p>
+<p>Those basic primitives are things that every program contains, and quite
+complex things can be done easily by using just those.</p>
+<h3 id="why-yet-another-tutorial-"><a class="header-link" href="#why-yet-another-tutorial-"></a>Why yet another tutorial?</h3>
+<p>There are several better tutorials, but I find even the shortest of those tag
+too long. <a href="http://mislav.uniqpath.com/poignant-
+guide/book/chapter-1.html">Why The Lucky Stiff&#39;s</a> is an excellent one and far from dry, but it&#39;s long
+(still recommend it though!).</p>
+<p>My attempt is to cover the least amount of knowledge to begin programming,
+trusting that missing parts are easily explained when needed. So, lets get
+started!</p>
+<h3 id="notations-used"><a class="header-link" href="#notations-used"></a>Notations used</h3>
+<p>By default, anything that looks like</p>
+<pre class="hljs"><code><span class="hljs-comment"># somefile.rb</span>
+puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># here we have some Ruby code</span></code></pre><p>is something you can type into Ruby interpreter. That is, open up a
+terminal and type <code>pry</code> or <code>irb</code>.</p>
+<p><strong>irb</strong> stands for &quot;interactive Ruby interpreter&quot; and allows you to try out code
+immediately. Pry is a tool that makes working with irb much more nice, has
+fancy colours and whatnot. From now on I&#39;ll assume you use Pry, but you can
+use irb if you like.</p>
+<div class="tip">
+Sometimes there are tips like this. You can skip these when reading for the first time, but
+they often contain useful information you might want to check at least later.
+</div>
+
+<p>If the code can be tried as-is, I&#39;ll write suggested filename to the top of
+the file, like <code>somefile.rb</code> above. You may use any name you wish, but you need
+to take that into account when you try running the examples.</p>
+<p>Anything that looks like</p>
+<blockquote>
+<p>cd projects/ruby-tutorial</p>
+</blockquote>
+<p>is meant to be typed into the terminal, that is, not in irb or pry. Don&#39;t worry, &#39;$&#39; will not be copied if you
+want to copy-paste the string.</p>
+<p>You also might want to keep three windows open: one editor window, and two
+terminal windows in the same directory. The other terminal would then have pry
+open, whereas from the other you could run code written in the editor. This
+way you don&#39;t need to open and reopen things all the time.</p>
+<h3 id="tools"><a class="header-link" href="#tools"></a>Tools</h3>
+<p>You only need Ruby for this. Any version at or greater than 1.9.3 should be
+ok, though 2.2 and is recommended. You can find out your version by typing</p>
+<blockquote>
+<p>ruby -v</p>
+</blockquote>
+<p>TBD: installation of pry, link to install script</p>
+<h2 id="data-types"><a class="header-link" href="#data-types"></a>Data types</h2>
+<p>All programs consist of two things: <em>data</em> and <em>functions</em> that do stuff
+with that data. Let&#39;s look at a very simple program that has both of these
+elements and does something when it is executed.</p>
+<pre class="hljs"><code><span class="hljs-comment"># hello.rb</span>
+puts <span class="hljs-string">"Oh my, cinnamon buns!"</span>
+
+puts <span class="hljs-string">"Kittens are "</span> + <span class="hljs-string">" so fluffy"</span>
+puts <span class="hljs-string">"moar kittens in examples!"</span>.upcase</code></pre><p>Data is just information, like text, numbers, images, videos. It does not do
+nothing by itself. Even simple text needs to printed for someone to be able to
+read it. Here the <strong>string</strong> <code>&quot;Oh my, cinnamon buns!&quot;</code> is the data, as well as
+<code>&quot;Kittens are &quot;</code>, <code>&quot;so fluffy&quot;</code> and so on. <code>puts</code> is the function that <em>does
+something with data</em>, which is just printing whatever is fed to the function.
+<code>upcase</code> is also a kind of function, acting on the string itself.</p>
+<p>While the first example just prints a string, the second joins (or
+<em>concatenates</em>) two strings together by using <code>+</code> operator (in Ruby that&#39;s
+also a function!). Note that I needed to add trailing space to the string
+<code>&quot;Kittens are &quot;</code>, otherwise it would have printed <code>Kittens areso fluffy</code>.</p>
+<p>The last part prints something to the screen in rather demanding manner, due
+to <code>upcase</code> function that is &quot;tied&quot; to strings.</p>
+<p>Also note that you can have either zero or any number of blank lines between
+lines of Ruby code. Use blank lines to group things logically, just like in
+writing human languages. Ruby does not care: you could write all Ruby programs
+in one really long line if you wanted, but readability is for humans; machine
+doesn&#39;t care. Clarity is important. I added one blank line after the first example
+as it is something that does not do anything to strings except print it; the two
+after it are a bit more complex, though still simple.</p>
+<p>If you wrote that in editor, try it out by saying</p>
+<blockquote>
+<p>ruby hello.rb</p>
+</blockquote>
+<p>Note that when you pass string data to Ruby in your code, you need to surround
+it with double (<code>&quot;</code>) or single (<code>&#39;</code>) quotes. For now it doesn&#39;t matter which, but
+try to be consistent.</p>
+<p><strong>Numbers</strong> are also very common. Actually there are several types of numbers to
+deal with certain issues, but we don&#39;t need to care about those yet. For
+example:</p>
+<pre class="hljs"><code><span class="hljs-comment"># numbers.rb</span>
+puts <span class="hljs-number">1</span> + <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># Note: it's (30 / 3) + 4, not 30 / (3 + 4). Just like you learned at school.</span>
+puts <span class="hljs-number">30</span> / <span class="hljs-number">3</span> + <span class="hljs-number">4</span>
+
+puts <span class="hljs-number">10</span> / <span class="hljs-number">3.0</span>    <span class="hljs-comment"># 3.3333333...</span>
+puts <span class="hljs-number">10</span> / <span class="hljs-number">3</span>      <span class="hljs-comment"># Note: integral division because all numbers are integral!</span></code></pre><p>As before, given you have a terminal open in the same directory, save the file in the editor and run</p>
+<blockquote>
+<p>ruby numbers.rb</p>
+</blockquote>
+<p>Now we know there are numbers and strings. What about things that have many of
+those? Well, we have lists. Or more precisely we talk of <em>arrays</em> in Ruby. You
+can do lots of things with those, and they are at the very core of almost all
+programs:</p>
+<pre class="hljs"><code><span class="hljs-comment"># arrays.rb</span>
+some_stuff = [<span class="hljs-string">'kitten'</span>, <span class="hljs-string">'dog'</span>, <span class="hljs-string">'llama'</span>]
+
+puts some_stuff        <span class="hljs-comment"># prints each string to its own line</span>
+puts some_stuff.length <span class="hljs-comment"># 3, as there are 3 things in the list</span>
+
+ <span class="hljs-comment"># almost all programming languages use 0-based indexes, so first</span>
+ <span class="hljs-comment"># array element is at 0!</span>
+puts some_stuff[<span class="hljs-number">0</span>]     <span class="hljs-comment"># kitten</span>
+puts some_stuff[<span class="hljs-number">1</span>]     <span class="hljs-comment"># dog</span>
+puts some_stuff[<span class="hljs-number">2</span>]     <span class="hljs-comment"># llama</span>
+puts some_stuff[-<span class="hljs-number">1</span>]    <span class="hljs-comment"># -1 means last index, -2 the one before last etc</span>
+
+puts some_stuff.sort   <span class="hljs-comment"># prints dog, kitten and llama in that order</span>
+
+<span class="hljs-comment"># Arrays in Ruby can contain mixed things</span>
+puts [<span class="hljs-string">'dog'</span>, <span class="hljs-number">42</span>].length
+
+<span class="hljs-comment"># Yow dawg, heard you like arrays so I put array in your array</span>
+not_even_funny = [<span class="hljs-number">2</span>, <span class="hljs-string">'bananas'</span>, [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]]
+<span class="hljs-comment"># puts both 4 and 5, as last element is array [4, 5]</span>
+puts not_even_funny[-<span class="hljs-number">1</span>]</code></pre><p>By now you have probably guessed that Ruby ignores every line beginning with <code>#</code>. Yup.
+They are <em>comments</em>, meant for human readers.</p>
+<p>OK. So now we can have <em>strings</em>, <em>numbers</em> and <em>arrays</em>, and we have even seen some
+functions. But why some of them appear before date, like <code>puts</code>, and some after, like
+<code>length</code>? The latter is an example of a <em>method</em>, which you could think of like a function
+that is closely tied with data. However, at this point it doesn&#39;t matter much
+whether you talk about functions or methods. Both act on data, transforming it,
+storing it somewhere else (like writing a file), calculate things etc.</p>
+<p>There was something else too. That <code>some_stuff</code> is a <em>variable</em>. You use them
+to give shorter, descriptive names to things that are longer to type or
+relatively expensive to compute. But arguably the most common reason to use
+those is to give things descriptive names. Consider the following:</p>
+<pre class="hljs"><code><span class="hljs-constant">User</span>.all.select { |u| !u.admin? &amp;&amp; u.created_at &gt;= <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days }.each <span class="hljs-keyword">do</span> |u|
+  puts u
+<span class="hljs-keyword">end</span></code></pre><p>Unless the reader is quite familiar with Ruby and Rails, it is not easy to see
+what is actually printed. Next consider the version that splits up that a bit,
+using hopefully more human-readable variable names:</p>
+<pre class="hljs"><code>min_creation_time = <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days
+recent_non_admins = <span class="hljs-constant">User</span>.all.select { |u| !u.admin? &amp;&amp; u.created_at &gt;=  min_creation_time }
+
+recent_non_admins.each <span class="hljs-keyword">do</span> |user|
+  puts user
+<span class="hljs-keyword">end</span></code></pre><p>There are even better ways to make that more descriptive or elegant, but we
+don&#39;t have tools for that yet. However, we already gained something important:
+<code>recent_normal_users</code> communicates to the reader that this variable holds
+actually a list of users that are not administrators. If you need to change
+how users are printed, then you may safely ignore ther more involved
+expression of getting those users, knowing know what it does. You only need to
+focus on the printing part.</p>
+<p>Also note that to introduce a new variable, you simply write that variable and
+assign a value to it. Some languages require you to declare those separately,
+but in Ruby, you just start using those by assigning them to stuff. In Ruby,
+you always assign things to labels by using the equal symbol <code>=</code>.</p>
+<p>Computer programs are hard to write, but they are often even harder to read,
+even your own code. Even after few weeks or so it is easy to lose track of how
+a particular piece of code works. Some say you should comment your code, but
+even more important is to write readable code. Problem with comments is that
+code interpreters and compilers <em>ignore those</em>, and they get easily outdated.
+Ideal code is self-documenting using descriptive names for variables and
+functions. While comments are sometimes the best way to explain things to the
+reader, they are seldom needed if you name things well.</p>
+<p>Can you use any names for things, then? In practice, yes. All variable names
+are totally arbitrary. While <code>a</code> or <code>z</code> are not very descriptive names, they
+are valid names for variables. So is</p>
+<p><code>a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow</code>.</p>
+<p>Anything consisting of letters a to z, numbers and underscore &#39;_&#39; goes. The only
+constraint is that you cannot start it with a number. So <code>kitteh_42</code> is a
+valid variable name, while <code>42_kitteh</code> isn&#39;t.</p>
+<p>Same rules apply for your own methods and functions.</p>
+<div class="tip">
+<p>
+In Ruby, you should use underscore to separate words in variable names, and
+always use downcase letters. UPCASE and SoCalledCamelCase is reserved for constants, classes and
+other things we&#39;ll talk about later.</p>
+
+<p>You <em>could</em> also use Finnish to name things if you like, which actually works
+nowadays due to UTF character set being common. So, you can actually use
+variable names like <code>ämpäri</code>, which was not that possible only few years back,
+and is still impossible with some languages. It doesn&#39;t mean you <em>should</em> do
+that, though. However, English is <em>lingua franca</em> of computing, and using any
+other language to name things will be frowned upon. Others will look at
+you with that, you know, face. With a stiff upper lip.</p>
+
+<p>Even though it could be argued that using non-Eglish names for things that you
+write makes it more apparent what comes from language and standard libraries,
+and what is your own code. I&#39;d still recommend against it. Just stick to English.</p>
+</div>
+
+
+<h3 id="wrapping-up"><a class="header-link" href="#wrapping-up"></a>Wrapping up</h3>
+<p>So, now we know -- or at least have seen -- three things:</p>
+<ol class="list">
+<li>Data. There are different types of if, and we have seen three of those:<ul class="list">
+<li>Strings</li>
+<li>Numbers</li>
+<li>Arrays, which can contain any data structures, including other arrays[^fn-array]</li>
+</ul>
+</li>
+<li>Methods to do things with the data<ul class="list">
+<li>In the example above, we used <em>array methods</em> to get the length of the array with <code>length</code>,
+and <code>sort</code> to get array contents in alphabetic order. <code>upcase</code> converted string to upper case.</li>
+<li>We will talk more about methods a bit later.</li>
+</ul>
+</li>
+<li>We quickly glanced at variables that are just short, descriptive labels for things</li>
+</ol>
+<h2 id="acting-in-an-intelligent-fashion"><a class="header-link" href="#acting-in-an-intelligent-fashion"></a>Acting in an intelligent fashion</h2>
+<p>Imagine you are programming a robot that needs to brew and serve coffee. With
+some cream, cinnamon and chocolate chips with a tad of sugar frosting on the
+top.</p>
+<p>Also imagine I was actually able to actually draw pictures, and here would
+be an artsy, nice picture of a jolly good robot pouring a hot cup of Old Joe.
+So there.</p>
+<p>With the picture in your head, imagine you had programmed the robot to pour
+exactly 80cl of coffee and 40cl of cream to each cup. The code might look roughly
+like this:</p>
+<pre class="hljs"><code>bot = <span class="hljs-constant">Robot</span>.new(<span class="hljs-string">"Jeeves the Valiant Valet"</span>)
+
+bot.pour_coffee(<span class="hljs-number">800</span>) <span class="hljs-comment"># Our robot uses millilitres as the basic unit for fluds</span>
+bot.spray_whipped_cream(<span class="hljs-number">400</span>)
+bot.sprinkle_chocolate_chips(<span class="hljs-number">5</span>) <span class="hljs-comment"># grams maybe</span>
+bot.sprinkle_cinnamon(<span class="hljs-number">1</span>) <span class="hljs-comment"># still grams (what's LD50 for cinnamon???)</span>
+bot.frost_with_sugar</code></pre><p>Given everything is ok, our metallic friend would happily crank and whirr
+about, making the delicious serving. All fine so far.</p>
+<p>Now imagine some poor hapless fellow would accidentally bump the coffee cup so
+that it would no longer be under the Robot&#39;s coffee-pouring nozzles. Then all
+that scalding hot stuff would end up in the floor, messing your carpet. Or
+even worse, it might end up hurting that furry
+<a href="http://www.scottishfoldlove.com/">Scottish Fold</a> of yours :( What can we do?</p>
+<p>In order to avoid further feline mishaps, we need to have some sort way for
+doing things <em>conditionally</em>. Given condition, do this. Otherwise do that.</p>
+<p>All programming languages have some sort of means to do that. There are even
+several means of doing that, most common being the <code>if</code> statement:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> &lt;condition&gt;
+  <span class="hljs-comment"># code to execute when condition is true</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-comment"># code to execute when code is NOT true</span>
+<span class="hljs-keyword">end</span></code></pre><p>Note that the notation <code>&lt;stuff&gt;</code> means that <code>stuff</code> should not be written
+literally, but with appropriate expression. Here it should be some Ruby code
+that is equal to value <code>false</code>.</p>
+<p>Let&#39;s assume all the functions our robot Jeeves uses to fill the cup
+take advantage of a single utility function <code>inject</code>:</p>
+<pre class="hljs"><code>nozzle.inject(<span class="hljs-string">'coffee'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">800</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'pour'</span>)
+nozzle.inject(<span class="hljs-string">'cream'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">400</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'spray'</span>)</code></pre><p>To avoid accitents, all our methods would need to detect if the cup is no
+longer under the nozzle. So we would edit the <code>inject</code> method for nozzles as
+follows:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>inject(substance, options)
+  ...
+  <span class="hljs-keyword">if</span> sensors.cup_detected?
+    actually_inject_stuff(substance, options)
+  <span class="hljs-keyword">else</span>
+    system.alert(<span class="hljs-string">"Please do set your favorite container of hot beverages "</span>
+                 <span class="hljs-string">"to appropriate position and alignment"</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>Now we have fixed the problem! If <code>sensors.cup_detected?</code> has the value
+<code>true</code>, it calls <code>actuall_inject_stuf</code>. Otherwise it alerts the user. But we
+did not <em>quite</em> fix it yet. Why?</p>
+<p>If the cup is moved during the <code>actually_inject_stuff</code> call we won&#39;t detect
+that, because we check <code>sensors.cup_detected?</code> only just before we start
+injecting stuff. But at least we check it now just before each phase.</p>
+<h3 id="of-things-true-and-false"><a class="header-link" href="#of-things-true-and-false"></a>Of things True and False</h3>
+<div class="tip">
+<code>nil</code> simply means a <em>lack of a value</em>. For example, getting the first
+element of an empty array returns nil in Ruby, as all expressions need to return <em>something</em>.
+</div>
+
+<p>I mentioned before that <code>if</code> executes the first section only if the condition
+is true. What is true, then? In Ruby, anything that is equal to <code>false</code> or <code>nil</code>.</p>
+<p>Maybe one of the most common way to get a value that is <code>true</code> or <code>false</code> is
+by comparing things. Like any programming language, Ruby gives us many ways to
+do just that, and return a respective value:</p>
+<pre class="hljs"><code><span class="hljs-comment"># conditions.rb</span>
+<span class="hljs-number">2</span> &lt; <span class="hljs-number">3</span>          <span class="hljs-comment"># true</span>
+<span class="hljs-number">3</span> &lt; <span class="hljs-number">3</span>          <span class="hljs-comment"># false</span>
+<span class="hljs-number">40</span> &gt;= <span class="hljs-number">38</span> + <span class="hljs-number">2</span>   <span class="hljs-comment"># true</span>
+<span class="hljs-string">'banana'</span> == <span class="hljs-number">4</span>     <span class="hljs-comment"># false, note the double '==' sign</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">'cat'</span>    <span class="hljs-comment"># true</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">'feline'</span> <span class="hljs-comment"># false</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">'Cat'</span>    <span class="hljs-comment"># false</span>
+<span class="hljs-string">'cute kitten'</span> == <span class="hljs-string">'cute '</span> + <span class="hljs-string">'kitten'</span> <span class="hljs-comment"># true</span></code></pre><div class="tip">
+Often you will hear the term &quot;boolean&quot; when talking about things that are true
+or false. That is due to a logician George Boole, and computer scientists
+often talk about &quot;Boolean logic&quot;. We will talk more about that too, when we
+get to more complex conditions.
+</div>
+
+<p>The reason why both <code>40 &gt;= 38 + 2</code> and <code>&#39;cute kitten&#39; == &#39;cute &#39; + &#39;kitten&#39;</code>
+work is because they don&#39;t compare the <em>literal code</em> you typed, but Ruby
+<em>evaluates</em> the code in the both sides of the comparison operator, like <code>==</code>
+or <code>&gt;</code>.</p>
+<p>Almost any valid code you write in Ruby is an <em>expression</em> (or list of several
+expressions), and that expression has a value, when it is evaluated. For
+example, value of a simple expression <code>2</code> is just <code>2</code>. Value of <code>&#39;kitten&#39;</code> is
+<code>&#39;kitten&#39;</code>, as well with any other literal values. Expression like <code>38 + 2</code>
+<em>evaluates</em> to 40, so it is equal to value <code>40</code>. Same for <code>&#39;cute &#39; + &#39;kitten&#39;</code>
+that evaluates to <code>&#39;cute kitten&#39;</code>.</p>
+<p>A good way to get familiar with expressions is to toy with things in Pry.
+Now go ahead and compare some things to get a taste of using comparison
+operators. Note also that every individual line you write is an expression,
+and things you get back prom Pry are <em>values</em> of those expressions, computed by Ruby!</p>
+<h3 id="wrapping-up-1"><a class="header-link" href="#wrapping-up-1"></a>Wrapping up</h3>
+<p>In normal languages we talk about &quot;programming the microwave&quot; or &quot;programmable
+washing machine&quot;. In this context it&#39;s not precisely programming, but merely
+setting up or <em>sequencing</em> some actions, that are always executed in exactly
+the same way.</p>
+<p>When we talk about computers, we need basically three things in order to be
+able to do <strong>anything</strong> (and by anything, I really mean anything that is
+theoretically possible):</p>
+<ol class="list">
+<li>Do stuff in sequence. Doing some task first, then some other tasks.</li>
+<li>Do something conditionally. Given this, do this. Otherwise, do something else</li>
+<li>Repetition</li>
+</ol>
+<p>Think about this a bit: what the washing machine user interface
+should allow you to do, if it was truly programmable?</p>
+<p>Next we will talk about the missing third part.</p>
+<h2 id="repeating-things"><a class="header-link" href="#repeating-things"></a>Repeating things</h2>
+<p>Imagine you have a list things to do, and you want to format those nicely when printing:</p>
+<pre class="hljs"><code><span class="hljs-comment"># todo.rb</span>
+todo_list = [<span class="hljs-string">'clean up the kitchen'</span>, <span class="hljs-string">'buy some milk'</span>, <span class="hljs-string">'make time for learning Ruby'</span>, <span class="hljs-string">'consider acquiring a kitten'</span>]
+
+<span class="hljs-comment"># remember that indexes start from zero</span>
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">0</span>]
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">1</span>]
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">2</span>]
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">3</span>]</code></pre><p>That code would print all the items, but it sure looks awkward. It&#39;s
+repetitive, and imagine what it would look like if there are 100 entries.
+Surely we can do better.</p>
+<p>In Ruby, all data types that <em>contain</em> stuff (CS folks talk about
+<em>collections</em> or things you can <em>iterate</em> over) support method <code>each</code>. Arrays
+are collections of things, so we can replace the code above with a much cleaner
+version:</p>
+<pre class="hljs"><code><span class="hljs-comment"># todo2.rb</span>
+todo_list = [<span class="hljs-string">'clean up the kitchen'</span>, <span class="hljs-string">'buy some milk'</span>, <span class="hljs-string">'make time for learning Ruby'</span>, <span class="hljs-string">'consider acquiring a kitten'</span>]
+
+todo_list.each <span class="hljs-keyword">do</span> |entry|
+  puts <span class="hljs-string">"TODO item: "</span> + entry
+<span class="hljs-keyword">end</span></code></pre><p>Don&#39;t worry about funny pipe characters (&#39;|&#39;) yet. First consider the
+benefits: due to the loop we don&#39;t need to care about array size. That code
+would work with list containing only one entry, with list containing
+100000000000 entries and even an empty list; it would just print nothing.</p>
+<p>Now let&#39;s talk about the syntax a bit. It&#39;s not that hard, once you get used
+to it. Another example:</p>
+<pre class="hljs"><code><span class="hljs-comment"># countdown.rb</span>
+put <span class="hljs-string">"countdown started"</span>
+[<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>].each <span class="hljs-keyword">do</span> |n|
+  puts n
+<span class="hljs-keyword">end</span>
+puts <span class="hljs-string">"go!"</span></code></pre><p>That <code>do</code> starts a <em>block</em>. A Ruby block is just, well, blob of code like any
+other ruby code. The interesting stuff is between pipes. Ruby automatically
+passes <em>each item</em> (yeah, that&#39;s why the name) in the collection to that block
+in turn, assigning it to the given variable name, and executes that block <em>for
+each entry</em>. So, here <code>puts</code> is called five times, with <code>n</code> being assigned
+to each of the numbers in turn.</p>
+<p>There are other kinds of loops, though they are maybe not that common. However, the
+idea is not to present all of those here, only the most common and useful ones.</p>
+<p>One very important loop has the ability to both repeat and check a condition
+every time before it starts a new iteration.  It&#39;s kind of like <code>each</code> with steroids.
+Enter <code>while</code>:</p>
+<pre class="hljs"><code><span class="hljs-comment"># while.rb</span>
+start_time = <span class="hljs-constant">Time</span>.now
+<span class="hljs-keyword">while</span> (<span class="hljs-constant">Time</span>.now - start_time) &lt; <span class="hljs-number">3</span>
+  puts <span class="hljs-string">"I should really learn this Ruby stuff."</span>
+  sleep <span class="hljs-number">0</span>.<span class="hljs-number">5</span>
+<span class="hljs-keyword">end</span></code></pre><p>Can you guess what it does? First it gets the current time, and stores that to
+variable <code>start_time</code>. Then it loops over until difference between current
+time and <code>start_time</code> is at least 3 (<code>start_time</code> does not change, while <code>Time.now</code>
+returns a different value every time, because it returns the current time).</p>
+<p>Put more simply, it repeats the loop for 3 seconds, sleeping half a second
+after each print.</p>
+<p>Note that it does not matter for <code>while</code> what the condition is. Remember that in Ruby,
+anything is true except things that reduce to <code>false</code> or <code>nil</code>.  The condition
+could compare water level in a reservoir if it is below certain limit. It
+could check if there is enough tuna for Fluffy the Cat. It could check the
+periapsis for current orbital trajectory, or whatever. The only thing that matters
+is the value of the evaluated condition.</p>
+<p>Here are some exercises: for each line, think if it would evaluate as true (in <code>if</code> or <code>while</code> context).</p>
+<pre class="hljs"><code><span class="hljs-number">2</span> == <span class="hljs-number">2</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">"cat"</span>
+<span class="hljs-string">'dog'</span> != <span class="hljs-string">'cat'</span>
+<span class="hljs-number">1</span> &lt; <span class="hljs-number">0</span>
+<span class="hljs-number">3</span> == <span class="hljs-number">3.0</span>
+<span class="hljs-string">'false'</span>
+<span class="hljs-keyword">false</span>
+<span class="hljs-string">''</span>
+<span class="hljs-keyword">nil</span>
+[]
+<span class="hljs-number">0</span>
+[<span class="hljs-keyword">false</span>]</code></pre><p>It is important to understand that while loop iterates over the code between
+<code>while</code>... <code>end</code> as long as condition is true. The condition is re-checked
+<em>every time</em> after it reaches the last line in while, and jumps back to the
+beginning, and only then. The loop will not be aborted if the  condition
+somehow would change during the execution of while body. Also note that the
+loop <em>will repeat indefinitely</em> if the condition never becomes false. For
+example, this code never terminates:</p>
+<pre class="hljs"><code><span class="hljs-keyword">while</span> <span class="hljs-keyword">true</span>
+  puts <span class="hljs-string">"repeating this ad infinitum"</span>
+  sleep <span class="hljs-number">0</span>.<span class="hljs-number">2</span>
+<span class="hljs-keyword">end</span></code></pre><p>The only way to end the program is by terminating it by force. Fortunately,
+you can do this simply by pressing <code>CTRL+C</code> in the terminal .Try that if you like.</p>
+<div class="tip">
+<p>People sometimes use the terms &quot;programming&quot; and &quot;coding&quot; in a mixed
+manner. For example, HTML is not strictly programming, though it can called
+<em>coding</em>. You cannot have conditionals in HTML, nor can you repeat things.</p>
+
+<p>It is also somewhat of a stretch to say that any part of HTML is about &quot;acting&quot; or &quot;executing&quot;, but
+one could think of say, <em>title</em> element being a &quot;function&quot; to show the document title. Sort
+of. But you should at least cringe a bit when saying that. This misconception probably because
+you can insert (embed) programming languages to HTML, but that part is not then HTML. It&#39;s programming language code.</p>
+</div>
+
+<p>Now you should take a deep breath, as we have reached a very important
+milestone: you know all the concepts required to code <em>any kind of computer
+program</em>. Ever. Neat, huh? Some programs would be hard with this information
+only, but they would be doable.</p>
+<p>We have actions like calculating things, joining strings, assigning values to
+variables. We have the ability to make decisions based on values of things.
+And we have the ability to repeat stuff.</p>
+<h3 id="wrapping-up-2"><a class="header-link" href="#wrapping-up-2"></a>Wrapping up</h3>
+<p>We now learned of the last part, repetition. We had two kinds of loops:</p>
+<ol class="list">
+<li><code>each</code> we can use with any collection, not needing to know how many items there are</li>
+<li><code>while</code> that allows repeating things by checking a condition first before each pass</li>
+</ol>
+<p>Technically you could do any looping with <code>while</code>, but <code>each</code> is more
+convenient and less verbose when you have a collection to process.</p>
+<p>Go get a nice, warm cup of your favorite beverage now! You&#39;ve deserved it.
+Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
+have one. Patting a horse is ok too.</p>
+<p>[^fn-array] Yeah, there&#39;s no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.</p>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>
