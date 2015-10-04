@@ -207,3 +207,76 @@ Some suggestions:
 * function to compute BMI. BMI is defined as _mass divided by square of length_ (mass in kilograms, length in meters)
 * function to find out distance between two points
 * function to find out if a given number is prime (intermediate)
+
+## What next?
+
+Ruby has lots of nice stuff _builtin_, [here nicely grouped by category](http://phrogz.net/programmingruby/builtins.html). You don't need to learn any of that by heart, but I realy recommend you to read at least casually through following classes to see what you can do with those:
+
+* Array
+* String
+* Hash
+* File
+* Dir
+* Time
+
+## Exercises
+
+Programming is a skill you build gradually like any other. As such, even more
+complex programs can be started by doing a  very much simplified version first. My
+attempt here is to build a certain solution, which starts very simple. You
+can try it ouf if you like, and see how far you can go. Note that this is also
+_how professionals create actual software_, with the exception that they would likely
+skip the very first few steps -- except when they start developing in a new
+language (you'd be surprised how "naive" version they often start with though!)
+
+
+Build a program that
+
+1. reads contents of a file that has some numbers in it, each in it's own line, and prints it out.
+1. writes some number to a new file.
+1. appends (writes to the end) some number to a file
+1. reads all numbers in a file and prints the sum of those numbers
+1. reads a number from command line, writes current date time (with seconds) and that number to a file. Separate time and number by semicolon `;'
+1. given number of entries in a file, prints out average (mean) of those numbers. You can use the following data
+for testing:
+    ```
+    2015-09-02 22:23:00;70
+    2015-09-03 14:58:14;63
+    2015-09-04 16:01:25;35
+
+    ```
+    Your program should print `56.0`
+1. prints latest entry date, value of entry and average for last 5 entries (or all, if there are less)
+1. handles situations like
+  * file does not exist
+  * file exists but is empty
+  * file contains invalid data (skip it, but tell the user what the invalid line was)
+1. prints latest entry date and value, with averages for last 3, 5 and 15 entries
+1. treats multiple entries for one day as one, using average of all those as value
+1. interpolates values for missing days. Say, if for `day 1` value was `10` and for `day 3` it is `12`,
+   assume `day 2` to have value `11`.
+1. has [unit test](http://rspec.info/). We are doing serious stuff here, so you want to be certain that your old stuff still
+works when you make changes.
+1. prints all the data as in step 9, but now including weekly and monthly change. For example, if
+we have entry for current date and it's value is 100, and last week ago it was 240, then weekly change
+is 140 (negative)
+1. as in previous step, but now including **projected values** after one week, at the end of month and after one month. Estimate this using recent rate (eg. last 3 days) and longer interval (eg. 14 days). In projections, indicate both. So the program could print
+
+    ```
+    Projected estimates:
+       Using last 3 days:
+          - after one week: 80.3
+          - at the end of month: 78.0
+          - after one month: 75.5
+       Using last 14 days:
+          - after one week: 82.5
+          - at the end of month: 79.6
+          - after one month: 79.2
+    ```
+
+1. can track multiple types of entries, each entry type in it's own file (use custom directory for the
+code and separate directory for data files)
+1. has a web interface for entering and checking the data. Use eg. Ruby on Rails and [Chartkick](http://chartkick.com/) or similar to show projections / averages graphically with actual data .
+
+Now you have built a nice, general-purpose _linear estimator_. You can use that to track your weight, money usage / savings, running speed, electric bill.. anything that can be measured and represented as single
+number per day. Neat, huh :)

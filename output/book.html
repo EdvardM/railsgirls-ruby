@@ -48,6 +48,10 @@
     <li><a href="#wrapping-up">Wrapping up</a></li>
     <li><a href="#repeating-things">Repeating things</a></li>
     <li><a href="#wrapping-up">Wrapping up</a></li>
+    <li><a href="#functions-schmunctions">Functions schmunctions</a></li>
+    <li><a href="#wrapping-up">Wrapping up</a></li>
+    <li><a href="#what-next-">What next?</a></li>
+    <li><a href="#exercises">Exercises</a></li>
 </ul>
       </div>
       <div class="span9 main"><h1 id="the-very-basics-of-ruby"><a class="header-link" href="#the-very-basics-of-ruby"></a>The Very Basics of Ruby</h1>
@@ -484,6 +488,226 @@ convenient and less verbose when you have a collection to process.</p>
 Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
 have one. Patting a horse is ok too.</p>
 <p>[^fn-array] Yeah, there&#39;s no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.</p>
+<h2 id="functions-schmunctions"><a class="header-link" href="#functions-schmunctions"></a>Functions schmunctions</h2>
+<p>Like mentioned before, functions are means of doing things with data. They can
+be very simple (like joining two strings together) or highly complex, and
+naturally functions can call other functions.</p>
+<p>Many functions are built-in to the language, and huge amount of useful
+functions are in the so-called <em>standard library</em> grouped by category. Things
+like getting current time, working with files, reading contents of a web page,
+convert things from format into another, manage concurrency, compute
+trigonometric functions, compress things so that they take less space and so
+on. I encourage you to look at <a href="http://www.rubydoc.info/stdlib">Rubydoc stdlib page</a>
+to get an idea of things you have at your disposal, without installing any
+software (that is, your Ruby installation already has all that stuff).</p>
+<p>Usually functions are introduced by doing arithmetic with numbers. Let&#39;s
+change that now by doing things with strings. In particular, lets make a
+function that returns the  longest string in a list, and let&#39;s first write a
+small program to find out <em>how we wish it would work</em>.</p>
+<pre class="hljs"><code><span class="hljs-comment"># longest_string.rb</span>
+<span class="hljs-comment"># Note that this won't work yet, as the function is not yet defined</span>
+puts longest_string([<span class="hljs-string">'apple'</span>, <span class="hljs-string">'banana'</span>, <span class="hljs-string">'mango'</span>, <span class="hljs-string">'pear'</span>]) <span class="hljs-comment"># 'banana'</span>
+puts longest_string([])     <span class="hljs-comment"># nil -- that is, when list is empty, return nothing</span>
+
+<span class="hljs-comment"># let's define our function so that it returns the first string if there</span>
+<span class="hljs-comment"># are several that are equally long</span>
+puts longest_string([<span class="hljs-string">'dog'</span>, <span class="hljs-string">'cat'</span>]) <span class="hljs-comment"># 'dog'</span></code></pre><p>Now on to the definition. This is a simple function, but there are still
+rather many details in our code. Let&#39;s look at it:</p>
+<pre class="hljs"><code><span class="hljs-comment"># longest_string.rb</span>
+
+<span class="hljs-comment"># (type this definition above test code we wrote in previous step)</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>longest_string(ary)
+  longest = ary[<span class="hljs-number">0</span>] <span class="hljs-comment"># assign variable `longest` to first value in the array</span>
+
+  <span class="hljs-comment"># go through array `ary`, assign each item to variable `s`</span>
+  <span class="hljs-comment"># in turn</span>
+  ary.each <span class="hljs-keyword">do</span> |s|
+    <span class="hljs-keyword">if</span> s.length &gt; longest.length
+      longest = s
+    <span class="hljs-keyword">end</span>
+  <span class="hljs-keyword">end</span>
+
+  longest
+<span class="hljs-keyword">end</span></code></pre><p>Syntax for defining functions is quite simple. In the most basic form, you
+write <code>def</code> followed by <em>function name</em>, all the <em>parameters</em> (input values)
+it needs to work in parentheses, and finish the definition with <code>end</code>.</p>
+<p>Pay attention to indentation. You see total of 3 <code>end</code> markers here, but due
+to indentation you can see that the first one closes the <code>if</code> condition, the
+second closes the <code>each</code> block and the last closes the function definition.</p>
+<p>Let&#39;s look at the definition more closely. After initializing the longest
+variable with the first string, we compare each of the strings in <code>ary</code> to
+<code>longest</code>, or more precisely their <em>lengths</em>.</p>
+<p>Only if a new string is longer than the one we have stored so far, we
+overwrite longest to be that string. After checking all the strings with
+<code>each</code>, we return the value <code>longest</code>.</p>
+<p>By the way, it does_ work with empty lists as intended. Can you guess why?</p>
+<p>Functions and methods in Ruby automatically return the last value in the
+method body to the <em>caller</em>, so</p>
+<p><code>puts longest_string([&#39;apple&#39;, &#39;banana&#39;, &#39;mango&#39;, &#39;pear&#39;])</code></p>
+<p>really prints out &quot;banana&quot;; that is, you could <em>substitute</em> here the
+function call <code>longest_string([&#39;apple&#39;, &#39;banana&#39;, &#39;mango&#39;, &#39;pear&#39;])</code>
+with the value <code>&quot;banana&quot;</code>, and from the callers (<code>puts</code>) point of view
+your program would work exactly the same.</p>
+<p>Let&#39;s look at another function, just to get the feel of it:</p>
+<pre class="hljs"><code><span class="hljs-constant">BAD_LANGUAGES</span> = [<span class="hljs-string">'java'</span>, <span class="hljs-string">'php'</span>, <span class="hljs-string">'basic'</span>, <span class="hljs-string">'perl'</span>, <span class="hljs-string">'c++'</span>, <span class="hljs-string">'pascal'</span>, <span class="hljs-string">'mumps'</span>]
+<span class="hljs-constant">OK_LANGUAGES</span> = [<span class="hljs-string">'ruby'</span>, <span class="hljs-string">'python'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'scala'</span>, <span class="hljs-string">'clojure'</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> </span>opinion_on(language)
+  lang = language.downcase
+  <span class="hljs-keyword">if</span> <span class="hljs-constant">BAD_LANGUAGES</span>.<span class="hljs-keyword">include</span>?(lang)
+    <span class="hljs-string">"Uh-oh. You don't want to do this"</span>
+  <span class="hljs-keyword">elsif</span> <span class="hljs-constant">OK_LANGUAGES</span>.<span class="hljs-keyword">include</span>?(lang)
+    <span class="hljs-string">"You're in a good company"</span>
+  <span class="hljs-keyword">else</span>
+    lang + <span class="hljs-string">", huh? You must be weird. Or really, really awesome!"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>Here we defined a function that takes a single argument. By the way, copy-paste
+that to Pry and try calling that without any arguments, with two arguments, and
+single number. Go on, it won&#39;t do any harm, but you&#39;ll learn useful stuff.
+Read the messages Ruby kindly tells you.</p>
+<p>There are two things worth mentioning here. <strong>The first</strong> is that we introduced
+<em>constants</em> that our function uses to make the function itself a bit shorter
+and hopefully more readable. Constants are exactly like variables, with one
+crucial difference: <em>you cannot change their value after initial assignment</em>.
+That&#39;s why they are called constants. They serve several purposes, one of
+which is to give descriptive names to things like here. The other is to define
+something in one place only.</p>
+<p>Fox example, imagine you had a program that computes salaries, deducts taxes
+and all that stuff. Boring, I know. But imagine there was this magic number 22
+repeating all over. If that depicts VAT (how would the reader know?) and it
+would change, you should check all the code for occurrences of that digit 22.
+Even worse, 22 might appear somewhere <em>without meaning the same thing</em>, that
+is, it would be totally unrelated to VAT percent 22.</p>
+<p>Fortunately, that kind of situations are easy to avoid. Just declare a
+constant <code>VAT = 22</code>, and you can then use just <code>VAT</code> whenever you want to
+say 22, meaning the value added tax, not just any number 22. If it needs to be changed,
+you only need to change it in that one place.</p>
+<div class="tip">
+Programmers talk sometimes about <code>magic numbers</code>. They are arbitrary numbers in code
+with semantics that is not immediately obvious to the reader. Good rule of thumb
+could be that if in doubt, replace the number with constant. Especially if the same
+number with the same meaning appears in the code more than once.
+</div>
+
+<p><strong>Another thing</strong> to note is the use of <code>elsif</code>. So <code>if</code> can not only choose between two &quot;execution paths&quot;,
+it can have several. It is evaluated from the bottom to top, and if any of the conditions
+evaluates to true, that &quot;branch&quot; is executed, and nothing else.</p>
+<p>Also note that <code>else</code> branch is optional, but often it is better to make that explicit.
+So that the reader does not need to think if it has been forgotten. Consider this code:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>evaluate_situation(threat_level)
+  <span class="hljs-keyword">if</span> threat_level == <span class="hljs-string">'critical'</span>
+    <span class="hljs-string">"FIRE ZE MISSLES!1!one11!"</span>
+  <span class="hljs-keyword">elsif</span> threat_level == <span class="hljs-string">'I am le tired'</span>
+    <span class="hljs-string">"well have a nap, THEN FIRE ZE MISSLES!"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>Now play with that a bit to see how it works, at least by calling it with
+&quot;critical&quot; (that is, type <code>evaluate_situation(&quot;critical&quot;)</code> in Pry).</p>
+<p>Suppose we call the function <code>evaluate_situation(&quot;ok&quot;)</code>. What does it return?</p>
+<p>Some would argue a proper language would throw a syntax error for <code>if</code> without <code>else</code>.
+Ruby does not, though, and it <em>implies</em> an else-part with <code>nil</code>. It is <em>exactly equivalent</em>,
+that is, in more mathematical terms &quot;just the same stuff&quot; as this:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>evaluate_situation(threat_level)
+  <span class="hljs-keyword">if</span> threat_level == <span class="hljs-string">'critical'</span>
+    <span class="hljs-string">"FIRE ZE MISSLES!1!one11!"</span>
+  <span class="hljs-keyword">elsif</span> threat_level == <span class="hljs-string">'I am le tired'</span>
+    <span class="hljs-string">"well have a nap, THEN FIRE ZE MISSLES!"</span>
+  <span class="hljs-keyword">else</span>
+    <span class="hljs-keyword">nil</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>Some people consider the last version unnecessarily verbose, but I like it more. I don&#39;t need
+to think if <code>else</code> was forgotten by accident. Instead I&#39;ll trust that ok, if <code>threat_level</code>
+is anything else than &quot;critical&quot; or &quot;I am le tired&quot; it returns nil.</p>
+<h3 id="wrapping-up-3"><a class="header-link" href="#wrapping-up-3"></a>Wrapping up</h3>
+<p>We read a bit more about functions, especially how to <em>define</em> those instead
+of just using them. That&#39;s where the short keyword <code>def</code> comes from (computer
+scientists are lazy. I mean.. it saves all <em>three</em> (3) key strokes!).</p>
+<div class="tip">
+What use is a function without input? Some examples include <code>Time.now</code> which returns current time
+(try it!), <code>rand</code> that returns a random decimal between [0..1] and several others.
+</div>
+
+<p><code>def</code> is followed by the name of the function, and you supply any parameters
+(input) in parenthesis <code>()</code>, if the function has any. Finally you end the
+definition with <code>end</code>.</p>
+<p>Note how calling the function is rather similar to defining it. If you first think how the function
+should behave</p>
+<pre class="hljs"><code>get_me_some_ice_cream(<span class="hljs-string">'Ben &amp; Jerry'</span>, <span class="hljs-string">'Chunky Monkey'</span>)</code></pre><p>it is easy then to find out how the function definition starts:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>get_me_some_ice_cream(brand, flavor)
+  ...
+<span class="hljs-keyword">end</span></code></pre><p>Now is a good time to fire up Pry, and try writing some simple functions and call those to see how they work.
+Some suggestions:</p>
+<ul class="list">
+<li>function to find out if a string is a palindrome. For the purpose of this exercise, &#39;foof&#39; is a palindrome even though it likely means nothing</li>
+<li>function to convert inches to cents, and vise versa</li>
+<li>function to find out if a string is too short (specify the limit yourself)</li>
+<li>function to compute BMI. BMI is defined as <em>mass divided by square of length</em> (mass in kilograms, length in meters)</li>
+<li>function to find out distance between two points</li>
+<li>function to find out if a given number is prime (intermediate)</li>
+</ul>
+<h2 id="what-next-"><a class="header-link" href="#what-next-"></a>What next?</h2>
+<p>Ruby has lots of nice stuff <em>builtin</em>, <a href="http://phrogz.net/programmingruby/builtins.html">here nicely grouped by category</a>. You don&#39;t need to learn any of that by heart, but I realy recommend you to read at least casually through following classes to see what you can do with those:</p>
+<ul class="list">
+<li>Array</li>
+<li>String</li>
+<li>Hash</li>
+<li>File</li>
+<li>Dir</li>
+<li>Time</li>
+</ul>
+<h2 id="exercises"><a class="header-link" href="#exercises"></a>Exercises</h2>
+<p>Programming is a skill you build gradually like any other. As such, even more
+complex programs can be started by doing a  very much simplified version first. My
+attempt here is to build a certain solution, which starts very simple. You
+can try it ouf if you like, and see how far you can go. Note that this is also
+<em>how professionals create actual software</em>, with the exception that they would likely
+skip the very first few steps -- except when they start developing in a new
+language (you&#39;d be surprised how &quot;naive&quot; version they often start with though!)</p>
+<p>Build a program that</p>
+<ol class="list">
+<li>reads contents of a file that has some numbers in it, each in it&#39;s own line, and prints it out.</li>
+<li>writes some number to a new file.</li>
+<li>appends (writes to the end) some number to a file</li>
+<li>reads all numbers in a file and prints the sum of those numbers</li>
+<li>reads a number from command line, writes current date time (with seconds) and that number to a file. Separate time and number by semicolon `;&#39;</li>
+<li><p>given number of entries in a file, prints out average (mean) of those numbers. You can use the following data
+for testing:</p>
+<pre class="hljs"><code> 2015<span class="hljs-tag">-09-02</span> 22<span class="hljs-pseudo">:23</span><span class="hljs-pseudo">:00</span>;70
+ 2015<span class="hljs-tag">-09-03</span> 14<span class="hljs-pseudo">:58</span><span class="hljs-pseudo">:14</span>;63
+ 2015<span class="hljs-tag">-09-04</span> 16<span class="hljs-pseudo">:01</span><span class="hljs-pseudo">:25</span>;35</code></pre><p> Your program should print <code>56.0</code></p>
+</li>
+<li>prints latest entry date, value of entry and average for last 5 entries (or all, if there are less)</li>
+<li>handles situations like<ul class="list">
+<li>file does not exist</li>
+<li>file exists but is empty</li>
+<li>file contains invalid data (skip it, but tell the user what the invalid line was)</li>
+</ul>
+</li>
+<li>prints latest entry date and value, with averages for last 3, 5 and 15 entries</li>
+<li>treats multiple entries for one day as one, using average of all those as value</li>
+<li>interpolates values for missing days. Say, if for <code>day 1</code> value was <code>10</code> and for <code>day 3</code> it is <code>12</code>,
+assume <code>day 2</code> to have value <code>11</code>.</li>
+<li>has <a href="http://rspec.info/">unit test</a>. We are doing serious stuff here, so you want to be certain that your old stuff still
+works when you make changes.</li>
+<li>prints all the data as in step 9, but now including weekly and monthly change. For example, if
+we have entry for current date and it&#39;s value is 100, and last week ago it was 240, then weekly change
+is 140 (negative)</li>
+<li><p>as in previous step, but now including <strong>projected values</strong> after one week, at the end of month and after one month. Estimate this using recent rate (eg. last 3 days) and longer interval (eg. 14 days). In projections, indicate both. So the program could print</p>
+<pre class="hljs"><code> Projected estimates:
+    Using <span class="hljs-keyword">last</span> <span class="hljs-number">3</span> days:
+       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> week: <span class="hljs-number">80.3</span>
+       - <span class="hljs-keyword">at</span> <span class="hljs-operator">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">month</span>: <span class="hljs-title">78</span>.<span class="hljs-title">0</span></span>
+       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> month: <span class="hljs-number">75.5</span>
+    Using <span class="hljs-keyword">last</span> <span class="hljs-number">14</span> days:
+       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> week: <span class="hljs-number">82.5</span>
+       - <span class="hljs-keyword">at</span> <span class="hljs-operator">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">month</span>: <span class="hljs-title">79</span>.<span class="hljs-title">6</span></span>
+       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> month: <span class="hljs-number">79.2</span></code></pre></li>
+<li><p>can track multiple types of entries, each entry type in it&#39;s own file (use custom directory for the
+code and separate directory for data files)</p>
+</li>
+<li>has a web interface for entering and checking the data. Use eg. Ruby on Rails and <a href="http://chartkick.com/">Chartkick</a> or similar to show projections / averages graphically with actual data .</li>
+</ol>
+<p>Now you have built a nice, general-purpose <em>linear estimator</em>. You can use that to track your weight, money usage / savings, running speed, electric bill.. anything that can be measured and represented as single
+number per day. Neat, huh :)</p>
       </div>
     </div>
   </div>
