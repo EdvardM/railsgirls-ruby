@@ -210,7 +210,7 @@ Some suggestions:
 
 ## What next?
 
-Ruby has lots of nice stuff _builtin_, [here nicely grouped by category](http://phrogz.net/programmingruby/builtins.html). You don't need to learn any of that by heart, but I realy recommend you to read at least casually through following classes to see what you can do with those:
+Ruby has lots of nice stuff _builtin_, [here nicely grouped by category](http://phrogz.net/programmingruby/builtins.html). You don't need to learn any of that by heart, but I really recommend you to read at least casually through following classes to see what you can do with those:
 
 * Array
 * String
