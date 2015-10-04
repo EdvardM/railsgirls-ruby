@@ -212,12 +212,15 @@ Some suggestions:
 
 Ruby has lots of nice stuff _builtin_, [here nicely grouped by category](http://phrogz.net/programmingruby/builtins.html). You don't need to learn any of that by heart, but I really recommend you to read at least casually through following classes to see what you can do with those:
 
-* Array
-* String
-* Hash
-* File
-* Dir
-* Time
+* [Array](http://phrogz.net/programmingruby/ref_c_array.html#Array)
+* [String](http://phrogz.net/programmingruby/ref_c_string.html#String)
+* [Hash](http://phrogz.net/programmingruby/ref_c_hash.html#Hash)
+* [File](http://phrogz.net/programmingruby/ref_c_file.html#File)
+* [Dir](http://phrogz.net/programmingruby/ref_c_dir.html#Dir)
+* [Time](http://phrogz.net/programmingruby/ref_c_time.html#Time)
+
+Pay attention to `mixins` declaration in those classes. To put it short, it means that the class "mixes in" all mentioned methods. For example, both `Array` and `Hash` mix in `sort` from module `Enumerable`, which
+is why you can say things like `[2, 1, 4].sort` (example for sorting Array).
 
 ## Exercises
 
@@ -229,29 +232,47 @@ _how professionals create actual software_, with the exception that they would l
 skip the very first few steps -- except when they start developing in a new
 language (you'd be surprised how "naive" version they often start with though!)
 
+{tip-begin}
+
+Refactoring means simply changing the code in such a manner that externally
+the code _behaves exactly the same way_, but the implementation is _better_.
+By better I mean such things as the code is more readable, does not contain
+lots of repetition, no large functions or methods that do lots of things,
+individual things are more simple etc.
+
+One of the most common refactorings is _extracting a method_ (or function), so that
+a more involved function becomes more simple, and simply calls the extracted method
+to implement some detail. For more comprehensive list of common refactorings, see eg.
+http://refactoring.com/catalog/
+{tip-end}
+
+After each few steps, remember to _refactor_ the code.
 
 Build a program that
 
 1. reads contents of a file that has some numbers in it, each in it's own line, and prints it out.
 1. writes some number to a new file.
-1. appends (writes to the end) some number to a file
+1. appends (writes to the end) some number to a file. Note that you want newlines between each number.
 1. reads all numbers in a file and prints the sum of those numbers
 1. reads a number from command line, writes current date time (with seconds) and that number to a file. Separate time and number by semicolon `;'
+1. Add command line parameter to differentiate between whether you want to add value or show stuff (defaulting to show), and also for the filename to use. 'show' will just print all lines. From this on, all versions that display stuff should do that with 'show'.
 1. given number of entries in a file, prints out average (mean) of those numbers. You can use the following data
 for testing:
+
     ```
     2015-09-02 22:23:00;70
     2015-09-03 14:58:14;63
     2015-09-04 16:01:25;35
-
     ```
-    Your program should print `56.0`
+    Your program should print `56.0`. Use some other filename to avoid overwriting your own data, and skip blank lines.
 1. prints latest entry date, value of entry and average for last 5 entries (or all, if there are less)
 1. handles situations like
-  * file does not exist
+  * file does not exist (for show, with add it creates the file if doesn't exist)
   * file exists but is empty
-  * file contains invalid data (skip it, but tell the user what the invalid line was)
+  * file contains invalid data (skip it, but tell the user what the invalid line was). Note that `.to_i` and `.to_f` silently convert any non-numeric strings to 0! `Integer(val)` and `Float(val)` behave in more sane manner.
 1. prints latest entry date and value, with averages for last 3, 5 and 15 entries
+1. has modules or classes. At this point everything is mixed together, while clearly some deal
+with just transforming data, some with user entries and some with actual logic. Remember _separation of concerns_.
 1. treats multiple entries for one day as one, using average of all those as value
 1. interpolates values for missing days. Say, if for `day 1` value was `10` and for `day 3` it is `12`,
    assume `day 2` to have value `11`.

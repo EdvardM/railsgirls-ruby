@@ -584,7 +584,7 @@ say 22, meaning the value added tax, not just any number 22. If it needs to be c
 you only need to change it in that one place.</p>
 <div class="tip">
 Programmers talk sometimes about <code>magic numbers</code>. They are arbitrary numbers in code
-with semantics that is not immediately obvious to the reader. Good rule of thumb
+with meaning that is not immediately obvious to the reader. Good rule of thumb
 could be that if in doubt, replace the number with constant. Especially if the same
 number with the same meaning appears in the code more than once.
 </div>
@@ -645,15 +645,17 @@ Some suggestions:</p>
 <li>function to find out if a given number is prime (intermediate)</li>
 </ul>
 <h2 id="what-next-"><a class="header-link" href="#what-next-"></a>What next?</h2>
-<p>Ruby has lots of nice stuff <em>builtin</em>, <a href="http://phrogz.net/programmingruby/builtins.html">here nicely grouped by category</a>. You don&#39;t need to learn any of that by heart, but I realy recommend you to read at least casually through following classes to see what you can do with those:</p>
+<p>Ruby has lots of nice stuff <em>builtin</em>, <a href="http://phrogz.net/programmingruby/builtins.html">here nicely grouped by category</a>. You don&#39;t need to learn any of that by heart, but I really recommend you to read at least casually through following classes to see what you can do with those:</p>
 <ul class="list">
-<li>Array</li>
-<li>String</li>
-<li>Hash</li>
-<li>File</li>
-<li>Dir</li>
-<li>Time</li>
+<li><a href="http://phrogz.net/programmingruby/ref_c_array.html#Array">Array</a></li>
+<li><a href="http://phrogz.net/programmingruby/ref_c_string.html#String">String</a></li>
+<li><a href="http://phrogz.net/programmingruby/ref_c_hash.html#Hash">Hash</a></li>
+<li><a href="http://phrogz.net/programmingruby/ref_c_file.html#File">File</a></li>
+<li><a href="http://phrogz.net/programmingruby/ref_c_dir.html#Dir">Dir</a></li>
+<li><a href="http://phrogz.net/programmingruby/ref_c_time.html#Time">Time</a></li>
 </ul>
+<p>Pay attention to <code>mixins</code> declaration in those classes. To put it short, it means that the class &quot;mixes in&quot; all mentioned methods. For example, both <code>Array</code> and <code>Hash</code> mix in <code>sort</code> from module <code>Enumerable</code>, which
+is why you can say things like <code>[2, 1, 4].sort</code> (example for sorting Array).</p>
 <h2 id="exercises"><a class="header-link" href="#exercises"></a>Exercises</h2>
 <p>Programming is a skill you build gradually like any other. As such, even more
 complex programs can be started by doing a  very much simplified version first. My
@@ -662,27 +664,45 @@ can try it ouf if you like, and see how far you can go. Note that this is also
 <em>how professionals create actual software</em>, with the exception that they would likely
 skip the very first few steps -- except when they start developing in a new
 language (you&#39;d be surprised how &quot;naive&quot; version they often start with though!)</p>
+<div class="tip">
+
+Refactoring means simply changing the code in such a manner that externally
+the code <em>behaves exactly the same way</em>, but the implementation is <em>better</em>.
+By better I mean such things as the code is more readable, does not contain
+lots of repetition, no large functions or methods that do lots of things,
+individual things are more simple etc.
+
+One of the most common refactorings is <em>extracting a method</em> (or function), so that
+a more involved function becomes more simple, and simply calls the extracted method
+to implement some detail. For more comprehensive list of common refactorings, see eg.
+<a href="http://refactoring.com/catalog/">http://refactoring.com/catalog/</a>
+</div>
+
+<p>After each few steps, remember to <em>refactor</em> the code.</p>
 <p>Build a program that</p>
 <ol class="list">
 <li>reads contents of a file that has some numbers in it, each in it&#39;s own line, and prints it out.</li>
 <li>writes some number to a new file.</li>
-<li>appends (writes to the end) some number to a file</li>
+<li>appends (writes to the end) some number to a file. Note that you want newlines between each number.</li>
 <li>reads all numbers in a file and prints the sum of those numbers</li>
 <li>reads a number from command line, writes current date time (with seconds) and that number to a file. Separate time and number by semicolon `;&#39;</li>
+<li>Add command line parameter to differentiate between whether you want to add value or show stuff (defaulting to show), and also for the filename to use. &#39;show&#39; will just print all lines. From this on, all versions that display stuff should do that with &#39;show&#39;.</li>
 <li><p>given number of entries in a file, prints out average (mean) of those numbers. You can use the following data
 for testing:</p>
 <pre class="hljs"><code> 2015<span class="hljs-tag">-09-02</span> 22<span class="hljs-pseudo">:23</span><span class="hljs-pseudo">:00</span>;70
  2015<span class="hljs-tag">-09-03</span> 14<span class="hljs-pseudo">:58</span><span class="hljs-pseudo">:14</span>;63
- 2015<span class="hljs-tag">-09-04</span> 16<span class="hljs-pseudo">:01</span><span class="hljs-pseudo">:25</span>;35</code></pre><p> Your program should print <code>56.0</code></p>
+ 2015<span class="hljs-tag">-09-04</span> 16<span class="hljs-pseudo">:01</span><span class="hljs-pseudo">:25</span>;35</code></pre><p> Your program should print <code>56.0</code>. Use some other filename to avoid overwriting your own data, and skip blank lines.</p>
 </li>
 <li>prints latest entry date, value of entry and average for last 5 entries (or all, if there are less)</li>
 <li>handles situations like<ul class="list">
-<li>file does not exist</li>
+<li>file does not exist (for show, with add it creates the file if doesn&#39;t exist)</li>
 <li>file exists but is empty</li>
-<li>file contains invalid data (skip it, but tell the user what the invalid line was)</li>
+<li>file contains invalid data (skip it, but tell the user what the invalid line was). Note that <code>.to_i</code> and <code>.to_f</code> silently convert any non-numeric strings to 0! <code>Integer(val)</code> and <code>Float(val)</code> behave in more sane manner.</li>
 </ul>
 </li>
 <li>prints latest entry date and value, with averages for last 3, 5 and 15 entries</li>
+<li>has modules or classes. At this point everything is mixed together, while clearly some deal
+with just transforming data, some with user entries and some with actual logic. Remember <em>separation of concerns</em>.</li>
 <li>treats multiple entries for one day as one, using average of all those as value</li>
 <li>interpolates values for missing days. Say, if for <code>day 1</code> value was <code>10</code> and for <code>day 3</code> it is <code>12</code>,
 assume <code>day 2</code> to have value <code>11</code>.</li>
