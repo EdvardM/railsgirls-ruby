@@ -122,7 +122,7 @@ you only need to change it in that one place.
 
 {tip-begin}
 Programmers talk sometimes about `magic numbers`. They are arbitrary numbers in code
-with semantics that is not immediately obvious to the reader. Good rule of thumb
+with meaning that is not immediately obvious to the reader. Good rule of thumb
 could be that if in doubt, replace the number with constant. Especially if the same
 number with the same meaning appears in the code more than once.
 {tip-end}
