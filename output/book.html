@@ -76,10 +76,10 @@ started!</p>
 <pre class="hljs"><code><span class="hljs-comment"># somefile.rb</span>
 puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># here we have some Ruby code</span></code></pre><p>is something you can type into Ruby interpreter. That is, open up a
 terminal and type <code>pry</code> or <code>irb</code>.</p>
-<p><strong>irb</strong> stands for &quot;interactive Ruby interpreter&quot; and allows you to try out code
-immediately. Pry is a tool that makes working with irb much more nice, has
-fancy colours and whatnot. From now on I&#39;ll assume you use Pry, but you can
-use irb if you like.</p>
+<p><strong>irb</strong> stands for &quot;interactive Ruby interpreter&quot; and allows you to try out
+code immediately. Pry is a tool that makes working with irb much more nice,
+has fancy colours and whatnot. From now on I&#39;ll assume you use Pry (install
+instructions under &#39;Tools&#39; below), but you can use irb if you like.</p>
 <div class="tip">
 Sometimes there are tips like this. You can skip these when reading for the first time, but
 they often contain useful information you might want to check at least later.
@@ -104,7 +104,20 @@ ok, though 2.2 and is recommended. You can find out your version by typing</p>
 <blockquote>
 <p>ruby -v</p>
 </blockquote>
-<p>TBD: installation of pry, link to install script</p>
+<p>If you are using OS X or Linux, using RVM or rbenv is the recommended way of installing Ruby. You can
+install RVM by running</p>
+<blockquote>
+<p>curl -sSL <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable --ruby</p>
+</blockquote>
+<p>To install Pry and some other nice tools, you can run</p>
+<blockquote>
+<p>curl -sSL <a href="http://bit.ly/1LaIHjX">http://bit.ly/1LaIHjX</a> | bash</p>
+</blockquote>
+<p>If you want to install those manually or curl is not available (eg. Windows), run</p>
+<blockquote>
+<p>gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print</p>
+</blockquote>
+<p>and you are good to go.</p>
 <h2 id="data-types"><a class="header-link" href="#data-types"></a>Data types</h2>
 <p>All programs consist of two things: <em>data</em> and <em>functions</em> that do stuff
 with that data. Let&#39;s look at a very simple program that has both of these

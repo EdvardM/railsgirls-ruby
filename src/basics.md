@@ -35,10 +35,10 @@ puts "Howdy" # here we have some Ruby code
 is something you can type into Ruby interpreter. That is, open up a
 terminal and type `pry` or `irb`.
 
-**irb** stands for "interactive Ruby interpreter" and allows you to try out code
-immediately. Pry is a tool that makes working with irb much more nice, has
-fancy colours and whatnot. From now on I'll assume you use Pry, but you can
-use irb if you like.
+**irb** stands for "interactive Ruby interpreter" and allows you to try out
+code immediately. Pry is a tool that makes working with irb much more nice,
+has fancy colours and whatnot. From now on I'll assume you use Pry (install
+instructions under 'Tools' below), but you can use irb if you like.
 
 {tip-begin}
 Sometimes there are tips like this. You can skip these when reading for the first time, but
@@ -68,7 +68,20 @@ ok, though 2.2 and is recommended. You can find out your version by typing
 
 > ruby -v
 
-TBD: installation of pry, link to install script
+If you are using OS X or Linux, using RVM or rbenv is the recommended way of installing Ruby. You can
+install RVM by running
+
+> curl -sSL https://get.rvm.io | bash -s stable --ruby
+
+To install Pry and some other nice tools, you can run
+
+> curl -sSL http://bit.ly/1LaIHjX | bash
+
+If you want to install those manually or curl is not available (eg. Windows), run
+
+> gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print
+
+and you are good to go.
 
 ## Data types
 
