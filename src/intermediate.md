@@ -270,7 +270,7 @@ for testing:
   * file does not exist (for show, with add it creates the file if doesn't exist)
   * file exists but is empty
   * file contains invalid data (skip it, but tell the user what the invalid line was). Note that `.to_i` and `.to_f` silently convert any non-numeric strings to 0! `Integer(val)` and `Float(val)` behave in more sane manner.
-1. prints latest entry date and value, with averages for last 3, 5 and 15 entries
+1. prints latest entry date and value, with averages for last 3, 7 and 21 entries
 1. has modules or classes. At this point everything is mixed together, while clearly some deal
 with just transforming data, some with user entries and some with actual logic. Remember _separation of concerns_.
 1. treats multiple entries for one day as one, using average of all those as value
