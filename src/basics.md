@@ -10,13 +10,17 @@ most complex ones contain components that consist of more simple components,
 until the component deals with just basic language primitives.
 
 Those basic primitives are things that every program contains, and quite
-complex things can be done easily by using just those.
+complex things can be done easily by using just those. Primitive such as
+variables, conditional statements, loops and basic data types like arrays,
+numbers and strings (you can think of simple text being made of one or more strings).
+
+This guide is intended to make those primitives familiar to any reader.
 
 ### Why yet another tutorial?
 
 There are several better tutorials, but I find even the shortest of those tag
-too long. [Why The Lucky Stiff's](http://mislav.uniqpath.com/poignant-
-guide/book/chapter-1.html) is an excellent one and far from dry, but it's long
+too long.
+[Why The Lucky Stiff's](http://mislav.uniqpath.com/poignant-guide/book/chapter-1.html) is an excellent one and far from dry, but it's long
 (still recommend it though!).
 
 My attempt is to cover the least amount of knowledge to begin programming,
@@ -36,9 +40,10 @@ is something you can type into Ruby interpreter. That is, open up a
 terminal and type `pry` or `irb`.
 
 **irb** stands for "interactive Ruby interpreter" and allows you to try out
-code immediately. Pry is a tool that makes working with irb much more nice,
-has fancy colours and whatnot. From now on I'll assume you use Pry (install
-instructions under 'Tools' below), but you can use irb if you like.
+code immediately. irb comes automatically with all Ruby installations. **Pry**
+is an irb replacementthat makes testing Ruby code much more nice, has fancy
+colours and whatnot. From now on I'll assume you use Pry (install instructions
+under 'Tools' below), but you can use just irb if you like.
 
 {tip-begin}
 Sometimes there are tips like this. You can skip these when reading for the first time, but
@@ -46,7 +51,7 @@ they often contain useful information you might want to check at least later.
 {tip-end}
 
 If the code can be tried as-is, I'll write suggested filename to the top of
-the file, like `somefile.rb` above. You may use any name you wish, but you need
+the code listing, like `somefile.rb` above. You may use any name you wish, but you need
 to take that into account when you try running the examples.
 
 Anything that looks like
@@ -54,7 +59,7 @@ Anything that looks like
 > cd projects/ruby-tutorial
 
 is meant to be typed into the terminal, that is, not in irb or pry. Don't worry, '$' will not be copied if you
-want to copy-paste the string.
+want to copy-paste the string to terminal session.
 
 You also might want to keep three windows open: one editor window, and two
 terminal windows in the same directory. The other terminal would then have pry
@@ -63,13 +68,19 @@ way you don't need to open and reopen things all the time.
 
 ### Tools
 
-You only need Ruby for this. Any version at or greater than 1.9.3 should be
-ok, though 2.2 and is recommended. You can find out your version by typing
+You only need Ruby for this, as long as some decent text editor (recommended:
+Sublime or Atom). Ruby version at or greater than 1.9.3 should be ok, though
+2.2 or newer is recommended. You can find out your version by typing
 
 > ruby -v
 
 If you are using OS X or Linux, using RVM or rbenv is the recommended way of installing Ruby. You can
 install RVM by running
+
+{tip-begin}
+As a general precaution, you likely want to avoid running blindly scripts
+located in the internet. So feel free to check both links below, the last bit.ly script is written by me.
+{tip-end}
 
 > curl -sSL https://get.rvm.io | bash -s stable --ruby
 
