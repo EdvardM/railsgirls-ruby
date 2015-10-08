@@ -41,7 +41,7 @@ terminal and type `pry` or `irb`.
 
 **irb** stands for "interactive Ruby interpreter" and allows you to try out
 code immediately. irb comes automatically with all Ruby installations. **Pry**
-is an irb replacementthat makes testing Ruby code much more nice, has fancy
+is an irb replacement that makes testing Ruby code much more nice, has fancy
 colours and whatnot. From now on I'll assume you use Pry (install instructions
 under 'Tools' below), but you can use just irb if you like.
 
@@ -50,7 +50,7 @@ Sometimes there are tips like this. You can skip these when reading for the firs
 they often contain useful information you might want to check at least later.
 {tip-end}
 
-If the code can be tried as-is, I'll write suggested filename to the top of
+If the code can be tried as-is, I'll write suggested file name to the top of
 the code listing, like `somefile.rb` above. You may use any name you wish, but you need
 to take that into account when you try running the examples.
 
@@ -88,7 +88,7 @@ To install Pry and some other nice tools, you can run
 
 > curl -sSL http://bit.ly/1LaIHjX | bash
 
-If you want to install those manually or curl is not available (eg. Windows), run
+If you want to install those manually or curl is not available (eg Windows), run
 
 > gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print
 
@@ -245,6 +245,8 @@ even your own code. Even after few weeks or so it is easy to lose track of how
 a particular piece of code works. Some say you should comment your code, but
 even more important is to write readable code. Problem with comments is that
 code interpreters and compilers _ignore those_, and they get easily outdated.
+Code that has outdated, misleading comments is worse than code without comments.
+
 Ideal code is self-documenting using descriptive names for variables and
 functions. While comments are sometimes the best way to explain things to the
 reader, they are seldom needed if you name things well.
@@ -255,29 +257,36 @@ are valid names for variables. So is
 
 `a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow`.
 
+Ruby doesn't care at all about the names you use, and does not attach any meaning to
+those. It only sees sequences of symbols. So it is recommended to find as descriptive names
+for things as you can imagine. It helps you and others a lot later on.
+
+#### Rules for naming stuff
+
 Anything consisting of letters a to z, numbers and underscore '_' goes. The only
 constraint is that you cannot start it with a number. So `kitteh_42` is a
-valid variable name, while `42_kitteh` isn't.
+valid name, while `42_kitteh` isn't.
 
 Same rules apply for your own methods and functions.
 
 {tip-begin}
 <p>
-In Ruby, you should use underscore to separate words in variable names, and
-always use downcase letters. UPCASE and SoCalledCamelCase is reserved for constants, classes and
+In Ruby, you should use underscore to separate words in names, and
+always use downcase letters. UPCASE and CamelCaseNamingConvention is reserved for constants, classes and
 other things we'll talk about later.</p>
 
 <p>You _could_ also use Finnish to name things if you like, which actually works
 nowadays due to UTF character set being common. So, you can actually use
-variable names like `ämpäri`, which was not that possible only few years back,
+variable names like `ämpäri`, which was not that possible a few years back,
 and is still impossible with some languages. It doesn't mean you _should_ do
 that, though. However, English is _lingua franca_ of computing, and using any
 other language to name things will be frowned upon. Others will look at
 you with that, you know, face. With a stiff upper lip.</p>
 
-<p>Even though it could be argued that using non-Eglish names for things that you
+<p>Even though it could be argued that using non-English names for things that you
 write makes it more apparent what comes from language and standard libraries,
-and what is your own code. I'd still recommend against it. Just stick to English.</p>
+and what is your own code. I'd still recommend against it. Just stick to English. Naturally
+the choice is yours, though. You've been warned.</p>
 {tip-end}
 
 
@@ -285,15 +294,15 @@ and what is your own code. I'd still recommend against it. Just stick to English
 
 So, now we know -- or at least have seen -- three things:
 
-1. Data. There are different types of if, and we have seen three of those:
-  * Strings
-  * Numbers
-  * Arrays, which can contain any data structures, including other arrays[^fn-array]
-2. Methods to do things with the data
+1. Data. There are different types of if, and we have seen three of those. Respective Ruby type(s) or _class(es)_ are in parentheses:
+  * Strings (String)
+  * Numbers (Fixnum, Float)
+  * Arrays (Array), which can contain any data structures, including arrays[^fn-array]
+2. Functions/methods with which to do things with the data
   * In the example above, we used _array methods_ to get the length of the array with `length`,
     and `sort` to get array contents in alphabetic order. `upcase` converted string to upper case.
   * We will talk more about methods a bit later.
-3. We quickly glanced at variables that are just short, descriptive labels for things
+3. We quickly glanced at variables that are basically just labels for things in computer memory
 
 ## Acting in an intelligent fashion
 
@@ -312,7 +321,7 @@ like this:
 ```ruby
 bot = Robot.new("Jeeves the Valiant Valet")
 
-bot.pour_coffee(800) # Our robot uses millilitres as the basic unit for fluds
+bot.pour_coffee(800) # Our robot uses millilitres as the basic unit for fluids
 bot.spray_whipped_cream(400)
 bot.sprinkle_chocolate_chips(5) # grams maybe
 bot.sprinkle_cinnamon(1) # still grams (what's LD50 for cinnamon???)
@@ -364,7 +373,7 @@ def inject(substance, options)
   if sensors.cup_detected?
     actually_inject_stuff(substance, options)
   else
-    system.alert("Please do set your favorite container of hot beverages "
+    system.alert("Please do set your favourite container of hot beverages "
                  "to appropriate position and alignment")
   end
 end
@@ -604,7 +613,7 @@ We now learned of the last part, repetition. We had two kinds of loops:
 Technically you could do any looping with `while`, but `each` is more
 convenient and less verbose when you have a collection to process.
 
-Go get a nice, warm cup of your favorite beverage now! You've deserved it.
+Go get a nice, warm cup of your favourite beverage now! You've deserved it.
 Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
 have one. Patting a horse is ok too.
 
