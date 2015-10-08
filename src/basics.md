@@ -194,16 +194,17 @@ By now you have probably guessed that Ruby ignores every line beginning with `#`
 They are _comments_, meant for human readers.
 
 OK. So now we can have _strings_, _numbers_ and _arrays_, and we have even seen some
-functions. But why some of them appear before data, like `puts`, and some after, like
+functions. But why some of them appear before data, like `puts`, and some after with a dot, like
 `length`? The latter is an example of a *method*, which you could think of like a function
 that is closely tied with data. However, at this point it doesn't matter much
 whether you talk about functions or methods. Both act on data, transforming it,
 storing it somewhere else (like writing a file), calculate things etc.
 
 There was something else too. That `some_stuff` is a _variable_. You use them
-to give shorter, descriptive names to things that are longer to type or
-relatively expensive to compute. But arguably the most common reason to use
-those is to give things descriptive names. Consider the following:
+to eg. give shorter, descriptive names, or to avoid repeating things that are
+relatively expensive to compute, saving current state
+etc. But arguably the most common reason to use those is to give things
+descriptive names. Consider the following:
 
 ```ruby
 User.all.select { |u| !u.admin? && u.created_at >= Time.now - 7.days }.each do |u|
@@ -213,7 +214,7 @@ end
 
 Unless the reader is quite familiar with Ruby and Rails, it is not easy to see
 what is actually printed. Next consider the version that splits up that a bit,
-using hopefully more human-readable variable names:
+using hopefully human-readable variable names:
 
 ```ruby
 min_creation_time = Time.now - 7.days
@@ -227,15 +228,17 @@ end
 There are even better ways to make that more descriptive or elegant, but we
 don't have tools for that yet. However, we already gained something important:
 `recent_normal_users` communicates to the reader that this variable holds
-actually a list of users that are not administrators. If you need to change
-how users are printed, then you may safely ignore ther more involved
-expression of getting those users, knowing know what it does. You only need to
-focus on the printing part.
+actually an array of recently created users that are not administrators. If
+you need to change how users are printed, then you may safely ignore ther more
+involved expression of getting those users, also knowing how it does it. You
+only need to focus on the printing part.
 
 Also note that to introduce a new variable, you simply write that variable and
 assign a value to it. Some languages require you to declare those separately,
 but in Ruby, you just start using those by assigning them to stuff. In Ruby,
 you always assign things to labels by using the equal symbol `=`.
+
+### On readability
 
 Computer programs are hard to write, but they are often even harder to read,
 even your own code. Even after few weeks or so it is easy to lose track of how
