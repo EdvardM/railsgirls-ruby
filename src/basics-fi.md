@@ -35,7 +35,7 @@ Olutusarvoisesti mikä hyvänsä, joka näyttää allaolevalta
 
 ```ruby
 # somefile.rb
-puts "Howdy" # here we have some Ruby code
+puts "Howdy" # tässä meillä on Ruby-koodia
 ```
 
 on jotain, mikä voidaan kirjoittaa Ruby-tulkkiin. Eli avaa terminaali ja kirjoita `pry` tai `irb`.
@@ -95,4 +95,60 @@ puts "Oh my, cinnamon buns!"
 
 puts "Kittens are " + " so fluffy"
 puts "moar kittens in examples!".upcase
+```
+
+Data on vain tietoa kuten tekstiä, numeroita, kuvia ja videoita. Se ei tee itsessään mitään. Jopa yksinkertainen teksti pitää tulostaa, ennenkuin se voidaan lukea. Tässä esimerkissä **merkkijono** `"Oh my, cinnamon buns!"` on dataa, kuten myös `"Kittens are "`, `"so fluffy"` yms. `puts` on funktio joka _tekee tiedolle jotain_, tässä siis tulostaa mitä hyvänsä funktiolle syötetään. `upcase` on myös eräänlainen funktio, joka on "sidottu" vain merkkijonoihin.
+
+Huomaa myös, että ohjelmarivien välissä voi olla haluamasi määrä tyhjiä rivejä. Käytä tyhjiä rivejä sisällön loogiseen ryhmittelyyn samaan tapaan kuten luonnollisessa kielessä. Ruby ei välitä: voit kirjoittaa kaikki Ruby-ohjelmat halutessasi yhdelle hyvin pitkälle riville. Luettavuus on ihmistä eikä tietokonetta varten. Selkeys on tärkeää.
+
+Lisäsin yllä yhden tyhjän rivin ensimmäisen ja kahden viimeisen väliin, koska ensimmäinen ei tee merkkijonolle mitään muuta kuin tulostaa sen. Kaksi muuta ovat hieman mutkikkaampia.
+
+Jos kirjoitit koodin editoriin, voit kokeilla sen suorittamista sanomalla
+
+> ruby hello.rb
+
+Huomasithan, että merkkijonot Rubyssä pitää ympäröidä sitaateilla, joko kaksin- (`"`) tai yksinkertaisilla (`'`). Tässä vaiheessa ei ole väliä kumpaa muotoa käytät, mutta käytä mieluusti jompaa kumpaa johdonmukaisesti.
+
+Myös **numerot** ovat hyvin yleisiä. Itse asiassa numerotyyppejäkin on useita tiettyjen ongelmien vuoksi, mutta tässä vaiheessa ei tarvitse välittää vielä niistä. Esimerkiksi
+
+
+```ruby
+# numbers.rb
+puts 1 + 2
+
+# Huom! se on(30 / 3) + 4, ei 30 / (3 + 4). Ihan kuten koulussakin.
+puts 30 / 3 + 4
+
+puts 10 / 3.0    # 3.3333333...
+puts 10 / 3      # Huom: jakolasku kokonaisluvuilla, koska jakaja ja jaettava ovat kokonaislukuja
+```
+
+Kuten aikaisemminkin, jos sinulla on terminaali avoinna samassa hakemistossa kuin tiedosto `numbers.rb`, tallenna tiedosto editorissasi ja suorita
+
+> ruby numbers.rb
+
+Nyt tiedämme numeroista ja merkijonoista. Entä mitä jos meillä on jotain asiaa monta kappaletta? Sitä varten on listat, tai Rubyssä puhumme yleensä _taulukoista_. Niiden avulla voi tehdä monenlaisia asioita, ja ne ovat varsin keskeisiä lähes kaikissa ohjelmissa:
+
+```ruby
+# arrays.rb
+some_stuff = ['kitten', 'dog', 'llama']
+
+puts some_stuff        # tulostaa kunkin merkkijonon omalle rivilleen
+puts some_stuff.length # 3, koska listassa 3 alkiota
+
+ # lähes kaikki ohjelmointikielet aloittavat taulukon
+ # indeksoinnin nollasta, joten 1. alkio on indeksissä 0!
+puts some_stuff[0]     # kitten
+puts some_stuff[1]     # dog
+puts some_stuff[2]     # llama
+puts some_stuff[-1]    # -1 tarkoittaa viimeistä alkiota, -2 toiseksiviimeistä jne
+
+puts some_stuff.sort   # tulostaa dog, kitten ja llama tässä järjestyksessä
+# Rubyssä taulukot voivat sisältää erilaisia tietotyyppejä
+puts ['dog', 42].length
+
+# Yow dawg, heard you like arrays so I put array in your array
+not_even_funny = [2, 'bananas', [4, 5]]
+# tulostaa sekä 4 että 5, koska viimeinen alkio on taulukko [4, 5]
+puts not_even_funny[-1]
 ```

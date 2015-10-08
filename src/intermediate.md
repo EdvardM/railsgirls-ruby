@@ -301,3 +301,5 @@ code and separate directory for data files)
 
 Now you have built a nice, general-purpose _linear estimator_. You can use that to track your weight, money usage / savings, running speed, electric bill.. anything that can be measured and represented as single
 number per day. Neat, huh :)
+
+**Thinking about estimator, for what kind of values it is an appropriate one? For what it is ill-suited?

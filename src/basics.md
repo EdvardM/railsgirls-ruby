@@ -121,15 +121,17 @@ also a function!). Note that I needed to add trailing space to the string
 `"Kittens are "`, otherwise it would have printed `Kittens areso fluffy`.
 
 The last part prints something to the screen in rather demanding manner, due
-to `upcase` function that is "tied" to strings.
+to `upcase` function that is "tied" to strings only.
 
 Also note that you can have either zero or any number of blank lines between
 lines of Ruby code. Use blank lines to group things logically, just like in
 writing human languages. Ruby does not care: you could write all Ruby programs
 in one really long line if you wanted, but readability is for humans; machine
-doesn't care. Clarity is important. I added one blank line after the first example
-as it is something that does not do anything to strings except print it; the two
-after it are a bit more complex, though still simple.
+doesn't care. Clarity is important.
+
+I added one blank line after the first example as it is something that does
+not do anything to strings except print it; the two after it are a bit more
+complex, though still simple.
 
 If you wrote that in editor, try it out by saying
 
@@ -154,7 +156,7 @@ puts 10 / 3.0    # 3.3333333...
 puts 10 / 3      # Note: integral division because all numbers are integral!
 ```
 
-As before, given you have a terminal open in the same directory, save the file in the editor and run
+As before, given you have a terminal open in the same directory as the file `numbers.rb`, save the file in the editor and run
 
 > ruby numbers.rb
 
