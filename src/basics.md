@@ -194,7 +194,7 @@ By now you have probably guessed that Ruby ignores every line beginning with `#`
 They are _comments_, meant for human readers.
 
 OK. So now we can have _strings_, _numbers_ and _arrays_, and we have even seen some
-functions. But why some of them appear before date, like `puts`, and some after, like
+functions. But why some of them appear before data, like `puts`, and some after, like
 `length`? The latter is an example of a *method*, which you could think of like a function
 that is closely tied with data. However, at this point it doesn't matter much
 whether you talk about functions or methods. Both act on data, transforming it,
