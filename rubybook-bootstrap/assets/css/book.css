@@ -11,6 +11,10 @@
     margin-left: 1.25em;
     margin-right: 1.25em;
     margin-bottom: 1.25em;
+
+    border: 1px solid #9c4040;
+    border-radius: 16px;
+    padding: 20px;
 }
 
 blockquote p::before {

@@ -540,7 +540,18 @@ Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
 have one. Patting a horse is ok too.</p>
 <p>[^fn-array] Yeah, there&#39;s no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.</p>
 <h3 id="exercises-1"><a class="header-link" href="#exercises-1"></a>Exercises</h3>
+<p>For the following exercises, you need to be aware of the following things:</p>
+<ul class="list">
+<li>To repeat something exactly n times, you can say <code>n.times { |i| # code that is repeated n times}</code>. <code>i</code> in the code block is a counter that gets each of the values from 0 to n-1 every time the loop is executed (remember that in programming, counting usually starts from zero!).</li>
+<li><code>puts</code> automatically prints a newline after the string, while <code>print</code> doesn&#39;t. <code>puts</code> alone without any parameters just prints a newline, which comes handy</li>
+<li><code>||</code> means logical or. So the statement <code>if 2 &gt; 3 || 2 &gt; 1</code> is true, because the latter part after <code>||</code> is true</li>
+</ul>
 <p>Write a program that</p>
+<div class="tip">
+There are several ways to repeat things in Ruby. Integer#times is just one. Also note that if your code between <code>{ .. }</code> spans more than one line, it is recommended to use <code>do .. end</code> instead of braces. But it&#39;s just a matter of style! Both will do fine. Computer won&#39;t even see the difference. It&#39;s all the same.
+</div>
+
+
 <ul class="list">
 <li>prints out a 5x10 rectangle using <code>.</code> characters. Don&#39;t just copy-paste or type the square manually, but use loops. The result should look like this:<pre class="hljs"><code><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
 </span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.

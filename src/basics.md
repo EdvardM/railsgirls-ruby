@@ -639,7 +639,16 @@ have one. Patting a horse is ok too.
 
 ### Exercises
 
+For the following exercises, you need to be aware of the following things:
+
+* To repeat something exactly n times, you can say `n.times { |i| # code that is repeated n times}`. `i` in the code block is a counter that gets each of the values from 0 to n-1 every time the loop is executed (remember that in programming, counting usually starts from zero!).
+* `puts` automatically prints a newline after the string, while `print` doesn't. `puts` alone without any parameters just prints a newline, which comes handy
+* `||` means logical or. So the statement `if 2 > 3 || 2 > 1` is true, because the latter part after `||` is true
+
 Write a program that
+{tip-begin}
+There are several ways to repeat things in Ruby. Integer#times is just one. Also note that if your code between `{ .. }` spans more than one line, it is recommended to use `do .. end` instead of braces. But it's just a matter of style! Both will do fine. Computer won't even see the difference. It's all the same.
+{tip-end}
 
 
 * prints out a 5x10 rectangle using `.` characters. Don't just copy-paste or type the square manually, but use loops. The result should look like this:
@@ -679,6 +688,4 @@ Write a program that
    #.....#
   ########
 ```
-
-
 
