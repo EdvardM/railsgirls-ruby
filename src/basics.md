@@ -204,18 +204,18 @@ relatively expensive to compute. But arguably the most common reason to use
 those is to give things descriptive names. Consider the following:
 
 ```ruby
-User.all.select { |u| !u.admin? && u.created_at >= Time.now - 7.days }.each do |u|
+users.select { |u| !u.admin? && u.created >= Time.now - 7.days }.each do |u|
   puts u
 end
 ```
 
-Unless the reader is quite familiar with Ruby and Rails, it is not easy to see
+Unless the reader is quite familiar with Ruby, it is not easy to see
 what is actually printed. Next consider the version that splits up that a bit,
 using hopefully more human-readable variable names:
 
 ```ruby
 min_creation_time = Time.now - 7.days
-recent_non_admins = User.all.select { |u| !u.admin? && u.created_at >=  min_creation_time }
+recent_non_admins = users.select { |u| !u.admin? && u.created >=  min_creation_time }
 
 recent_non_admins.each do |user|
   puts user
@@ -338,25 +338,26 @@ end
 ```
 
 Note that the notation `<stuff>` means that `stuff` should not be written
-literally, but with appropriate expression. Here it should be some Ruby code
-that is equal to value `false`.
+literally, but with appropriate expression. Here `<condition>` should be some Ruby code
+that is equal to value `true` or `false`. Some examples: `my_number < 42`, `a_string == "cat"`,
+`array.size > 3`.
 
 Let's assume all the functions our robot Jeeves uses to fill the cup
-take advantage of a single utility function `inject`:
+take advantage of a single utility method `inject`:
 
 ```ruby
 nozzle.inject('coffee', amount: 800, manner: 'pour')
 nozzle.inject('cream', amount: 400, manner: 'spray')
 ```
 
-To avoid accitents, all our methods would need to detect if the cup is no
+To avoid accidents, all our methods would need to detect if the cup is no
 longer under the nozzle. So we would edit the `inject` method for nozzles as
 follows:
 
 ```ruby
 def inject(substance, options)
   ...
-  if sensors.cup_detected?
+  if sensor.cup_detected?
     actually_inject_stuff(substance, options)
   else
     system.alert("Please do set your favorite container of hot beverages "
@@ -366,12 +367,14 @@ end
 ```
 
 Now we have fixed the problem! If `sensors.cup_detected?` has the value
-`true`, it calls `actuall_inject_stuf`. Otherwise it alerts the user. But we
+`true`, it calls `actually_inject_stuff`. Otherwise it alerts the user. But we
 did not _quite_ fix it yet. Why?
 
 If the cup is moved during the `actually_inject_stuff` call we won't detect
 that, because we check `sensors.cup_detected?` only just before we start
 injecting stuff. But at least we check it now just before each phase.
+
+Think for a while how the issue could be solved properly.
 
 ### Of things True and False
 

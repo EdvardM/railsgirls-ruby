@@ -273,11 +273,11 @@ for testing:
 1. prints latest entry date and value, with averages for last 3, 7 and 21 entries
 1. has modules or classes. At this point everything is mixed together, while clearly some deal
 with just transforming data, some with user entries and some with actual logic. Remember _separation of concerns_.
-1. treats multiple entries for one day as one, using average of all those as value
+1. treats multiple entries for one day as one, using average of all those as day value (hint: `Enumerable#group_by` could be useful)
+1. has at least some [unit tests](http://rspec.info/). We are about to do serious stuff here, so you want to be certain that your old stuff still
+works when you make changes. [unit tests first](https://robots.thoughtbot.com/back-to-basics-writing-unit-tests-first) could be helpful reading too.
 1. interpolates values for missing days. Say, if for `day 1` value was `10` and for `day 3` it is `12`,
    assume `day 2` to have value `11`.
-1. has [unit test](http://rspec.info/). We are doing serious stuff here, so you want to be certain that your old stuff still
-works when you make changes.
 1. prints all the data as in step 9, but now including weekly and monthly change. For example, if
 we have entry for current date and it's value is 100, and last week ago it was 240, then weekly change
 is 140 (negative)
