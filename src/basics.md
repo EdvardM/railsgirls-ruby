@@ -36,8 +36,9 @@ By default, anything that looks like
 puts "Howdy" # here we have some Ruby code
 ```
 
-is something you can type into Ruby interpreter. That is, open up a
-terminal and type `pry` or `irb`.
+is something you can type into Ruby interpreter. That is, open up a terminal
+and type `pry` or `irb`. Alternatively you can save that to a file and run
+that with ruby.
 
 **irb** stands for "interactive Ruby interpreter" and allows you to try out
 code immediately. irb comes automatically with all Ruby installations. **Pry**
@@ -240,35 +241,6 @@ you always assign things to labels by using the equal symbol `=`.
 
 ### On readability
 
-Computer programs are hard to write, but they are often even harder to read,
-even your own code. Even after few weeks or so it is easy to lose track of how
-a particular piece of code works. Some say you should comment your code, but
-even more important is to write readable code. Problem with comments is that
-code interpreters and compilers _ignore those_, and they get easily outdated.
-Code that has outdated, misleading comments is worse than code without comments.
-
-Ideal code is self-documenting using descriptive names for variables and
-functions. While comments are sometimes the best way to explain things to the
-reader, they are seldom needed if you name things well.
-
-Can you use any names for things, then? In practice, yes. All variable names
-are totally arbitrary. While `a` or `z` are not very descriptive names, they
-are valid names for variables. So is
-
-`a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow`.
-
-Ruby doesn't care at all about the names you use, and does not attach any meaning to
-those. It only sees sequences of symbols. So it is recommended to find as descriptive names
-for things as you can imagine. It helps you and others a lot later on.
-
-#### Rules for naming stuff
-
-Anything consisting of letters a to z, numbers and underscore '_' goes. The only
-constraint is that you cannot start it with a number. So `kitteh_42` is a
-valid name, while `42_kitteh` isn't.
-
-Same rules apply for your own methods and functions.
-
 {tip-begin}
 <p>
 In Ruby, you should use underscore to separate words in names, and
@@ -289,6 +261,34 @@ and what is your own code. I'd still recommend against it. Just stick to English
 the choice is yours, though. You've been warned.</p>
 {tip-end}
 
+Computer programs are hard to write, but they are often even harder to read,
+even your own code. Even after few weeks or so it is easy to lose track of how
+a particular piece of code works. Some say you should comment your code, but
+even more important is to write readable code. Problem with comments is that
+code interpreters and compilers _ignore those_, and they get easily outdated.
+Code that has outdated, misleading comments is worse than code without comments.
+
+Ideal code is self-documenting using descriptive names for variables and
+functions. While comments are sometimes the best way to explain things to the
+reader, they are seldom needed if you name things well.
+
+Can you use any names for things, then? In practice, yes. All variable names
+are totally arbitrary. While `a` or `z` are not very descriptive names, they
+are valid names for variables. So is
+
+`a_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow`.
+
+Ruby doesn't care at all about the names you use, and does not attach any meaning to
+those. It only sees sequences of symbols. So it is recommended to find as descriptive names
+for things as you can imagine. It helps you and others a lot later on.
+
+#### Rules for naming stuff
+
+Anything consisting of letters a to z, numbers and underscore '_' goes. The only
+constraint is that you cannot start it with a number. So `kitteh_42` is a
+valid name, while `42_kitteh` isn't.
+
+Same rules apply for your own methods and functions.
 
 ### Wrapping up
 
@@ -303,6 +303,21 @@ So, now we know -- or at least have seen -- three things:
     and `sort` to get array contents in alphabetic order. `upcase` converted string to upper case.
   * We will talk more about methods a bit later.
 3. We quickly glanced at variables that are basically just labels for things in computer memory
+
+### Exercises
+
+{tip-begin}
+For the second exercise, you need to read command line parameters. They are stored in an array called
+ARGV. Even though the name is sort of weird, it's just an array like the ones we saw already
+{tip-end}
+
+* write a program which prints out your name
+* write a program which greets the person you give as command line parameter. Eg.
+when you type `ruby 01.rb Alice` it prints `Hello, Alice!`
+* extra: write a program which prints several names, and greets only the one given in the command line. You need
+to use `if` statement for this, which is explained later
+
+
 
 ## Acting in an intelligent fashion
 
@@ -621,3 +636,49 @@ Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
 have one. Patting a horse is ok too.
 
 [^fn-array] Yeah, there's no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.
+
+### Exercises
+
+Write a program that
+
+
+* prints out a 5x10 rectangle using `.` characters. Don't just copy-paste or type the square manually, but use loops. The result should look like this:
+```
+  ..........
+  ..........
+  ..........
+  ..........
+  ..........
+```
+* prints out filled rectangle, dimensions given as command line parameters. Eg. `ruby rectangle.rb 4 7` would print
+```
+  #######
+  #.....#
+  #.....#
+  #######
+```
+* extra: print out a filled triangle. Program should take a number of rows, so that `ruby triangle.rb 8` would print
+```
+  #
+  ##
+  #.#
+  #..#
+  #...#
+  #....#
+  #.....#
+  ########
+```
+* extra: what if the triangle needs to be flipped around, like below?
+```
+         #
+        ##
+       #.#
+      #..#
+     #...#
+    #....#
+   #.....#
+  ########
+```
+
+
+

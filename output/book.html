@@ -36,22 +36,26 @@
   <div class="container-fluid">
     <div class="row-fluid">
       <div class="span3"><ul class="nav nav-list">
-    <li><a href="#the-very-basics-of-ruby">The Very Basics of Ruby</a></li>
-    <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#why-yet-another-tutorial-">Why yet another tutorial?</a></li>
-    <li><a href="#notations-used">Notations used</a></li>
-    <li><a href="#tools">Tools</a></li>
-    <li><a href="#data-types">Data types</a></li>
-    <li><a href="#wrapping-up">Wrapping up</a></li>
-    <li><a href="#acting-in-an-intelligent-fashion">Acting in an intelligent fashion</a></li>
-    <li><a href="#of-things-true-and-false">Of things True and False</a></li>
-    <li><a href="#wrapping-up">Wrapping up</a></li>
-    <li><a href="#repeating-things">Repeating things</a></li>
-    <li><a href="#wrapping-up">Wrapping up</a></li>
-    <li><a href="#functions-schmunctions">Functions schmunctions</a></li>
-    <li><a href="#wrapping-up">Wrapping up</a></li>
-    <li><a href="#what-next-">What next?</a></li>
-    <li><a href="#exercises">Exercises</a></li>
+    <li class="sidebar-header-1"><a href="#the-very-basics-of-ruby">The Very Basics of Ruby</a></li>
+    <li class="sidebar-header-2"><a href="#introduction">Introduction</a></li>
+    <li class="sidebar-header-3"><a href="#why-yet-another-tutorial-">Why yet another tutorial?</a></li>
+    <li class="sidebar-header-3"><a href="#notations-used">Notations used</a></li>
+    <li class="sidebar-header-3"><a href="#tools">Tools</a></li>
+    <li class="sidebar-header-2"><a href="#data-types">Data types</a></li>
+    <li class="sidebar-header-3"><a href="#on-readability">On readability</a></li>
+    <li class="sidebar-header-4"><a href="#rules-for-naming-stuff">Rules for naming stuff</a></li>
+    <li class="sidebar-header-3"><a href="#wrapping-up">Wrapping up</a></li>
+    <li class="sidebar-header-3"><a href="#exercises">Exercises</a></li>
+    <li class="sidebar-header-2"><a href="#acting-in-an-intelligent-fashion">Acting in an intelligent fashion</a></li>
+    <li class="sidebar-header-3"><a href="#of-things-true-and-false">Of things True and False</a></li>
+    <li class="sidebar-header-3"><a href="#wrapping-up">Wrapping up</a></li>
+    <li class="sidebar-header-2"><a href="#repeating-things">Repeating things</a></li>
+    <li class="sidebar-header-3"><a href="#wrapping-up">Wrapping up</a></li>
+    <li class="sidebar-header-3"><a href="#exercises">Exercises</a></li>
+    <li class="sidebar-header-2"><a href="#functions-schmunctions">Functions schmunctions</a></li>
+    <li class="sidebar-header-3"><a href="#wrapping-up">Wrapping up</a></li>
+    <li class="sidebar-header-2"><a href="#what-next-">What next?</a></li>
+    <li class="sidebar-header-2"><a href="#exercises">Exercises</a></li>
 </ul>
       </div>
       <div class="span9 main"><h1 id="the-very-basics-of-ruby"><a class="header-link" href="#the-very-basics-of-ruby"></a>The Very Basics of Ruby</h1>
@@ -77,11 +81,12 @@ started!</p>
 <h3 id="notations-used"><a class="header-link" href="#notations-used"></a>Notations used</h3>
 <p>By default, anything that looks like</p>
 <pre class="hljs"><code><span class="hljs-comment"># somefile.rb</span>
-puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># here we have some Ruby code</span></code></pre><p>is something you can type into Ruby interpreter. That is, open up a
-terminal and type <code>pry</code> or <code>irb</code>.</p>
+puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># here we have some Ruby code</span></code></pre><p>is something you can type into Ruby interpreter. That is, open up a terminal
+and type <code>pry</code> or <code>irb</code>. Alternatively you can save that to a file and run
+that with ruby.</p>
 <p><strong>irb</strong> stands for &quot;interactive Ruby interpreter&quot; and allows you to try out
 code immediately. irb comes automatically with all Ruby installations. <strong>Pry</strong>
-is an irb replacementthat makes testing Ruby code much more nice, has fancy
+is an irb replacement that makes testing Ruby code much more nice, has fancy
 colours and whatnot. From now on I&#39;ll assume you use Pry (install instructions
 under &#39;Tools&#39; below), but you can use just irb if you like.</p>
 <div class="tip">
@@ -89,7 +94,7 @@ Sometimes there are tips like this. You can skip these when reading for the firs
 they often contain useful information you might want to check at least later.
 </div>
 
-<p>If the code can be tried as-is, I&#39;ll write suggested filename to the top of
+<p>If the code can be tried as-is, I&#39;ll write suggested file name to the top of
 the code listing, like <code>somefile.rb</code> above. You may use any name you wish, but you need
 to take that into account when you try running the examples.</p>
 <p>Anything that looks like</p>
@@ -123,7 +128,7 @@ located in the internet. So feel free to check both links below, the last bit.ly
 <blockquote>
 <p>curl -sSL <a href="http://bit.ly/1LaIHjX">http://bit.ly/1LaIHjX</a> | bash</p>
 </blockquote>
-<p>If you want to install those manually or curl is not available (eg. Windows), run</p>
+<p>If you want to install those manually or curl is not available (eg Windows), run</p>
 <blockquote>
 <p>gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print</p>
 </blockquote>
@@ -147,14 +152,15 @@ something with data</em>, which is just printing whatever is fed to the function
 also a function!). Note that I needed to add trailing space to the string
 <code>&quot;Kittens are &quot;</code>, otherwise it would have printed <code>Kittens areso fluffy</code>.</p>
 <p>The last part prints something to the screen in rather demanding manner, due
-to <code>upcase</code> function that is &quot;tied&quot; to strings.</p>
+to <code>upcase</code> function that is &quot;tied&quot; to strings only.</p>
 <p>Also note that you can have either zero or any number of blank lines between
 lines of Ruby code. Use blank lines to group things logically, just like in
 writing human languages. Ruby does not care: you could write all Ruby programs
 in one really long line if you wanted, but readability is for humans; machine
-doesn&#39;t care. Clarity is important. I added one blank line after the first example
-as it is something that does not do anything to strings except print it; the two
-after it are a bit more complex, though still simple.</p>
+doesn&#39;t care. Clarity is important.</p>
+<p>I added one blank line after the first example as it is something that does
+not do anything to strings except print it; the two after it are a bit more
+complex, though still simple.</p>
 <p>If you wrote that in editor, try it out by saying</p>
 <blockquote>
 <p>ruby hello.rb</p>
@@ -172,7 +178,7 @@ puts <span class="hljs-number">1</span> + <span class="hljs-number">2</span>
 puts <span class="hljs-number">30</span> / <span class="hljs-number">3</span> + <span class="hljs-number">4</span>
 
 puts <span class="hljs-number">10</span> / <span class="hljs-number">3.0</span>    <span class="hljs-comment"># 3.3333333...</span>
-puts <span class="hljs-number">10</span> / <span class="hljs-number">3</span>      <span class="hljs-comment"># Note: integral division because all numbers are integral!</span></code></pre><p>As before, given you have a terminal open in the same directory, save the file in the editor and run</p>
+puts <span class="hljs-number">10</span> / <span class="hljs-number">3</span>      <span class="hljs-comment"># Note: integral division because all numbers are integral!</span></code></pre><p>As before, given you have a terminal open in the same directory as the file <code>numbers.rb</code>, save the file in the editor and run</p>
 <blockquote>
 <p>ruby numbers.rb</p>
 </blockquote>
@@ -204,89 +210,109 @@ not_even_funny = [<span class="hljs-number">2</span>, <span class="hljs-string">
 puts not_even_funny[-<span class="hljs-number">1</span>]</code></pre><p>By now you have probably guessed that Ruby ignores every line beginning with <code>#</code>. Yup.
 They are <em>comments</em>, meant for human readers.</p>
 <p>OK. So now we can have <em>strings</em>, <em>numbers</em> and <em>arrays</em>, and we have even seen some
-functions. But why some of them appear before date, like <code>puts</code>, and some after, like
+functions. But why some of them appear before data, like <code>puts</code>, and some after with a dot, like
 <code>length</code>? The latter is an example of a <em>method</em>, which you could think of like a function
 that is closely tied with data. However, at this point it doesn&#39;t matter much
 whether you talk about functions or methods. Both act on data, transforming it,
 storing it somewhere else (like writing a file), calculate things etc.</p>
 <p>There was something else too. That <code>some_stuff</code> is a <em>variable</em>. You use them
-to give shorter, descriptive names to things that are longer to type or
-relatively expensive to compute. But arguably the most common reason to use
-those is to give things descriptive names. Consider the following:</p>
-<pre class="hljs"><code><span class="hljs-constant">User</span>.all.select { |u| !u.admin? &amp;&amp; u.created_at &gt;= <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days }.each <span class="hljs-keyword">do</span> |u|
+to eg. give shorter, descriptive names, or to avoid repeating things that are
+relatively expensive to compute, saving current state
+etc. But arguably the most common reason to use those is to give things
+descriptive names. Consider the following:</p>
+<pre class="hljs"><code>users.select { |u| !u.admin? &amp;&amp; u.created &gt;= <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days }.each <span class="hljs-keyword">do</span> |u|
   puts u
-<span class="hljs-keyword">end</span></code></pre><p>Unless the reader is quite familiar with Ruby and Rails, it is not easy to see
+<span class="hljs-keyword">end</span></code></pre><p>Unless the reader is quite familiar with Ruby, it is not easy to see
 what is actually printed. Next consider the version that splits up that a bit,
-using hopefully more human-readable variable names:</p>
+using hopefully human-readable variable names:</p>
 <pre class="hljs"><code>min_creation_time = <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days
-recent_non_admins = <span class="hljs-constant">User</span>.all.select { |u| !u.admin? &amp;&amp; u.created_at &gt;=  min_creation_time }
+recent_non_admins = users.select { |u| !u.admin? &amp;&amp; u.created &gt;=  min_creation_time }
 
 recent_non_admins.each <span class="hljs-keyword">do</span> |user|
   puts user
 <span class="hljs-keyword">end</span></code></pre><p>There are even better ways to make that more descriptive or elegant, but we
 don&#39;t have tools for that yet. However, we already gained something important:
 <code>recent_normal_users</code> communicates to the reader that this variable holds
-actually a list of users that are not administrators. If you need to change
-how users are printed, then you may safely ignore ther more involved
-expression of getting those users, knowing know what it does. You only need to
-focus on the printing part.</p>
+actually an array of recently created users that are not administrators. If
+you need to change how users are printed, then you may safely ignore ther more
+involved expression of getting those users, also knowing how it does it. You
+only need to focus on the printing part.</p>
 <p>Also note that to introduce a new variable, you simply write that variable and
 assign a value to it. Some languages require you to declare those separately,
 but in Ruby, you just start using those by assigning them to stuff. In Ruby,
 you always assign things to labels by using the equal symbol <code>=</code>.</p>
-<p>Computer programs are hard to write, but they are often even harder to read,
-even your own code. Even after few weeks or so it is easy to lose track of how
-a particular piece of code works. Some say you should comment your code, but
-even more important is to write readable code. Problem with comments is that
-code interpreters and compilers <em>ignore those</em>, and they get easily outdated.
-Ideal code is self-documenting using descriptive names for variables and
-functions. While comments are sometimes the best way to explain things to the
-reader, they are seldom needed if you name things well.</p>
-<p>Can you use any names for things, then? In practice, yes. All variable names
-are totally arbitrary. While <code>a</code> or <code>z</code> are not very descriptive names, they
-are valid names for variables. So is</p>
-<p><code>a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow</code>.</p>
-<p>Anything consisting of letters a to z, numbers and underscore &#39;_&#39; goes. The only
-constraint is that you cannot start it with a number. So <code>kitteh_42</code> is a
-valid variable name, while <code>42_kitteh</code> isn&#39;t.</p>
-<p>Same rules apply for your own methods and functions.</p>
+<h3 id="on-readability"><a class="header-link" href="#on-readability"></a>On readability</h3>
 <div class="tip">
 <p>
-In Ruby, you should use underscore to separate words in variable names, and
-always use downcase letters. UPCASE and SoCalledCamelCase is reserved for constants, classes and
+In Ruby, you should use underscore to separate words in names, and
+always use downcase letters. UPCASE and CamelCaseNamingConvention is reserved for constants, classes and
 other things we&#39;ll talk about later.</p>
 
 <p>You <em>could</em> also use Finnish to name things if you like, which actually works
 nowadays due to UTF character set being common. So, you can actually use
-variable names like <code>ämpäri</code>, which was not that possible only few years back,
+variable names like <code>ämpäri</code>, which was not that possible a few years back,
 and is still impossible with some languages. It doesn&#39;t mean you <em>should</em> do
 that, though. However, English is <em>lingua franca</em> of computing, and using any
 other language to name things will be frowned upon. Others will look at
 you with that, you know, face. With a stiff upper lip.</p>
 
-<p>Even though it could be argued that using non-Eglish names for things that you
+<p>Even though it could be argued that using non-English names for things that you
 write makes it more apparent what comes from language and standard libraries,
-and what is your own code. I&#39;d still recommend against it. Just stick to English.</p>
+and what is your own code. I&#39;d still recommend against it. Just stick to English. Naturally
+the choice is yours, though. You&#39;ve been warned.</p>
 </div>
 
-
+<p>Computer programs are hard to write, but they are often even harder to read,
+even your own code. Even after few weeks or so it is easy to lose track of how
+a particular piece of code works. Some say you should comment your code, but
+even more important is to write readable code. Problem with comments is that
+code interpreters and compilers <em>ignore those</em>, and they get easily outdated.
+Code that has outdated, misleading comments is worse than code without comments.</p>
+<p>Ideal code is self-documenting using descriptive names for variables and
+functions. While comments are sometimes the best way to explain things to the
+reader, they are seldom needed if you name things well.</p>
+<p>Can you use any names for things, then? In practice, yes. All variable names
+are totally arbitrary. While <code>a</code> or <code>z</code> are not very descriptive names, they
+are valid names for variables. So is</p>
+<p><code>a_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow</code>.</p>
+<p>Ruby doesn&#39;t care at all about the names you use, and does not attach any meaning to
+those. It only sees sequences of symbols. So it is recommended to find as descriptive names
+for things as you can imagine. It helps you and others a lot later on.</p>
+<h4 id="rules-for-naming-stuff"><a class="header-link" href="#rules-for-naming-stuff"></a>Rules for naming stuff</h4>
+<p>Anything consisting of letters a to z, numbers and underscore &#39;_&#39; goes. The only
+constraint is that you cannot start it with a number. So <code>kitteh_42</code> is a
+valid name, while <code>42_kitteh</code> isn&#39;t.</p>
+<p>Same rules apply for your own methods and functions.</p>
 <h3 id="wrapping-up"><a class="header-link" href="#wrapping-up"></a>Wrapping up</h3>
 <p>So, now we know -- or at least have seen -- three things:</p>
 <ol class="list">
-<li>Data. There are different types of if, and we have seen three of those:<ul class="list">
-<li>Strings</li>
-<li>Numbers</li>
-<li>Arrays, which can contain any data structures, including other arrays[^fn-array]</li>
+<li>Data. There are different types of if, and we have seen three of those. Respective Ruby type(s) or <em>class(es)</em> are in parentheses:<ul class="list">
+<li>Strings (String)</li>
+<li>Numbers (Fixnum, Float)</li>
+<li>Arrays (Array), which can contain any data structures, including arrays[^fn-array]</li>
 </ul>
 </li>
-<li>Methods to do things with the data<ul class="list">
+<li>Functions/methods with which to do things with the data<ul class="list">
 <li>In the example above, we used <em>array methods</em> to get the length of the array with <code>length</code>,
 and <code>sort</code> to get array contents in alphabetic order. <code>upcase</code> converted string to upper case.</li>
 <li>We will talk more about methods a bit later.</li>
 </ul>
 </li>
-<li>We quickly glanced at variables that are just short, descriptive labels for things</li>
+<li>We quickly glanced at variables that are basically just labels for things in computer memory</li>
 </ol>
+<h3 id="exercises"><a class="header-link" href="#exercises"></a>Exercises</h3>
+<div class="tip">
+For the second exercise, you need to read command line parameters. They are stored in an array called
+ARGV. Even though the name is sort of weird, it&#39;s just an array like the ones we saw already
+</div>
+
+<ul class="list">
+<li>write a program which prints out your name</li>
+<li>write a program which greets the person you give as command line parameter. Eg.
+when you type <code>ruby 01.rb Alice</code> it prints <code>Hello, Alice!</code></li>
+<li>extra: write a program which prints several names, and greets only the one given in the command line. You need
+to use <code>if</code> statement for this, which is explained later</li>
+</ul>
 <h2 id="acting-in-an-intelligent-fashion"><a class="header-link" href="#acting-in-an-intelligent-fashion"></a>Acting in an intelligent fashion</h2>
 <p>Imagine you are programming a robot that needs to brew and serve coffee. With
 some cream, cinnamon and chocolate chips with a tad of sugar frosting on the
@@ -299,7 +325,7 @@ exactly 80cl of coffee and 40cl of cream to each cup. The code might look roughl
 like this:</p>
 <pre class="hljs"><code>bot = <span class="hljs-constant">Robot</span>.new(<span class="hljs-string">"Jeeves the Valiant Valet"</span>)
 
-bot.pour_coffee(<span class="hljs-number">800</span>) <span class="hljs-comment"># Our robot uses millilitres as the basic unit for fluds</span>
+bot.pour_coffee(<span class="hljs-number">800</span>) <span class="hljs-comment"># Our robot uses millilitres as the basic unit for fluids</span>
 bot.spray_whipped_cream(<span class="hljs-number">400</span>)
 bot.sprinkle_chocolate_chips(<span class="hljs-number">5</span>) <span class="hljs-comment"># grams maybe</span>
 bot.sprinkle_cinnamon(<span class="hljs-number">1</span>) <span class="hljs-comment"># still grams (what's LD50 for cinnamon???)</span>
@@ -319,28 +345,30 @@ several means of doing that, most common being the <code>if</code> statement:</p
 <span class="hljs-keyword">else</span>
   <span class="hljs-comment"># code to execute when code is NOT true</span>
 <span class="hljs-keyword">end</span></code></pre><p>Note that the notation <code>&lt;stuff&gt;</code> means that <code>stuff</code> should not be written
-literally, but with appropriate expression. Here it should be some Ruby code
-that is equal to value <code>false</code>.</p>
+literally, but with appropriate expression. Here <code>&lt;condition&gt;</code> should be some Ruby code
+that is equal to value <code>true</code> or <code>false</code>. Some examples: <code>my_number &lt; 42</code>, <code>a_string == &quot;cat&quot;</code>,
+<code>array.size &gt; 3</code>.</p>
 <p>Let&#39;s assume all the functions our robot Jeeves uses to fill the cup
-take advantage of a single utility function <code>inject</code>:</p>
+take advantage of a single utility method <code>inject</code>:</p>
 <pre class="hljs"><code>nozzle.inject(<span class="hljs-string">'coffee'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">800</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'pour'</span>)
-nozzle.inject(<span class="hljs-string">'cream'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">400</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'spray'</span>)</code></pre><p>To avoid accitents, all our methods would need to detect if the cup is no
+nozzle.inject(<span class="hljs-string">'cream'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">400</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'spray'</span>)</code></pre><p>To avoid accidents, all our methods would need to detect if the cup is no
 longer under the nozzle. So we would edit the <code>inject</code> method for nozzles as
 follows:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>inject(substance, options)
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inject</span><span class="hljs-params">(substance, options)</span></span>
   ...
-  <span class="hljs-keyword">if</span> sensors.cup_detected?
+  <span class="hljs-keyword">if</span> sensor.cup_detected?
     actually_inject_stuff(substance, options)
   <span class="hljs-keyword">else</span>
-    system.alert(<span class="hljs-string">"Please do set your favorite container of hot beverages "</span>
+    system.alert(<span class="hljs-string">"Please do set your favourite container of hot beverages "</span>
                  <span class="hljs-string">"to appropriate position and alignment"</span>)
   <span class="hljs-keyword">end</span>
 <span class="hljs-keyword">end</span></code></pre><p>Now we have fixed the problem! If <code>sensors.cup_detected?</code> has the value
-<code>true</code>, it calls <code>actuall_inject_stuf</code>. Otherwise it alerts the user. But we
+<code>true</code>, it calls <code>actually_inject_stuff</code>. Otherwise it alerts the user. But we
 did not <em>quite</em> fix it yet. Why?</p>
 <p>If the cup is moved during the <code>actually_inject_stuff</code> call we won&#39;t detect
 that, because we check <code>sensors.cup_detected?</code> only just before we start
 injecting stuff. But at least we check it now just before each phase.</p>
+<p>Think for a while how the issue could be solved properly.</p>
 <h3 id="of-things-true-and-false"><a class="header-link" href="#of-things-true-and-false"></a>Of things True and False</h3>
 <div class="tip">
 <code>nil</code> simply means a <em>lack of a value</em>. For example, getting the first
@@ -507,10 +535,39 @@ And we have the ability to repeat stuff.</p>
 </ol>
 <p>Technically you could do any looping with <code>while</code>, but <code>each</code> is more
 convenient and less verbose when you have a collection to process.</p>
-<p>Go get a nice, warm cup of your favorite beverage now! You&#39;ve deserved it.
+<p>Go get a nice, warm cup of your favourite beverage now! You&#39;ve deserved it.
 Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
 have one. Patting a horse is ok too.</p>
 <p>[^fn-array] Yeah, there&#39;s no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.</p>
+<h3 id="exercises-1"><a class="header-link" href="#exercises-1"></a>Exercises</h3>
+<p>Write a program that</p>
+<ul class="list">
+<li>prints out a 5x10 rectangle using <code>.</code> characters. Don&#39;t just copy-paste or type the square manually, but use loops. The result should look like this:<pre class="hljs"><code><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
+</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
+</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
+</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
+</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.</span></code></pre></li>
+<li>prints out filled rectangle, dimensions given as command line parameters. Eg. <code>ruby rectangle.rb 4 7</code> would print<pre class="hljs"><code><span class="hljs-preprocessor">#######</span>
+<span class="hljs-preprocessor">#.....#</span>
+<span class="hljs-preprocessor">#.....#</span>
+<span class="hljs-preprocessor">#######</span></code></pre></li>
+<li>extra: print out a filled triangle. Program should take a number of rows, so that <code>ruby triangle.rb 8</code> would print<pre class="hljs"><code><span class="hljs-preprocessor">#</span>
+<span class="hljs-preprocessor">##</span>
+<span class="hljs-preprocessor">#.#</span>
+<span class="hljs-preprocessor">#..#</span>
+<span class="hljs-preprocessor">#...#</span>
+<span class="hljs-preprocessor">#....#</span>
+<span class="hljs-preprocessor">#.....#</span>
+<span class="hljs-preprocessor">########</span></code></pre></li>
+<li>extra: what if the triangle needs to be flipped around, like below?<pre class="hljs"><code>       <span class="hljs-comment">#</span>
+      <span class="hljs-comment">##</span>
+     <span class="hljs-comment">#.#</span>
+    <span class="hljs-comment">#..#</span>
+   <span class="hljs-comment">#...#</span>
+  <span class="hljs-comment">#....#</span>
+ <span class="hljs-comment">#.....#</span>
+<span class="hljs-comment">######</span><span class="hljs-comment">##</span></code></pre></li>
+</ul>
 <h2 id="functions-schmunctions"><a class="header-link" href="#functions-schmunctions"></a>Functions schmunctions</h2>
 <p>Like mentioned before, functions are means of doing things with data. They can
 be very simple (like joining two strings together) or highly complex, and
@@ -539,7 +596,7 @@ rather many details in our code. Let&#39;s look at it:</p>
 <pre class="hljs"><code><span class="hljs-comment"># longest_string.rb</span>
 
 <span class="hljs-comment"># (type this definition above test code we wrote in previous step)</span>
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>longest_string(ary)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">longest_string</span><span class="hljs-params">(ary)</span></span>
   longest = ary[<span class="hljs-number">0</span>] <span class="hljs-comment"># assign variable `longest` to first value in the array</span>
 
   <span class="hljs-comment"># go through array `ary`, assign each item to variable `s`</span>
@@ -575,7 +632,7 @@ your program would work exactly the same.</p>
 <pre class="hljs"><code><span class="hljs-constant">BAD_LANGUAGES</span> = [<span class="hljs-string">'java'</span>, <span class="hljs-string">'php'</span>, <span class="hljs-string">'basic'</span>, <span class="hljs-string">'perl'</span>, <span class="hljs-string">'c++'</span>, <span class="hljs-string">'pascal'</span>, <span class="hljs-string">'mumps'</span>]
 <span class="hljs-constant">OK_LANGUAGES</span> = [<span class="hljs-string">'ruby'</span>, <span class="hljs-string">'python'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'scala'</span>, <span class="hljs-string">'clojure'</span>]
 
-<span class="hljs-function"><span class="hljs-keyword">def</span> </span>opinion_on(language)
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">opinion_on</span><span class="hljs-params">(language)</span></span>
   lang = language.downcase
   <span class="hljs-keyword">if</span> <span class="hljs-constant">BAD_LANGUAGES</span>.<span class="hljs-keyword">include</span>?(lang)
     <span class="hljs-string">"Uh-oh. You don't want to do this"</span>
@@ -617,7 +674,7 @@ it can have several. It is evaluated from the bottom to top, and if any of the c
 evaluates to true, that &quot;branch&quot; is executed, and nothing else.</p>
 <p>Also note that <code>else</code> branch is optional, but often it is better to make that explicit.
 So that the reader does not need to think if it has been forgotten. Consider this code:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>evaluate_situation(threat_level)
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">evaluate_situation</span><span class="hljs-params">(threat_level)</span></span>
   <span class="hljs-keyword">if</span> threat_level == <span class="hljs-string">'critical'</span>
     <span class="hljs-string">"FIRE ZE MISSLES!1!one11!"</span>
   <span class="hljs-keyword">elsif</span> threat_level == <span class="hljs-string">'I am le tired'</span>
@@ -629,7 +686,7 @@ So that the reader does not need to think if it has been forgotten. Consider thi
 <p>Some would argue a proper language would throw a syntax error for <code>if</code> without <code>else</code>.
 Ruby does not, though, and it <em>implies</em> an else-part with <code>nil</code>. It is <em>exactly equivalent</em>,
 that is, in more mathematical terms &quot;just the same stuff&quot; as this:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>evaluate_situation(threat_level)
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">evaluate_situation</span><span class="hljs-params">(threat_level)</span></span>
   <span class="hljs-keyword">if</span> threat_level == <span class="hljs-string">'critical'</span>
     <span class="hljs-string">"FIRE ZE MISSLES!1!one11!"</span>
   <span class="hljs-keyword">elsif</span> threat_level == <span class="hljs-string">'I am le tired'</span>
@@ -655,7 +712,7 @@ definition with <code>end</code>.</p>
 <p>Note how calling the function is rather similar to defining it. If you first think how the function
 should behave</p>
 <pre class="hljs"><code>get_me_some_ice_cream(<span class="hljs-string">'Ben &amp; Jerry'</span>, <span class="hljs-string">'Chunky Monkey'</span>)</code></pre><p>it is easy then to find out how the function definition starts:</p>
-<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> </span>get_me_some_ice_cream(brand, flavor)
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_me_some_ice_cream</span><span class="hljs-params">(brand, flavor)</span></span>
   ...
 <span class="hljs-keyword">end</span></code></pre><p>Now is a good time to fire up Pry, and try writing some simple functions and call those to see how they work.
 Some suggestions:</p>
@@ -679,7 +736,7 @@ Some suggestions:</p>
 </ul>
 <p>Pay attention to <code>mixins</code> declaration in those classes. To put it short, it means that the class &quot;mixes in&quot; all mentioned methods. For example, both <code>Array</code> and <code>Hash</code> mix in <code>sort</code> from module <code>Enumerable</code>, which
 is why you can say things like <code>[2, 1, 4].sort</code> (example for sorting Array).</p>
-<h2 id="exercises"><a class="header-link" href="#exercises"></a>Exercises</h2>
+<h2 id="exercises-2"><a class="header-link" href="#exercises-2"></a>Exercises</h2>
 <p>Programming is a skill you build gradually like any other. As such, even more
 complex programs can be started by doing a  very much simplified version first. My
 attempt here is to build a certain solution, which starts very simple. You
@@ -712,9 +769,9 @@ to implement some detail. For more comprehensive list of common refactorings, se
 <li>Add command line parameter to differentiate between whether you want to add value or show stuff (defaulting to show), and also for the filename to use. &#39;show&#39; will just print all lines. From this on, all versions that display stuff should do that with &#39;show&#39;.</li>
 <li><p>given number of entries in a file, prints out average (mean) of those numbers. You can use the following data
 for testing:</p>
-<pre class="hljs"><code> 2015<span class="hljs-tag">-09-02</span> 22<span class="hljs-pseudo">:23</span><span class="hljs-pseudo">:00</span>;70
- 2015<span class="hljs-tag">-09-03</span> 14<span class="hljs-pseudo">:58</span><span class="hljs-pseudo">:14</span>;63
- 2015<span class="hljs-tag">-09-04</span> 16<span class="hljs-pseudo">:01</span><span class="hljs-pseudo">:25</span>;35</code></pre><p> Your program should print <code>56.0</code>. Use some other filename to avoid overwriting your own data, and skip blank lines.</p>
+<pre class="hljs"><code> <span class="hljs-number">2015</span>-<span class="hljs-number">09</span>-<span class="hljs-number">02</span> <span class="hljs-number">22</span>:<span class="hljs-number">23</span>:<span class="hljs-number">00</span>;<span class="hljs-number">70</span>
+ <span class="hljs-number">2015</span>-<span class="hljs-number">09</span>-<span class="hljs-number">03</span> <span class="hljs-number">14</span>:<span class="hljs-number">58</span>:<span class="hljs-number">14</span>;<span class="hljs-number">63</span>
+ <span class="hljs-number">2015</span>-<span class="hljs-number">09</span>-<span class="hljs-number">04</span> <span class="hljs-number">16</span>:<span class="hljs-number">01</span>:<span class="hljs-number">25</span>;<span class="hljs-number">35</span></code></pre><p> Your program should print <code>56.0</code>. Use some other filename to avoid overwriting your own data, and skip blank lines.</p>
 </li>
 <li>prints latest entry date, value of entry and average for last 5 entries (or all, if there are less)</li>
 <li>handles situations like<ul class="list">
@@ -726,11 +783,11 @@ for testing:</p>
 <li>prints latest entry date and value, with averages for last 3, 7 and 21 entries</li>
 <li>has modules or classes. At this point everything is mixed together, while clearly some deal
 with just transforming data, some with user entries and some with actual logic. Remember <em>separation of concerns</em>.</li>
-<li>treats multiple entries for one day as one, using average of all those as value</li>
+<li>treats multiple entries for one day as one, using average of all those as day value (hint: <code>Enumerable#group_by</code> could be useful)</li>
+<li>has at least some <a href="http://rspec.info/">unit tests</a>. We are about to do serious stuff here, so you want to be certain that your old stuff still
+works when you make changes. <a href="https://robots.thoughtbot.com/back-to-basics-writing-unit-tests-first">unit tests first</a> could be helpful reading too.</li>
 <li>interpolates values for missing days. Say, if for <code>day 1</code> value was <code>10</code> and for <code>day 3</code> it is <code>12</code>,
 assume <code>day 2</code> to have value <code>11</code>.</li>
-<li>has <a href="http://rspec.info/">unit test</a>. We are doing serious stuff here, so you want to be certain that your old stuff still
-works when you make changes.</li>
 <li>prints all the data as in step 9, but now including weekly and monthly change. For example, if
 we have entry for current date and it&#39;s value is 100, and last week ago it was 240, then weekly change
 is 140 (negative)</li>
@@ -751,6 +808,7 @@ code and separate directory for data files)</p>
 </ol>
 <p>Now you have built a nice, general-purpose <em>linear estimator</em>. You can use that to track your weight, money usage / savings, running speed, electric bill.. anything that can be measured and represented as single
 number per day. Neat, huh :)</p>
+<p>**Thinking about estimator, for what kind of values it is an appropriate one? For what it is ill-suited?</p>
       </div>
     </div>
   </div>
