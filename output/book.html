@@ -62,11 +62,14 @@ practically no limits to what one can accomplish with programming, even the
 most complex ones contain components that consist of more simple components,
 until the component deals with just basic language primitives.</p>
 <p>Those basic primitives are things that every program contains, and quite
-complex things can be done easily by using just those.</p>
+complex things can be done easily by using just those. Primitive such as
+variables, conditional statements, loops and basic data types like arrays,
+numbers and strings (you can think of simple text being made of one or more strings).</p>
+<p>This guide is intended to make those primitives familiar to any reader.</p>
 <h3 id="why-yet-another-tutorial-"><a class="header-link" href="#why-yet-another-tutorial-"></a>Why yet another tutorial?</h3>
 <p>There are several better tutorials, but I find even the shortest of those tag
-too long. <a href="http://mislav.uniqpath.com/poignant-
-guide/book/chapter-1.html">Why The Lucky Stiff&#39;s</a> is an excellent one and far from dry, but it&#39;s long
+too long.
+<a href="http://mislav.uniqpath.com/poignant-guide/book/chapter-1.html">Why The Lucky Stiff&#39;s</a> is an excellent one and far from dry, but it&#39;s long
 (still recommend it though!).</p>
 <p>My attempt is to cover the least amount of knowledge to begin programming,
 trusting that missing parts are easily explained when needed. So, lets get
@@ -77,35 +80,42 @@ started!</p>
 puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># here we have some Ruby code</span></code></pre><p>is something you can type into Ruby interpreter. That is, open up a
 terminal and type <code>pry</code> or <code>irb</code>.</p>
 <p><strong>irb</strong> stands for &quot;interactive Ruby interpreter&quot; and allows you to try out
-code immediately. Pry is a tool that makes working with irb much more nice,
-has fancy colours and whatnot. From now on I&#39;ll assume you use Pry (install
-instructions under &#39;Tools&#39; below), but you can use irb if you like.</p>
+code immediately. irb comes automatically with all Ruby installations. <strong>Pry</strong>
+is an irb replacementthat makes testing Ruby code much more nice, has fancy
+colours and whatnot. From now on I&#39;ll assume you use Pry (install instructions
+under &#39;Tools&#39; below), but you can use just irb if you like.</p>
 <div class="tip">
 Sometimes there are tips like this. You can skip these when reading for the first time, but
 they often contain useful information you might want to check at least later.
 </div>
 
 <p>If the code can be tried as-is, I&#39;ll write suggested filename to the top of
-the file, like <code>somefile.rb</code> above. You may use any name you wish, but you need
+the code listing, like <code>somefile.rb</code> above. You may use any name you wish, but you need
 to take that into account when you try running the examples.</p>
 <p>Anything that looks like</p>
 <blockquote>
 <p>cd projects/ruby-tutorial</p>
 </blockquote>
 <p>is meant to be typed into the terminal, that is, not in irb or pry. Don&#39;t worry, &#39;$&#39; will not be copied if you
-want to copy-paste the string.</p>
+want to copy-paste the string to terminal session.</p>
 <p>You also might want to keep three windows open: one editor window, and two
 terminal windows in the same directory. The other terminal would then have pry
 open, whereas from the other you could run code written in the editor. This
 way you don&#39;t need to open and reopen things all the time.</p>
 <h3 id="tools"><a class="header-link" href="#tools"></a>Tools</h3>
-<p>You only need Ruby for this. Any version at or greater than 1.9.3 should be
-ok, though 2.2 and is recommended. You can find out your version by typing</p>
+<p>You only need Ruby for this, as long as some decent text editor (recommended:
+Sublime or Atom). Ruby version at or greater than 1.9.3 should be ok, though
+2.2 or newer is recommended. You can find out your version by typing</p>
 <blockquote>
 <p>ruby -v</p>
 </blockquote>
 <p>If you are using OS X or Linux, using RVM or rbenv is the recommended way of installing Ruby. You can
 install RVM by running</p>
+<div class="tip">
+As a general precaution, you likely want to avoid running blindly scripts
+located in the internet. So feel free to check both links below, the last bit.ly script is written by me.
+</div>
+
 <blockquote>
 <p>curl -sSL <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable --ruby</p>
 </blockquote>

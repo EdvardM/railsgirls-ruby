@@ -41,7 +41,7 @@ terminal and type `pry` or `irb`.
 
 **irb** stands for "interactive Ruby interpreter" and allows you to try out
 code immediately. irb comes automatically with all Ruby installations. **Pry**
-is an irb replacementthat makes testing Ruby code much more nice, has fancy
+is an irb replacement that makes testing Ruby code much more nice, has fancy
 colours and whatnot. From now on I'll assume you use Pry (install instructions
 under 'Tools' below), but you can use just irb if you like.
 
@@ -50,7 +50,7 @@ Sometimes there are tips like this. You can skip these when reading for the firs
 they often contain useful information you might want to check at least later.
 {tip-end}
 
-If the code can be tried as-is, I'll write suggested filename to the top of
+If the code can be tried as-is, I'll write suggested file name to the top of
 the code listing, like `somefile.rb` above. You may use any name you wish, but you need
 to take that into account when you try running the examples.
 
@@ -88,7 +88,7 @@ To install Pry and some other nice tools, you can run
 
 > curl -sSL http://bit.ly/1LaIHjX | bash
 
-If you want to install those manually or curl is not available (eg. Windows), run
+If you want to install those manually or curl is not available (eg Windows), run
 
 > gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print
 
@@ -121,15 +121,17 @@ also a function!). Note that I needed to add trailing space to the string
 `"Kittens are "`, otherwise it would have printed `Kittens areso fluffy`.
 
 The last part prints something to the screen in rather demanding manner, due
-to `upcase` function that is "tied" to strings.
+to `upcase` function that is "tied" to strings only.
 
 Also note that you can have either zero or any number of blank lines between
 lines of Ruby code. Use blank lines to group things logically, just like in
 writing human languages. Ruby does not care: you could write all Ruby programs
 in one really long line if you wanted, but readability is for humans; machine
-doesn't care. Clarity is important. I added one blank line after the first example
-as it is something that does not do anything to strings except print it; the two
-after it are a bit more complex, though still simple.
+doesn't care. Clarity is important.
+
+I added one blank line after the first example as it is something that does
+not do anything to strings except print it; the two after it are a bit more
+complex, though still simple.
 
 If you wrote that in editor, try it out by saying
 
@@ -154,7 +156,7 @@ puts 10 / 3.0    # 3.3333333...
 puts 10 / 3      # Note: integral division because all numbers are integral!
 ```
 
-As before, given you have a terminal open in the same directory, save the file in the editor and run
+As before, given you have a terminal open in the same directory as the file `numbers.rb`, save the file in the editor and run
 
 > ruby numbers.rb
 
@@ -192,16 +194,17 @@ By now you have probably guessed that Ruby ignores every line beginning with `#`
 They are _comments_, meant for human readers.
 
 OK. So now we can have _strings_, _numbers_ and _arrays_, and we have even seen some
-functions. But why some of them appear before date, like `puts`, and some after, like
+functions. But why some of them appear before data, like `puts`, and some after with a dot, like
 `length`? The latter is an example of a *method*, which you could think of like a function
 that is closely tied with data. However, at this point it doesn't matter much
 whether you talk about functions or methods. Both act on data, transforming it,
 storing it somewhere else (like writing a file), calculate things etc.
 
 There was something else too. That `some_stuff` is a _variable_. You use them
-to give shorter, descriptive names to things that are longer to type or
-relatively expensive to compute. But arguably the most common reason to use
-those is to give things descriptive names. Consider the following:
+to eg. give shorter, descriptive names, or to avoid repeating things that are
+relatively expensive to compute, saving current state
+etc. But arguably the most common reason to use those is to give things
+descriptive names. Consider the following:
 
 ```ruby
 users.select { |u| !u.admin? && u.created >= Time.now - 7.days }.each do |u|
@@ -211,7 +214,7 @@ end
 
 Unless the reader is quite familiar with Ruby, it is not easy to see
 what is actually printed. Next consider the version that splits up that a bit,
-using hopefully more human-readable variable names:
+using hopefully human-readable variable names:
 
 ```ruby
 min_creation_time = Time.now - 7.days
@@ -225,21 +228,25 @@ end
 There are even better ways to make that more descriptive or elegant, but we
 don't have tools for that yet. However, we already gained something important:
 `recent_normal_users` communicates to the reader that this variable holds
-actually a list of users that are not administrators. If you need to change
-how users are printed, then you may safely ignore ther more involved
-expression of getting those users, knowing know what it does. You only need to
-focus on the printing part.
+actually an array of recently created users that are not administrators. If
+you need to change how users are printed, then you may safely ignore ther more
+involved expression of getting those users, also knowing how it does it. You
+only need to focus on the printing part.
 
 Also note that to introduce a new variable, you simply write that variable and
 assign a value to it. Some languages require you to declare those separately,
 but in Ruby, you just start using those by assigning them to stuff. In Ruby,
 you always assign things to labels by using the equal symbol `=`.
 
+### On readability
+
 Computer programs are hard to write, but they are often even harder to read,
 even your own code. Even after few weeks or so it is easy to lose track of how
 a particular piece of code works. Some say you should comment your code, but
 even more important is to write readable code. Problem with comments is that
 code interpreters and compilers _ignore those_, and they get easily outdated.
+Code that has outdated, misleading comments is worse than code without comments.
+
 Ideal code is self-documenting using descriptive names for variables and
 functions. While comments are sometimes the best way to explain things to the
 reader, they are seldom needed if you name things well.
@@ -250,29 +257,36 @@ are valid names for variables. So is
 
 `a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow`.
 
+Ruby doesn't care at all about the names you use, and does not attach any meaning to
+those. It only sees sequences of symbols. So it is recommended to find as descriptive names
+for things as you can imagine. It helps you and others a lot later on.
+
+#### Rules for naming stuff
+
 Anything consisting of letters a to z, numbers and underscore '_' goes. The only
 constraint is that you cannot start it with a number. So `kitteh_42` is a
-valid variable name, while `42_kitteh` isn't.
+valid name, while `42_kitteh` isn't.
 
 Same rules apply for your own methods and functions.
 
 {tip-begin}
 <p>
-In Ruby, you should use underscore to separate words in variable names, and
-always use downcase letters. UPCASE and SoCalledCamelCase is reserved for constants, classes and
+In Ruby, you should use underscore to separate words in names, and
+always use downcase letters. UPCASE and CamelCaseNamingConvention is reserved for constants, classes and
 other things we'll talk about later.</p>
 
 <p>You _could_ also use Finnish to name things if you like, which actually works
 nowadays due to UTF character set being common. So, you can actually use
-variable names like `ämpäri`, which was not that possible only few years back,
+variable names like `ämpäri`, which was not that possible a few years back,
 and is still impossible with some languages. It doesn't mean you _should_ do
 that, though. However, English is _lingua franca_ of computing, and using any
 other language to name things will be frowned upon. Others will look at
 you with that, you know, face. With a stiff upper lip.</p>
 
-<p>Even though it could be argued that using non-Eglish names for things that you
+<p>Even though it could be argued that using non-English names for things that you
 write makes it more apparent what comes from language and standard libraries,
-and what is your own code. I'd still recommend against it. Just stick to English.</p>
+and what is your own code. I'd still recommend against it. Just stick to English. Naturally
+the choice is yours, though. You've been warned.</p>
 {tip-end}
 
 
@@ -280,15 +294,15 @@ and what is your own code. I'd still recommend against it. Just stick to English
 
 So, now we know -- or at least have seen -- three things:
 
-1. Data. There are different types of if, and we have seen three of those:
-  * Strings
-  * Numbers
-  * Arrays, which can contain any data structures, including other arrays[^fn-array]
-2. Methods to do things with the data
+1. Data. There are different types of if, and we have seen three of those. Respective Ruby type(s) or _class(es)_ are in parentheses:
+  * Strings (String)
+  * Numbers (Fixnum, Float)
+  * Arrays (Array), which can contain any data structures, including arrays[^fn-array]
+2. Functions/methods with which to do things with the data
   * In the example above, we used _array methods_ to get the length of the array with `length`,
     and `sort` to get array contents in alphabetic order. `upcase` converted string to upper case.
   * We will talk more about methods a bit later.
-3. We quickly glanced at variables that are just short, descriptive labels for things
+3. We quickly glanced at variables that are basically just labels for things in computer memory
 
 ## Acting in an intelligent fashion
 
@@ -307,7 +321,7 @@ like this:
 ```ruby
 bot = Robot.new("Jeeves the Valiant Valet")
 
-bot.pour_coffee(800) # Our robot uses millilitres as the basic unit for fluds
+bot.pour_coffee(800) # Our robot uses millilitres as the basic unit for fluids
 bot.spray_whipped_cream(400)
 bot.sprinkle_chocolate_chips(5) # grams maybe
 bot.sprinkle_cinnamon(1) # still grams (what's LD50 for cinnamon???)
@@ -360,7 +374,7 @@ def inject(substance, options)
   if sensor.cup_detected?
     actually_inject_stuff(substance, options)
   else
-    system.alert("Please do set your favorite container of hot beverages "
+    system.alert("Please do set your favourite container of hot beverages "
                  "to appropriate position and alignment")
   end
 end
@@ -602,7 +616,7 @@ We now learned of the last part, repetition. We had two kinds of loops:
 Technically you could do any looping with `while`, but `each` is more
 convenient and less verbose when you have a collection to process.
 
-Go get a nice, warm cup of your favorite beverage now! You've deserved it.
+Go get a nice, warm cup of your favourite beverage now! You've deserved it.
 Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
 have one. Patting a horse is ok too.
 
