@@ -101,6 +101,8 @@ Data on vain tietoa kuten tekstiä, numeroita, kuvia ja videoita. Se ei tee itse
 
 Huomaa myös, että ohjelmarivien välissä voi olla haluamasi määrä tyhjiä rivejä. Käytä tyhjiä rivejä sisällön loogiseen ryhmittelyyn samaan tapaan kuten luonnollisessa kielessä. Ruby ei välitä: voit kirjoittaa kaikki Ruby-ohjelmat halutessasi yhdelle hyvin pitkälle riville. Luettavuus on ihmistä eikä tietokonetta varten. Selkeys on tärkeää.
 
+Muuten, huomaa että kun puhun tulostamisesta, tarkoitan sillä vain näytölle tulostumista. Et tarvitse näissä harjoituksissa tulostinta tai paperia :)
+
 Lisäsin yllä yhden tyhjän rivin ensimmäisen ja kahden viimeisen väliin, koska ensimmäinen ei tee merkkijonolle mitään muuta kuin tulostaa sen. Kaksi muuta ovat hieman mutkikkaampia.
 
 Jos kirjoitit koodin editoriin, voit kokeilla sen suorittamista sanomalla
@@ -162,7 +164,7 @@ käytetään esimerkiksi antamaan käsitteille kuvaavia nimiä, välttämään
 tarpeetonta toistoa silloin, kun jonkin laskeminen on verrattain aikaavievää, tallentamaan jonkin nykyinen tila jne. Ehkä yleisin syy on kuitenkin asioiden nimeäminen. Katsotaanpa vaikkapa seuraavaa:
 
 ```ruby
-User.all.select { |u| !u.admin? && u.created_at >= Time.now - 7.days }.each do |u|
+users.select { |u| !u.admin? && u.created >= Time.now - 7.days }.each do |u|
   puts u
 end
 ```
@@ -171,7 +173,7 @@ Ellei lukija ole entuudestaan kokenut niin Railsin kuin Rubyn suhteen, koodista 
 
 ```ruby
 min_creation_time = Time.now - 7.days
-recent_non_admins = User.all.select { |u| !u.admin? && u.created_at >=  min_creation_time }
+recent_non_admins = users.select { |u| !u.admin? && u.created >=  min_creation_time }
 
 recent_non_admins.each do |user|
   puts user
@@ -230,3 +232,235 @@ Nyt siis tiedämme -- tai olemme ainakin nähneet -- kolmenlaisia asioita:
   * Edellisessä esimerkissä käytettiin _taulukkometodeja_ pituuden hakemiseen (`length`), ja metodilla `sort` saatiin tuotettua taulukko, joka on aakkosjärjestyksessä. Metodilla `upcase` muunnettin merkkijono isoiksi kirjaimiksi.
   * Metodeista lisää myöhemmin
 3. Tutustuimme pintapuolisesti muuttujiin, jotka ovat vain nimiä asioille tietokoneen muistissa
+
+## Älykäs toiminta
+
+Kuvittele ohjelmoivasi robottia, joka jauhaa ja tarjoilee kahvia. Jossa on päällä vähän
+kermaa, kanelia ja suklaalastuja sekä ripaus sokeria pinnalla.
+
+Kuvittele myös, että osaisin oikeasti piirtää kuvia, ja tässä olisi kiva, taiteellinen kuvitus missä joviaali robottimme tarjoilee kupposen kuumaa kahvia. No niin.
+
+Nyt kun kuva on mielessäsi, oletetaan, että robotti on ohjelmoitu tarjoamaan täsmälleen 80cl kahvia ja 40cl kermaa jokaiseen kupilliseen. Koodi saattaisi näyttää tällaiselta:
+
+```ruby
+bot = Robot.new("Jeeves the Valiant Valet")
+
+bot.pour_coffee(800) # Robottimme käyttää ehkä millilitroja nesteiden yksikköinä
+bot.spray_whipped_cream(400)
+bot.sprinkle_chocolate_chips(5) # grammoja luultavasti
+bot.sprinkle_cinnamon(1) # grammoja nämäkin (mikä on kanelin LD50???)
+bot.frost_with_sugar
+```
+
+Jos kaikki on hyvin, metallinen ystävämme surisisi iloisesti ympäriinsä hyvää kahvia tarjoillen. Kaikki tähän mennessä hyvin.
+
+Nyt kuvittele, että joku raasu tönäisisi vahingossa kahvikuppia siten, että se ei olisi enää robottimme suutinten alla. Silloin tuo kiehuvan kuuma neste päätyisi lattialle sotkien mattosi, tai vielä pahempaa, se voisi satuttaa pörröistä [skottilaskostasi](http://www.scottishfoldlove.com/) :( Mitä tehdä?
+
+Välttääksemme jatkossa aiheuttamasta karvaita kokemuksia kissalle, voimme tehdä asioita _ehdollisesti_. Mikäli jokin ehto täyttyy, tee näin. Muutoin tee noin.
+
+Jokaisessa ohjelmointikielessä on jonkinlainen tapa tähän. Niistä yleisin on `if`-lause:
+
+```ruby
+if <ehtolause>
+  # suoritettava koodi, kun ehto on tosi
+else
+  # suoritettava koodi, kun ehto ei ole tosi
+end
+```
+
+Huomaa että merkintätapa `<juttuloita>` tarkoittaa, että `juttuloita` ei pidä kirjoittaa sellaisenaan, vaan korvata se vastaavalla lausekkeella. Tässä tapauksessa `<ehtolause>` tarkoittaa jotain Ruby-koodia, joka vastaa arvoa `true` tai `false`. Esimerkkejä: `my_number < 42`,
+`a_string == "cat"`, `array.size > 3`.
+
+Oletetaan että kaikki Jeeves-robottimme juomia kaatavat toiminnot käyttävät sisäistä apumetodia`inject`:
+
+```ruby
+nozzle.inject('coffee', amount: 800, manner: 'pour')
+nozzle.inject('cream', amount: 400, manner: 'spray')
+```
+
+Välttääksemme onnettomuuksia meidän täytyy tunnistaa, onko kuppi suutinten
+alla vai ei. Muokkaisimme siis metodia `inject` seuraavasti:
+
+```ruby
+def inject(substance, options)
+  ...
+  if sensor.cup_detected?
+    actually_inject_stuff(substance, options)
+  else
+    system.alert("Please do set your favourite container of hot beverages "
+                 "to appropriate position and alignment")
+  end
+end
+```
+
+Nyt olemme korjanneet ongelman! Jos metodi `sensors.cup_detected?` palauttaa arvon
+`true`, kutsumme metodia `actually_inject_stuff`. Muutoin se huomauttaa käyttäjälle asiasta. Emme kuitenkaan korjanneet sitä _aivan täysin_ vielä. Miksi?
+
+Jos kuppia siirretään metodia `actually_inject_stuff` suoritettaessa, emme huomaa sitä, koska tarkistimme tilanteen vain ehtolauseen alkaessa kyselyllä `sensors.cup_detected?`. Tarkistamme nyt sentään tilanteen ennen jokaista seuraavaa vaihetta.
+
+Mieti hetki, miten ongelma voitaisiin korjata kunnolla.
+
+
+### Tosi vai epätosi
+
+{tip-begin}
+`nil` tarkoittaa yksinkertaisuudessaan _arvon puuttumista_. Esimerkiksi pyydettäessä tyhjän taulukon ensimmäistä arvoa Ruby palauttaa `nil`, koska kaikkien Ruby-kielisten lausekkeiden pitää palauttaa _jotain_. Se siis vain tarkoittaa, että arvoa ei ole olemassa.
+{tip-end}
+
+Aiemmin sanoin, että `if` suorittaa ensimmäisen haaran
+vain, jos ehto on tosi. Mikä sitten on totta? Rubyssä mikä hyvänsä, jonka arvo EI ole `false` tai `nil`:
+
+```ruby
+if 0
+  puts "tämä tulostuu"
+end
+
+if ""
+  puts "näet myös minut"
+end
+
+if []
+  puts "ja minut"
+end
+
+if nil
+  puts "..mutta minua ei tulosteta!"
+end
+```
+
+Ehkä yksi yleisen tapa saada jokin totuusarvo tapahtuu vertailemalla asioita. Kuten mikä hyvänsä ohjelmointikieli, Ruby tarjoaa monta tapaa siihen, ja palauttaa vastaavan totuusarvon:
+
+```ruby
+# conditions.rb
+2 < 3          # true
+3 < 3          # false
+40 >= 38 + 2   # true
+'banana' == 4     # false, huomaa kaksinkertianen '=='
+'cat' == 'cat'    # true
+'cat' == 'feline' # false
+'cat' == 'Cat'    # false
+'cute kitten' == 'cute ' + 'kitten' # true
+```
+{tip-begin}
+Usein kuulet puhuttavan termistä "boolean", kun puhutaan asioista jotka voivat olla tosia tai epätosia. Se johtuu matemaatikko George Boolesta, ja siten ohjelmistotieteilijät puhuvat usein "Boolen logiikasta". Puhumme tästä vielä lisää siitä, kun pääsemme mutkikkaampiin ehtolauseisiin.
+{tip-end}
+
+Syy sille miksi sekä `40 >= 38 + 2` että `'cute kitten' == 'cute ' + 'kitten'`
+ovat sosia johtuu tietenkin siitä, että Ruby ei vertaa keskenään _literaalia koodia_ minkä kirjoitit, vaan Ruby
+_evaluoi_ (tässä vertaa lausekkeiden arvoa) vertailuoperaattorin molemmin puolin, missä operaattoreita ovat tässä esim. `==` ja `>`.
+
+Lähes mikä hyvänsä kieliopillisesti oikea koodi mitä kirjoitat Rubyssä, on _lauseke_ (engl. expression) tai lista useita sellaisia. Jokaisella lausekkeella on jokin arvo. Esimerkiksi yksinkertaisen lausekkeen `2` arvo on vain `2`. `kitten`:in arvo on `kitten`, kuten minkä hyvänsä literaalin arvon. Lauseke `38+2` _evaluoituu_ 40:ksi, joten se on yhtä suuri arvon `40` kanssa. Samoin `'cute ' + 'kitten'` evaluoituu merkkijonoksi `'cute kitten'`.
+
+Helppo tapa tulla sinuiksi lausekkeiden kanssa on kokeilla leikkimällä Pry:llä käyttäen erilaisia lausekkeita ja komentoja. Suositankin tekemään niin nyt, ja kokeilemaan esimerkiksi vertailuoperaatioita. Huomaa myös, että koska jokainen rivi minkä kirjoitat on lauseke, joten Pry palauttaa jokaista lauseketta kohden sen arvon, minkä Ruby lausekkeelle laskee!
+
+### Yhteenveto
+
+Yleiskielessä puhumme esimerkiksi "mikroaaltouunin ohjelmoinnnista" tai "ohjelmoitavasta pesukoneesta". Tässä asiayhteydessä kyse ei kuitenkaan tarkkaan ottaen ole ohjelmoinnista vaan yksinkertaisesti joidenkin komentojen _sekvensoinnista_, eli asioiden suorittamisesta peräjälkeen, joka kerta samalla tavalla.
+
+Kun puhumme tietokoneista, tarvitsemme kolme perusasiaa, jotta voimme tehdä periaatteessa **mitä hyvänsä** (ja tarkoitan termillä mitä hyvänsä todella mitä vain, mikä on ylipäätään edes teoreettisesti mahdollista):
+
+1. Tee joukko asioita. Ensiksi siis suorita jotain, sitten joitain muita juttuja.
+2. Tee jotain ehdollisesti. Kun tämä on voimassa, tee näin. Muutoin tee jotain muuta (tai älä tee mitään)
+3. Toisto
+
+Ajattele tätä hetki: mitä pesukoneen käyttöliittymän tulisi tarjota, jos se olisi aidosti käyttäjän ohjelmoitavissa?
+
+Seuraavaksi puhumme puuttuvast kolmannesta asiasta.
+
+## Toistaminen
+
+Kuvittelen, että sinulla on lista asioita tehtävinä, ja haluat muotoilla ne siististi:
+
+```ruby
+# todo.rb
+todo_list = ['siivoa keittiö', 'osta maitoa', 'varaa aikaa Rubyn opetteluun', 'harkitse kissan hankkimista']
+
+# muista, että listan indeksointi alkaa nollasta
+puts "TODO item: " + todo_list[0].capitalize
+puts "TODO item: " + todo_list[1].capitalize
+puts "TODO item: " + todo_list[2].capitalize
+puts "TODO item: " + todo_list[3].capitalize
+```
+
+Koodi tulostaisi kyllä kaikki tehtävät, mutta se näyttää tarpeettoman kankealta. Siinä on tarpeetonta toistoa, ja mieti miltä se näyttäisi, jos siinä olisi 100 tehtävää. Varmasti pystymme parempaan!
+
+Rubyssä kaikki tietotyypit jotka voivat _sisältää_ juttuja -- ohjelmistotieteilijät puhuvat _kokoelmista_ (engl. _collections_) tai asioista, joiden yli voit _iteroida_ -- tukevat metodia _each_. Taulukot ovat kokoelmia asioista, joten voimme korvata ylläolevan huomattavasti siistimmällä versiolla:
+
+```ruby
+# todo2.rb
+todo_list = ['siivoa keittiö', 'osta maitoa', 'varaa aikaa Rubyn opetteluun', 'harkitse kissan hankkimista']
+
+todo_list.each do |entry|
+  puts "TODO: " + entry.capitalize
+end
+```
+
+Älä murehdi tässä vaiheessa `|` -merkeistä. Mieti ensiksi jälkimmäisen etuja: toistorakenteen `each` ansiosta meidän ei tarvitse tietää ensinkään, mikä on taulukon koko. Koodi toimisi yhtä lailla vaikka siinä olisi vain yksi tietue, 100 miljardia, tai jopa tyhjä lista; silloin se vain ei tulostaisi mitään.
+
+Huomaa myös, että että meidän ei tarvitse toistaa muotoilua. Jos haluamme vaihtaa tiedon esitystapaa, se muutos tarvitsee tehdä vain yhdelle riville.
+
+Puhutaan nyt hieman lisää kielen syntaksista, ts. muodollisesta kieliopista. Siihen tottuu nopeasti. Toinen esimerkki:
+
+```ruby
+# countdown.rb
+puts "Lähtölaskenta alkaa"
+[5, 4, 3, 2, 1].each do |n|
+  sleep 0.5
+  puts n
+end
+puts "Lähtö!"
+```
+
+`do` aloittaa _koodilohkon_ (engl. _block_). Ruby-lohko on vain pätkä Ruby-koodia siinä missä mikä hyvänsä muukin koodi. Se on olemassa enimmäkseen siksi, jotta ohjelmoija voi käsitellä useita rivejä loogisesti yhtenä kokonaisuutena. Tässä tapauksesa sekä rivit `sleep` että `puts` suoritetaan joka kerta, kun `each` käy taulukkoa läpi.
+
+Mielenkiintoinen osa on putkimerkkien `|` välissä. Ruby automaattisesti sijoittaa vuorollaan _kunkin kokoelman alkioista_ (siitä nimi _each_) seuraavaan lohkoon, sijoittaen tämän arvon annettuun muuttujaan (nimi putkimerkkien välissä) ja suorittaa lohkon _jokaiselle kokoelman alkiolle vuorollaan_. Näin ollen kuvatussa tapauksessa `puts`:ia kutsutaan viisi kertaa, `n` saaden vuorollaan jokaisen listan arvon. Kokeile annettua koodia, ja kokeile myös muuttamalla listan arvoja.
+
+On olemassa toisenkinlaisia toistorakenteita, joskaan ei ihan yhtä yleisiä. Tarkoitus ei ole käsitellä niitä kaikkia tässä, vain kaikkein hyödyllisimmät.
+
+Yksi varsin tärkeä toistorakenne kykenee sekä toistoon että ehdolliseen suoritukseen tarkistaen ehdon aina ennen uuden kierroksen aloittamista. Se on hieman kuin `each` steroideilla:
+
+```ruby
+# while.rb
+start_time = Time.now
+while (Time.now - start_time) < 3
+  puts "Minun pitäisi perehtyä tähän Rubyyn."
+  sleep 0.4
+end
+```
+
+Osaatko arvata, mitä ohjelma tekee? Ensiksi se tallentaa senhetkisen kellonajan muuttujaan `start_time`. Sitten se suorittaa silmukkaa niin pitkään, kunnes kellonajan ja aloitusajan ero on vähintään 3 sekuntia (`start_time` ei muutu kun se on kerran asetettu, kun taas `Time.now` palauttaa joka kerta eri arvon, koska se palauttaa senhetkisen kellonajan).
+
+Vielä yksinkertaisemmin, koodi toistaa silmukkaa 3 sekunnin ajan, pysähtyen hieman alle puoleksi sekunniksi joka kierroksella.
+
+Huomaa myös, että samoin kuin mikä muukin vertailu, while ei välitä ehdosta kunhan se on jotain, millä on totuusarvo. Ja Rubyssä mikä hyvänsä lauseke on tosi, paitsi jos sen arvo on `false` tai `nil`. Ehtolauseke voi tarkistaa, onko vedenpinnan korkeus vesisäiliössä jonkin rajan alapuolella, tai onko Fluffy-kissalla tarpeeksi tonnikalaa. Se voi tarkistaa onko kiertoradan periapsis riittävän korkealla, tai mitä hyvänsä. Ainoa millä on väliä on ehtolauseen paluuarvo.
+
+Ohessa muutamia harjoituksia. Mieti jokaista riviä ja mikä on sen totuusarvo ehtolauseessa (esim. `if` tai `while`):
+
+```ruby
+2 == 2
+'kissa' == "kissa"
+'koira' != 'kissa'
+1 < 0
+3 == 12 / 4
+'false'
+false
+''
+nil
+[]
+0
+[false]
+```
+
+On tärkeää ymmärtää, että while-silmukka toistaa koodia välillä `while` .. `end` niin pitkään kun ehto on tosi. Ehto tarkistetaan uudestaan _joka kerta_ sen jälkeen, kun silmukan viimeinen rivi on suoritettu, ja vain silloin. Silmukan suorittaminen ei lopu esim. silloin, jos ehtolauseen arvo muuttuisi epätodeksi silmukan suorittamisen aikana. Huomaa myös, että simukka on niinsanottu `ikuinen silmukka`, jos ehto ei ole koskaan epätosi. Esimerkiksi seuraava ohjelma ei koskaan lopeta suoritusta:
+
+```ruby
+while true
+  puts "tämä toistuu loputtomiin"
+  sleep 0.2
+end
+```
+
+Ainoa tapa lopettaa ohjelma tällaisessa tilanteessa on lopettaa se pakkokeinoin. Onneksi se onnistuu tässä tapauksessa vain sanomalla terminaalissa `CTRL+C`. Voit kokeilla tätä jos haluat.
+
+{tip-begin}
+{tip-end}

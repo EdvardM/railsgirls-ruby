@@ -121,6 +121,8 @@ _concatenates_) two strings together by using `+` operator (in Ruby that's
 also a function!). Note that I needed to add trailing space to the string
 `"Kittens are "`, otherwise it would have printed `Kittens areso fluffy`.
 
+Also note that "printing" here has nothing to do with printing on paper, when I say "print" it just needs printing lines to your terminal window or console, not to printer. You don't need to waste paper here :)
+
 The last part prints something to the screen in rather demanding manner, due
 to `upcase` function that is "tied" to strings only.
 
@@ -409,12 +411,29 @@ Think for a while how the issue could be solved properly.
 
 {tip-begin}
 `nil` simply means a _lack of a value_. For example, getting the first
-element of an empty array returns nil in Ruby, as all expressions need to return _something_.
+element of an empty array returns `nil` in Ruby, as all expressions need to return _something_; it just means "there is no value whatsover".
 {tip-end}
 
-I mentioned before that `if` executes the first section only if the condition
-is true. What is true, then? In Ruby, anything that is equal to `false` or `nil`.
+I mentioned before that `if` executes the first branch only if the condition
+is true. What is true, then? In Ruby, anything that is NOT equal to `false` or `nil`:
 
+```ruby
+if 0
+  puts "this will be printed"
+end
+
+if ""
+  puts "you'll see me too"
+end
+
+if []
+  puts "as well as me"
+end
+
+if nil
+  puts "..but I won't be printed!"
+end
+```
 
 Maybe one of the most common way to get a value that is `true` or `false` is
 by comparing things. Like any programming language, Ruby gives us many ways to
@@ -440,7 +459,7 @@ get to more complex conditions.
 {tip-end}
 
 The reason why both `40 >= 38 + 2` and `'cute kitten' == 'cute ' + 'kitten'`
-work is because they don't compare the _literal code_ you typed, but Ruby
+are true is obviously because Ruby does not compare the _literal code_ you typed, but Ruby
 _evaluates_ the code in the both sides of the comparison operator, like `==`
 or `>`.
 
@@ -469,11 +488,11 @@ able to do **anything** (and by anything, I really mean anything that is
 theoretically possible):
 
 1. Do stuff in sequence. Doing some task first, then some other tasks.
-2. Do something conditionally. Given this, do this. Otherwise, do something else
+2. Do something conditionally. Given this, do this. Otherwise, do something else (or do nothing)
 3. Repetition
 
 Think about this a bit: what the washing machine user interface
-should allow you to do, if it was truly programmable?
+should allow you to do, if it was truly programmable by user?
 
 Next we will talk about the missing third part.
 
@@ -485,11 +504,11 @@ Imagine you have a list things to do, and you want to format those nicely when p
 # todo.rb
 todo_list = ['clean up the kitchen', 'buy some milk', 'make time for learning Ruby', 'consider acquiring a kitten']
 
-# remember that indexes start from zero
-puts "TODO item: " + todo_list[0]
-puts "TODO item: " + todo_list[1]
-puts "TODO item: " + todo_list[2]
-puts "TODO item: " + todo_list[3]
+# remember that array indexes start from zero
+puts "TODO item: " + todo_list[0].capitalize
+puts "TODO item: " + todo_list[1].capitalize
+puts "TODO item: " + todo_list[2].capitalize
+puts "TODO item: " + todo_list[3].capitalize
 ```
 
 That code would print all the items, but it sure looks awkward. It's
@@ -506,35 +525,40 @@ version:
 todo_list = ['clean up the kitchen', 'buy some milk', 'make time for learning Ruby', 'consider acquiring a kitten']
 
 todo_list.each do |entry|
-  puts "TODO item: " + entry
+  puts "TODO item: " + entry.capitalize
 end
 ```
 
 Don't worry about funny pipe characters ('|') yet. First consider the
-benefits: due to the loop we don't need to care about array size. That code
+benefits: due to the `each` loop we don't need to care about array size. That code
 would work with list containing only one entry, with list containing
-100000000000 entries and even an empty list; it would just print nothing.
+100 000 000 000 entries and even an empty list; it would just print nothing.
 
-Now let's talk about the syntax a bit. It's not that hard, once you get used
+Also note that we don't nead to repeat the formatting part. If we make changes to formatting, that needs to be done with one line only.
+
+Now let's talk about the _syntax_ -- formal grammar of a programming language -- a bit. It's not that hard, once you get used
 to it. Another example:
 
 ```ruby
 # countdown.rb
-put "countdown started"
+puts "Countdown started"
 [5, 4, 3, 2, 1].each do |n|
+  sleep 0.5
   puts n
 end
 puts "go!"
 ```
 
 That `do` starts a _block_. A Ruby block is just, well, blob of code like any
-other ruby code. The interesting stuff is between pipes. Ruby automatically
-passes _each item_ (yeah, that's why the name) in the collection to that block
-in turn, assigning it to the given variable name, and executes that block _for
-each entry_. So, here `puts` is called five times, with `n` being assigned
-to each of the numbers in turn.
+other ruby code. It exists mostly to allow programmer to treat several lines of code as logically one part. Here, both lines `sleep` and `puts` are repeated every time when `each` loops over the list.
 
-There are other kinds of loops, though they are maybe not that common. However, the
+The interesting stuff is between pipe `|` characters. Ruby automatically
+passes _each item_ (yeah, that's why the name) in the collection to that block
+in turn, assigning it to the given variable name (name between pipe chars), and executes that block _for
+each entry_. So, here `puts` is called five times, with `n` being assigned
+to each of the numbers in turn. Try it! Also, try changing the numbers in the list.
+
+There are other kinds of loops, though perhaps a tad less common. However, the
 idea is not to present all of those here, only the most common and useful ones.
 
 One very important loop has the ability to both repeat and check a condition
@@ -546,33 +570,33 @@ Enter `while`:
 start_time = Time.now
 while (Time.now - start_time) < 3
   puts "I should really learn this Ruby stuff."
-  sleep 0.5
+  sleep 0.4
 end
 ```
 
 Can you guess what it does? First it gets the current time, and stores that to
 variable `start_time`. Then it loops over until difference between current
-time and `start_time` is at least 3 (`start_time` does not change, while `Time.now`
+time and `start_time` is at least 3 seconds (`start_time` does not change once it has been assigned, whereas `Time.now`
 returns a different value every time, because it returns the current time).
 
-Put more simply, it repeats the loop for 3 seconds, sleeping half a second
-after each print.
+Put more simply, it repeats the loop for 3 seconds, pysähtyen hieman alle puoleksi sekunniksi jokaisen tulostuksen jälkeen.
 
-Note that it does not matter for `while` what the condition is. Remember that in Ruby,
-anything is true except things that reduce to `false` or `nil`.  The condition
-could compare water level in a reservoir if it is below certain limit. It
-could check if there is enough tuna for Fluffy the Cat. It could check the
-periapsis for current orbital trajectory, or whatever. The only thing that matters
-is the value of the evaluated condition.
+Note that it does not matter for `while` what the condition is, as long as it
+produces anything "truthy", and that in Ruby, anything is true except things
+that reduce to `false` or `nil`.  The condition could compare water level in a
+reservoir if it is below certain limit. It could check if there is enough tuna
+for Fluffy the Cat. It could check the periapsis for current orbital trajectory,
+or whatever. The only thing that matters is the value of the evaluated
+condition.
 
-Here are some exercises: for each line, think if it would evaluate as true (in `if` or `while` context).
+Here are some exercises. For each line, think if it would evaluate as true (in `if` or `while` context):
 
 ```ruby
 2 == 2
 'cat' == "cat"
 'dog' != 'cat'
 1 < 0
-3 == 3.0
+3 == 12 / 4
 'false'
 false
 ''
@@ -584,8 +608,7 @@ nil
 
 It is important to understand that while loop iterates over the code between
 `while`... `end` as long as condition is true. The condition is re-checked
-_every time_ after it reaches the last line in while, and jumps back to the
-beginning, and only then. The loop will not be aborted if the  condition
+_every time_ after it has finished the last line, and only then. The loop will not be aborted if the condition
 somehow would change during the execution of while body. Also note that the
 loop _will repeat indefinitely_ if the condition never becomes false. For
 example, this code never terminates:
@@ -598,7 +621,7 @@ end
 ```
 
 The only way to end the program is by terminating it by force. Fortunately,
-you can do this simply by pressing `CTRL+C` in the terminal .Try that if you like.
+you can do this simply by pressing `CTRL+C` in the terminal. Try that if you like.
 
 {tip-begin}
 <p>People sometimes use the terms "programming" and "coding" in a mixed
@@ -688,4 +711,3 @@ There are several ways to repeat things in Ruby. Integer#times is just one. Also
    #.....#
   ########
 ```
-
