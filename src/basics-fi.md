@@ -13,8 +13,7 @@ Jokainen tietokoneohjelma siis koostuu näistä yksinkertaisista primitiiveistä
 ja jo pelkästään niiden avulla voidaan toteuttaa hyvinkin mutkikkaita
 järjestelmiä. Primitiiveillä tarkoitan tässä sellaisia kuten muuttujat,
 ehtolauseet, silmukat ja perustietotyyppejä kuten taulukot, numerot ja
-merkkijonot (voit ajatella tekstin koostuvan yhdestä tai useammasta
-merkkijonosta).
+merkkijonot.
 
 
 Tämän oppaan tarkoituksena on tehdä mainitut primitiivit tunnetuiksi kelle
@@ -97,7 +96,7 @@ puts "Kittens are " + " so fluffy"
 puts "moar kittens in examples!".upcase
 ```
 
-Data on vain tietoa kuten tekstiä, numeroita, kuvia ja videoita. Se ei tee itsessään mitään. Jopa yksinkertainen teksti pitää tulostaa, ennenkuin se voidaan lukea. Tässä esimerkissä **merkkijono** `"Oh my, cinnamon buns!"` on dataa, kuten myös `"Kittens are "`, `"so fluffy"` yms. `puts` on funktio joka _tekee tiedolle jotain_, tässä siis tulostaa mitä hyvänsä funktiolle syötetään. `upcase` on myös eräänlainen funktio, joka on "sidottu" vain merkkijonoihin.
+Data on vain tietoa kuten tekstiä, numeroita, kuvia ja videoita. Se ei tee itsessään mitään. Jopa yksinkertainen teksti pitää tulostaa, ennenkuin se voidaan lukea. Tässä esimerkissä **merkkijono** `"Oh my, cinnamon buns!"` on dataa, kuten myös `"Kittens are "`, `"so fluffy"` yms. `puts` on funktio joka _tekee tiedolle jotain_, tässä siis tulostaa mitä hyvänsä funktiolle syötetään. `upcase` on myös eräänlainen funktio, joka on "sidottu" vain merkkijonoihin. Kun puhumme merkkijonoista, tarkoitamme käytännössä tekstiä erotuksena esim. luvuille: `1` on siten luku, johon voi lisätä, jota voi kertoa jne, kun taas `"1"` on merkkijono. Lauseke `"1" + 2` ei ole järkevä Ruby-kielessä (ja hyvä niin).
 
 Huomaa myös, että ohjelmarivien välissä voi olla haluamasi määrä tyhjiä rivejä. Käytä tyhjiä rivejä sisällön loogiseen ryhmittelyyn samaan tapaan kuten luonnollisessa kielessä. Ruby ei välitä: voit kirjoittaa kaikki Ruby-ohjelmat halutessasi yhdelle hyvin pitkälle riville. Luettavuus on ihmistä eikä tietokonetta varten. Selkeys on tärkeää.
 

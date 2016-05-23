@@ -10,9 +10,9 @@ most complex ones contain components that consist of more simple components,
 until the component deals with just basic language primitives.
 
 Those basic primitives are things that every program contains, and quite
-complex things can be done easily by using just those. Primitive such as
+complex things can be done easily by using just those. Primitives such as
 variables, conditional statements, loops and basic data types like arrays,
-numbers and strings (you can think of simple text being made of one or more strings).
+numbers and strings.
 
 This guide is intended to make those primitives familiar to any reader.
 
@@ -114,7 +114,7 @@ nothing by itself. Even simple text needs to printed for someone to be able to
 read it. Here the **string** `"Oh my, cinnamon buns!"` is the data, as well as
 `"Kittens are "`, `"so fluffy"` and so on. `puts` is the function that _does
 something with data_, which is just printing whatever is fed to the function.
-`upcase` is also a kind of function, acting on the string itself.
+`upcase` is also a kind of function, acting on the string itself. Note that when we talk of strings, we basically mean text, as opposed to say, numbers: `1` is a number you can do arithmetic with like add, multiply etc, while `"1"` is a string. `"1" + 2` makes no sense in Ruby (which is good).
 
 While the first example just prints a string, the second joins (or
 _concatenates_) two strings together by using `+` operator (in Ruby that's
