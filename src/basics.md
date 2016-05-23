@@ -625,8 +625,9 @@ you can do this simply by pressing `CTRL+C` in the terminal. Try that if you lik
 
 {tip-begin}
 <p>People sometimes use the terms "programming" and "coding" in a mixed
-manner. For example, HTML is not strictly programming, though it can called
-_coding_. You cannot have conditionals in HTML, nor can you repeat things.</p>
+manner. For example, writing HTML is not programming, though it can be called
+coding. Coding is merely transcripting a concept or idea to some another form, which can be programming (Ruby) or using another form of representation, like a markup language (say, HTML). However, as you cannot have conditionals in HTML, nor can you repeat things in it, HTML is not programming. So, all programming is coding, but not all coding is programming. Whew!
+</p>
 
 <p>It is also somewhat of a stretch to say that any part of HTML is about "acting" or "executing", but
 one could think of say, _title_ element being a "function" to show the document title. Sort
@@ -636,12 +637,16 @@ you can insert (embed) programming languages to HTML, but that part is not then 
 
 Now you should take a deep breath, as we have reached a very important
 milestone: you know all the concepts required to code _any kind of computer
-program_. Ever. Neat, huh? Some programs would be hard with this information
-only, but they would be doable.
+program_. Ever. Neat, huh?
+
+Most large programs would be pretty hard to do with this information
+only, but they would be still doable!
 
 We have actions like calculating things, joining strings, assigning values to
 variables. We have the ability to make decisions based on values of things.
 And we have the ability to repeat stuff.
+
+These are the building blocks of _all_ programs. Everything else is just details, and application of those ideas.
 
 
 ### Wrapping up
@@ -656,7 +661,7 @@ convenient and less verbose when you have a collection to process.
 
 Go get a nice, warm cup of your favourite beverage now! You've deserved it.
 Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
-have one. Patting a horse is ok too.
+have one. Patting a horse is ok too :3
 
 [^fn-array] Yeah, there's no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.
 
@@ -664,13 +669,14 @@ have one. Patting a horse is ok too.
 
 For the following exercises, you need to be aware of the following things:
 
-* To repeat something exactly n times, you can say `n.times { |i| # code that is repeated n times}`. `i` in the code block is a counter that gets each of the values from 0 to n-1 every time the loop is executed (remember that in programming, counting usually starts from zero!).
-* `puts` automatically prints a newline after the string, while `print` doesn't. `puts` alone without any parameters just prints a newline, which comes handy
-* `||` means logical or. So the statement `if 2 > 3 || 2 > 1` is true, because the latter part after `||` is true
+* To repeat something exactly n times, you can say `n.times { |i| # code that is repeated n times }`. `i` in the code block is a counter that gets each of the values from 0 to n-1 every time the loop is executed. So the loop is repeated n times. Remember that in programming, counting usually starts from zero.
+* `puts` automatically prints a newline after the string, while `print` doesn't (try it!). `puts` alone without any parameters just prints a newline, which comes handy
+* `||` means logical or. So the statement `if 2 > 3 || 2 > 1` is true, because 2 > 1 is true
+* `&&` means logical and, if you need it. So an expression `foo && bar` is true only when both the values `foo` and `bar` evaluate to true.
 
 Write a program that
 {tip-begin}
-There are several ways to repeat things in Ruby. Integer#times is just one. Also note that if your code between `{ .. }` spans more than one line, it is recommended to use `do .. end` instead of braces. But it's just a matter of style! Both will do fine. Computer won't even see the difference. It's all the same.
+There are several ways to repeat things in Ruby. Integer#times is just one (this means that for any integral number, there is a method `times` like `42.times). Also note that if your code between `{ .. }` spans more than one line, it is recommended to use `do .. end` instead of braces.
 {tip-end}
 
 
@@ -689,7 +695,8 @@ There are several ways to repeat things in Ruby. Integer#times is just one. Also
   #.....#
   #######
 ```
-* extra: print out a filled triangle. Program should take a number of rows, so that `ruby triangle.rb 8` would print
+Command line parameters are available through array `ARGV` offered by Ruby for that very purpose.
+* print out a filled triangle. Program should take a number of rows / base length, so that `ruby triangle.rb 8` would print
 ```
   #
   ##
@@ -700,7 +707,7 @@ There are several ways to repeat things in Ruby. Integer#times is just one. Also
   #.....#
   ########
 ```
-* extra: what if the triangle needs to be flipped around, like below?
+* what if the triangle needs to be flipped around, like below?
 ```
          #
         ##

@@ -227,7 +227,7 @@ Nyt siis tiedämme -- tai olemme ainakin nähneet -- kolmenlaisia asioita:
 1. Data (tieto, informaatio). Tietotyyppejä on erilaisia, ja olemme tavanneet näistä kolme. Vastaavat Ruby-tyypit tai -luokat sulkeissa:
   * Merkkijonot (String)
   * Numerot (Fixnum, Float)
-  * Taulukot (Array), jotka voivat sisältää mitä vain tietotyyppejä, mukaanlukien taulukoita
+  * Taulukot (Array), jotka voivat sisältää mitä vain tietotyyppejä, mukaanlukien taulukoita[^fn-array]
 2. Funktioita/metodeja, joilla tiedolle voidaan tehdä operaatioita
   * Edellisessä esimerkissä käytettiin _taulukkometodeja_ pituuden hakemiseen (`length`), ja metodilla `sort` saatiin tuotettua taulukko, joka on aakkosjärjestyksessä. Metodilla `upcase` muunnettin merkkijono isoiksi kirjaimiksi.
   * Metodeista lisää myöhemmin
@@ -463,4 +463,84 @@ end
 Ainoa tapa lopettaa ohjelma tällaisessa tilanteessa on lopettaa se pakkokeinoin. Onneksi se onnistuu tässä tapauksessa vain sanomalla terminaalissa `CTRL+C`. Voit kokeilla tätä jos haluat.
 
 {tip-begin}
+<p>Toisinaan ihmiset puhuvat "ohjelmoinnista" ja "koodaamisesta" sekaisin. Kuitenkaan esimerkiksi HTML:n kirjoittaminen ei ole ohjelmointia, vaikka sitä voidaan kutsua koodaamiseksi. Koodaaminen on väljästi vain asioiden esittämistä jossain toisessa muodossa, mikä voi olla ohjelmointia (Ruby) tai asian esittämistä jossain toisessa muodossa (HTML). Kuitenkaan koska esim. HTML:ssä ei ole ehtolauseita eikä toistoa, se ei voi olla ohjelmointikieli, eikä siten HTML:n kirjoittaminen ole ohjelmointia, vaikka se onkin koodausta. Kaikki ohjelmointi on siten koodausta, mutta kaikki koodaus ei ole ohjelmointia. Huh!
+</p>
+
+<p>
+On myös varsin epämielekästä sanoa, että HTML:ssä olisi mitään "toimintoja" tai että se "suorittaisi" mitään, vaikka tietystä näkökulmasta voitaneen ajatella esim. _title_ -elementin olevan "funktio", joka näyttää dokumentin otsikon. Tavallaan. Mutta sinun pitäisi vähintäänkin irvistää hieman, jos joku sanoo niin. Mainittu virhekäsitys lienee yleinen siksi, että HTML:n sekaan voidaan upottaa kyllä ohjelmointikieltä (esim.  JavaScript), mutta JavaScript ei silti ole osa HTML:ää. Se on ohjelmointikieli.
+</p>
 {tip-end}
+
+Tässä vaiheessa on hyvä vetää syvään henkeä, koska olemme saavuttaneet merkittävän etapin: tiedät nyt kaikki tarpeelliset käsitteet, mitä tarvitaan  _mielivaltaisen tietokone-ohjelman toteuttamiseen_. Luit oikein, minkä hyvänsä! Siistiä, eikö?
+
+Isompien ohjelmien tekeminen vain näillä tiedoilla olisi melkoisen vaikeaa, mutta kuitenkin varsin mahdollista!
+
+Voimme laskea juttuja, liittää yhteen merkkijonoja, sijoittaa arvoja muuttujiin. Voimme tehdä päätöksiä riippuen juttujen arvoista, ja voimme toistaa juttuja.
+
+Nämä ovat _kaikkien_ tietokone-ohjelmien rakennusaineita. Kaikki muu on vain yksityiskohtia, ja em. ajatusten soveltamista.
+
+### Yhteenveto
+
+Opimme nyt viimeisimpänä toiston. Meillä on kahdenlaisia toistorakenteita/silmukoita:
+
+1. `each` toimii kaikkien kokoelmien (kuten taulukko) kanssa, eikä sen kanssa tarvitse tietää kuinka monta alkiota kokoelmassa on
+2. `while` toistaa silmukkaa niin pitkään, kun sen yhteydessä annettu ehtolause on tosi
+
+`while` on sikäli ilmaisuvoimaisin, että sen avulla voidaan toteuttaa mikä hyvänsä silmukka, mutta `each` on usein kätevämpi ja tiiviimpi, kun pitää käsitellä kokoelman kaikki alkiot jotenkin.
+
+Voisit hakea tässä vaiheessa kupin lämmintä lempijuomaasi, olet sen ansainnut! Miettien hieman samalla juuri oppimiasi asioita. Ole hyvä ja rapsuta samalla lemmikkikoiraasi tai kissaasi, jos sinulla sellainen on. Hevosen taputtaminen on ok sekin :3
+
+[^fn-array] Jep, sisäkkäisyydellä ei ole rajaa, eli taulukko voi sisältää toisia taulukoita: `[1, [2, 3], [4, [[5], [6]]]]` ja toisinaan vielä mutkikkaammatkin taulukot ovat tarpeen.
+
+### Harjoituksia
+
+Allaolevissa harjoituksissa on tarpeen tietää seuraavaa:
+
+* Toistaaksesi jotain tarkalleen n kertaa, voit sanoa `n.times { |i| # koodi, jota toistetaan n kertaa }`. `i` tässä lohkossa on laskuri, joka saa järjestyksessä vuorollaan kaikki arvot väliltä 0 .. n-1. Silmukka siis toistuu n kertaa. Huomaa, että ohjelmoidessa laskenta alkaa yleensä aina luvusta 0.
+* `puts` tulostaa automaattisesti rivinvaihdon merkkijonon perään, kun taas `print` ei. `puts` ilman parametria tulostaa pelkän rivinvaihdon, mikä on toisinaan kätevää.
+* `||` tarkoittaa loogista "tai"-operaatiota. Siten lauseke `if 2 > 3 || 2 > 1` on tosi, koska lausekkeen jälkimmäinen osa (2 > 1) on tosi
+* `&&` on looginen "ja". Lauseke `foo && bar`on tosi vain silloin, kun sekä `foo` että `bar` ovat totuusarvoltaan tosia.
+
+Kirjoita ohjelma, joka
+{tip-begin}
+Rubussä on monta tapaa toistaa asioita. `Integer#times` on näistä vain yksi (merkintä tarkoittaa, että mille vain kokonaisluvulle on olemassa metodi `times` kuten `42.times`). Samoin huomaa, että jos koodisi merkkien `{ .. }` välissä koostuu useammasta kuin yhdestä rivistä, aaltosulkeet `{}` on tapana korvata merkinnällä `do .. end`.
+{tip-end}
+
+* tulostaa 5x10 suorakaiteen käyttäen merkkiä '.'. Älä vain kopioi allaolevaa sellaisenaan, vaan käytä toistorakennetta. Tuloksen pitäisi näyttää tältä:
+```
+..........
+..........
+..........
+..........
+..........
+```
+* tulostaa täytetyn suorakaiteen siten, että pituus ja korkeus annetaan komentoriviparametreina. Esim. `ruby rectangle.rb 4 7` tulostaisi
+```
+  #######
+  #.....#
+  #.....#
+  #######
+```
+Komentoriviparametrit voit lukea muuttujasta `ARGV`, joka on taulukko minkä Ruby luo automaattisesti juuri tätä tarkoitusta varten.
+* tulosta täytetty kolmio. Ohjelman pitäisi ottaa parametrina kannan pituus / korkeus, siten että `ruby triangle.rb 8`tulostaa
+```
+  #
+  ##
+  #.#
+  #..#
+  #...#
+  #....#
+  #.....#
+  ########
+```
+* entä jos kolmio pitäisi kääntää toisinpäin, kuten alla?
+```
+         #
+        ##
+       #.#
+      #..#
+     #...#
+    #....#
+   #.....#
+  ########
+```
