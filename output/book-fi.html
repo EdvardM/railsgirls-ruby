@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Rubyn perusteet</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap.css"/>
+    <style>
+      body {
+        background-color: #f6f6f6;
+        padding-top: 30px;
+      }
+      .main {
+        background-color: #fff;
+        border: 1px solid #CCC;
+        padding: 40px;
+      }
+      .container {
+        width: 1100px;
+      }
+      .nav-list {
+        font-size: 17px;
+      }
+      .nav-header {
+        font-size: 17px;
+        text-transform: none;
+        line-height: 30px;
+      }
+    </style>
+    <link type="text/css" rel="stylesheet" href="assets/css/bootstrap-responsive.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+    <link type="text/css" rel="stylesheet" href="assets/css/book.css"/>
+  </head>
+<body>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3"><ul class="nav nav-list">
+    <li class="sidebar-header-1"><a href="#rubyn-perusteet">Rubyn perusteet</a></li>
+    <li class="sidebar-header-2"><a href="#mit-on-ohjelmointi-">Mitä on ohjelmointi?</a></li>
+    <li class="sidebar-header-3"><a href="#miksi-j-lleen-uusi-opas-">Miksi jälleen uusi opas?</a></li>
+    <li class="sidebar-header-3"><a href="#k-ytetyt-merkinn-t">Käytetyt merkinnät</a></li>
+    <li class="sidebar-header-3"><a href="#ty-kalut">Työkalut</a></li>
+    <li class="sidebar-header-2"><a href="#tietotyypit">Tietotyypit</a></li>
+    <li class="sidebar-header-3"><a href="#luettavuudesta">Luettavuudesta</a></li>
+    <li class="sidebar-header-4"><a href="#s-nn-t-asioiden-nime-miselle">Säännöt asioiden nimeämiselle</a></li>
+    <li class="sidebar-header-3"><a href="#yhteenveto">Yhteenveto</a></li>
+    <li class="sidebar-header-2"><a href="#-lyk-s-toiminta">Älykäs toiminta</a></li>
+    <li class="sidebar-header-3"><a href="#tosi-vai-ep-tosi">Tosi vai epätosi</a></li>
+    <li class="sidebar-header-3"><a href="#yhteenveto">Yhteenveto</a></li>
+    <li class="sidebar-header-2"><a href="#toistaminen">Toistaminen</a></li>
+    <li class="sidebar-header-3"><a href="#yhteenveto">Yhteenveto</a></li>
+    <li class="sidebar-header-3"><a href="#harjoituksia">Harjoituksia</a></li>
+    <li class="sidebar-header-4"><a href="#vinkkej-">Vinkkejä</a></li>
+    <li class="sidebar-header-4"><a href="#harjoitusteht-v-t">Harjoitustehtävät</a></li>
+</ul>
+      </div>
+      <div class="span9 main"><h1 id="rubyn-perusteet"><a class="header-link" href="#rubyn-perusteet"></a>Rubyn perusteet</h1>
+<p>Tervetuloa ohjelmoinnin ihmeelliseen maailmaan!</p>
+<h2 id="mit-on-ohjelmointi-"><a class="header-link" href="#mit-on-ohjelmointi-"></a>Mitä on ohjelmointi?</h2>
+<p>Tähän on monia sinänsä hyvíä vastauksia. Itse tykkään määritellä sen seuraavasti:</p>
+<div class="tip">
+Välillä näet tämänkaltaisia ohjeita. Voit sivuuttaa ne hyvin lukiessasi materiaalia ensimmäistä kertaa. Niissä on kuitenkin hyödyllistä tietoa, joihin on ehkä hyvä tutustua ainakin myöhemmin.
+</div>
+
+<p>Ohjelmointi on sitä, että annetaan tietokoneelle joukko täsmällisiä ohjeita,
+miten kussakin tilanteessa tulee toimia. Kaikkien tietokoneohjelmien voidaan
+katsoa toimivan kolmen perusmekanismin kautta: komentojen tai lausekkeiden
+suorittamisen, näiden mielivaltaisen pitkän toistamisen ja ehdollisen
+suorituksen kautta.</p>
+<p>Tietokoneohjelmat koostuvat lopulta erittäin yksinkertaisista toiminnoista.
+Ilman korkeampia abstraktiotasoja nykyisten mutkikkaiden ohjelmien kehittäminen
+ja ylläpitäminen on kuitenkin lähes mahdotonta, joten kaikki yleisemmät
+ohjelmointikielet tarjoavat erinäisiä keinoa luoda korkeamman tason
+abstraktioita. Näistä sitten voidaan koostaa yhä mutkikkaampia vielä korkeamman
+tason abstraktioita, jotka lopulta sitten toteuttavat koko järjestelmän.</p>
+<p>Tämän oppaan tarkoituksena on selvittää lukijalle edellämainitut
+kolme perusmekanismia, sekä tarjota myöhemmin keskeisimpiä työkaluja mutkikkuuden hallintaan.</p>
+<h3 id="miksi-j-lleen-uusi-opas-"><a class="header-link" href="#miksi-j-lleen-uusi-opas-"></a>Miksi jälleen uusi opas?</h3>
+<p>Maailma on täynnä monia parempia oppaita, mutta niistä lyhimmätkin ovat
+mielestäni liian pitkiä.
+<a href="http://mislav.uniqpath.com/poignant-guide/book/chapter-1.html">Why The Lucky Stiff:in</a> opas
+on erinomainen ja kaukana kuivasta, mutta se on pitkä (suosittelen kuitenkin!).</p>
+<p>Pyrkimykseni on esitellä pienin tarvittava määrä tietoa, jotta ohjelmoinnissa
+voisi päästä alkuun. Luotan siihen, että puuttuvat osat on helppo selittää sitä
+mukaa kun niitä tarvitaan. Aloitetaan siis!</p>
+<h3 id="k-ytetyt-merkinn-t"><a class="header-link" href="#k-ytetyt-merkinn-t"></a>Käytetyt merkinnät</h3>
+<div class="tip">
+<p>Tyypillisesti tällaisissa oppaissa on lyhyt kuvaus siitä, miten Ruby asennetaan, ja miten komentokehotetta käytetään. Näistä on hyviä oppaita verkossa vaikka kuinka, joten en käsittele niitä tässä. Komentokehote löytyy Windows-ympäristössä juuri sillä nimellä, ja Macissa sekä Linuxissa tämä tunnetaan nimellä &quot;Terminaali&quot;.</p>
+
+<p>Hakusanoilla &quot;installing Ruby for X&quot; missä X on käyttöjärjestelmäsi (Linux, Mac, Windows tai joku muu) löytyy paljon hyviä asennusohjeita.
+</p>
+</div>
+
+<p>Mikä hyvänsä, joka näyttää sellaiselta kuin</p>
+<pre class="hljs"><code><span class="hljs-comment"># somefile.rb</span>
+puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># tässä meillä on Ruby-koodia</span></code></pre><p>voidaan kirjoittaa Ruby-tulkkiin. Silloin Ruby tulkitsee ja suorittaa kirjoittamasi koodin.</p>
+<p>Jos kirjoitettua koodia on luontevampi suorittaa tallentamalla koodi ensiksi tiedostoon (esimerkiksi siksi, että koodilistaus on pitkä), ehdotan tiedostonimeä ohjelmalistauksen alussa. Ylläolevassa esimerkissä ehdotan tiedostolle nimeä <code>somefile.rb</code>. Voit käyttää mitä hyvänsä muuta nimeä, mutta huomioi tämä myöhemmin suoritat ohjelmaa. Tiedostopääte <code>.rb</code> ei ole pakollinen, mutta se on yleisesti käytetty merkintätapa Ruby-kielisille ohjelmille (ja siten suositeltava).</p>
+<p>Teksti, joka on muotoa</p>
+<blockquote>
+<p>cd projects/ruby-tutorial</p>
+</blockquote>
+<p>on taas tarkoitettu kirjoitettavaksi terminaaliin, <strong>ei</strong> siis pry-kehotteeseen. Nämä ovat komentoja, millä kerrot tietokoneen <em>käyttöjärjestelmälle</em>, mitä haluat tehdä. Huomaa myös, että &#39;$&#39; jää automaattisesti kopioidusta tekstistä pois (kuten pitääkin), jos kopioit tekstin leikepöydälle. Copy-pasten pitäisi siis toimia mutkattomasti.</p>
+<h3 id="ty-kalut"><a class="header-link" href="#ty-kalut"></a>Työkalut</h3>
+<p>Mikä hyvänsä <strong>tekstieditori</strong> käy Ruby-kielisten ohjelmien kirjoittamiseen (<em>ei siis</em> Word tai vastaavat, ne ovat ohjelmia, joilla käsitellään muotoiltua tekstiä; koodieditorit tallentavat merkit &#39;sellaisenaan&#39;), mutta jos kokemusta ohjelmoinnista on vähän, suosittelen lämpimästi Atom-editoria (<a href="https://atom.io/">https://atom.io/</a>). Se on helppokäyttöinen, mutta silti riittävä jopa ammattikäyttöön.</p>
+<p>Lyhyiden ohjelmapätkien kokeiluun kannattaa käyttää joko Ruby-asennuksen mukana tulevaa tulkkia eli <code>irb</code>-työkalua (interactive Ruby interpreter). Hieman parempi työkalu samaan tarkoitukseen on <strong>Pry</strong>, jonka asentamiseen ohjeet hieman alempana.</p>
+<div class="tip">
+Ohjelmointikielet ovat yleensä joko käännettäviä tai tulkattavia. Molemmissa on etunsa. Tulkattavan kielen hyvä puoli on siinä, että sellaisia kieliä voidaan suorittaa suoraan ilman erillistä käännösvaihetta. Yleensä tällaisissa kielissä tulee myös mukana <em>interaktiivinen</em> tulkki, jolla voi helposti kokeilla ohjelman osia erikseen. Ruby on tulkattava ohjelmointikieli.
+</div>
+
+<p>Suosittelen samoin pitämään ainakin kolmea ikkunaa avoinna samanaikaisesti kirjoittaessasi ohjelmia. Keskeisin näistä on
+tekstieditori (esim. Atom), jolla enimmäkseen kirjoitat koodia. Sen lisäksi pidän auki kahta komentokehoitetta, joista toisessa ajan ruby-komennolla kirjoittamiani ohjelmia. Toisessa taas on jatkuvasti pry auki, jolla voin kokeilla nopeasti pienten koodinpätkien toimivuutta. Näin minun ei tarvitse välissä sulkea ja avata ohjelmia, vaan kaikki on heti valmiina käyttöä varten.</p>
+<p>Näiden lisäksi on suositeltavaa pitää auki selainikkunaa, jossa on avoinna kielen dokumentaatio. Valitettavasti yhtä mukavaa sivua josta löytyisi kaikki tarvittava en ole löytänyt, mutta Rubyn tarjoamat toiminnot voidaan jakaa kahteen osaan: <a href="http://docs.ruby-doc.com/docs/ProgrammingRuby/html/builtins.html">kielen sisäänrakennetut toiminnot</a> jotka ovat aina käytettävissä, ja toiseksi <a href="http://docs.ruby-doc.com/docs/ProgrammingRuby/html/lib_standard.html">vakiokirjasto</a>, joka tulee automaattisesti mukana asennettaessa, mutta täytyy ottaa käyttöön erikseen. Esimerkiksi jos tarvitset kompleksilukuja, sinun täytyy ensiksi sanoa <code>require &#39;complex&#39;</code> Ruby-ohjelmasi alussa.</p>
+<p><strong>Ruby-kielen</strong> tulkki saattaa myös olla järjestelmässäsi jo valmiiksi asennettuna. Jos komento</p>
+<blockquote>
+<p>ruby -v</p>
+</blockquote>
+<p>palauttaa versionumeron 1.9.3 tai enemmän, niin hyvä; tässä oppaassa kuvattujen ohjelmien pitäisi toimia vallan mainiosti. Jos Rubyä ei löydy tai haluat asentaa sen itse, suositan versiota 2.3.0 tai uudempaa.</p>
+<p>Jos käytät OS X:ää tai Linuxia, RVM tai rbenv on hyvä ja helppo tapa asentaa Ruby. Voit asentaa RVM:n komennolla</p>
+<blockquote>
+<p>curl -sSL <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable --ruby</p>
+</blockquote>
+<p>Asentaaksesi Pry:n ja muutaman muun mukavan työkalun, suorita</p>
+<blockquote>
+<p>curl -sSL <a href="http://bit.ly/1LaIHjX">http://bit.ly/1LaIHjX</a> | bash</p>
+</blockquote>
+<p>Jos taas haluat asentaa mainitut työkalut käsin tai curl-komento ei ole saatavilla (esim. koska Windows), komento</p>
+<blockquote>
+<p>gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print</p>
+</blockquote>
+<p>asentaa muutaman mukavan aputyökalun. Kokeile vaikka pry-komentoa sanomalla komentokehoitteessa</p>
+<blockquote>
+<p>pry</p>
+</blockquote>
+<p>ja sitten esim. <code>puts &quot;Whee! My first Ruby program&quot;; exit</code></p>
+<p>Tuo lyhyt koodi tulostaa näytölle kuvatun tekstin, jonka jälkeen <code>exit</code>
+poistuu pry-tulkista (ts. sulkee käynnissä olevan ohjelman). Sitten oletkin valmis aloittamaan
+koodauksen!</p>
+<div class="tip">
+Yleisesti haluat välttää ajamasta sokkona netistä löytyviä mielivaltaisia skriptejä. Voit tietenkin tarkistaa molempien linkkien sisällön, näistä jälkimmäinen bit.ly -skripti on minun kirjoittamani.
+</div>
+
+<h2 id="tietotyypit"><a class="header-link" href="#tietotyypit"></a>Tietotyypit</h2>
+<p>Kaikki ohjelmat koostuvat vain kahdesta asiasta: <em>datasta</em> (tieto/informaatio) ja <em>funktioista</em>, jotka tekevät juttuja sille informaatiolle. Tarkastellaan lähemmin hyvin yksinkertaista ohjelmaa jossa on molempia, ja joka tekee jotain järkevää suoritettaessa.</p>
+<pre class="hljs"><code><span class="hljs-comment"># hello.rb</span>
+puts <span class="hljs-string">"Oi, uunituoreita kanelipullia!"</span>
+
+puts <span class="hljs-string">"Kissanpennut ovat niin "</span> + <span class="hljs-string">" pörröisiä"</span>
+puts <span class="hljs-string">"enemmän kissoja esimerkkeihin!1!1one!"</span>.upcase</code></pre><p>Voit suorittaa ylläolevan ohjelman komennolla</p>
+<blockquote>
+<p>ruby hello.rb</p>
+</blockquote>
+<p>Data on vain tietoa kuten tekstiä, numeroita, kuvia ja videoita. Se ei tee itsessään mitään. Jopa yksinkertainen teksti pitää tulostaa, ennenkuin se voidaan lukea. Tässä esimerkissä <strong>merkkijono</strong> <code>&quot;Oi, uunituoreita kanelipullia!&quot;</code> on dataa, kuten myös <code>&quot;Kissanpennut ovat niin &quot;</code> sekä <code>&quot;pörröisiä&quot;</code>.</p>
+<p><code>puts</code> taas on funktio, joka <em>tekee tiedolle jotain</em>, tässä siis tulostaa mitä hyvänsä tekstiä sille annetaan. <code>upcase</code> on myös eräänlainen funktio, joka on &quot;sidottu&quot; vain merkkijonoihin. Koska sitä voi kutsua vain merkkijonoille, se kirjoitetaan tiedon perään pisteellä erotettuna. Hyvä tapa ajatella tätä on siten, että lähetämme <em>viestin</em> <code>upcase</code> merkkijonolle, ja paluuviesti on samanlainen merkkijono, mutta isoilla kirjaimilla.</p>
+<p>Kun puhumme merkkijonoista, tarkoitamme käytännössä tekstiä erotuksena esim. luvuille: <code>1</code> on luku johon voi lisätä, kertoa sitä toisella luvulla jne, kun taas <code>&quot;1&quot;</code> on merkkijono. Lauseke <code>&quot;1&quot; + 2</code> ei ole järkevä Ruby-kielessä (ja hyvä niin), koska lukuja ja merkkijonoja ei voi laskea yhteen. Rubyssä ilmaisu <code>&quot;1&quot; + 2</code> on yhtä järkevä kuin <code>&quot;kissa&quot; - 5</code> -&gt; does not compute.</p>
+<p>Huomaa myös, että ohjelmarivien välissä voi olla haluamasi määrä tyhjiä rivejä. Samoin kuin luonnollisessa kielessä, tyhjillä riveillä voit erottaa loogisesti hieman eri asiat toisistaan. Ruby ei tästä välitä: voit kirjoittaa kaikki Ruby-ohjelmat halutessasi jopa yhdelle (hyvin pitkälle) riville. Ylimääräiset välilyönnit ja rivinvaihdot ovat vain luettavuuden vuoksi eli ihmistä varten, kone jättää ne huomioimatta.</p>
+<p>Muuten, huomaa että kun puhun tulostamisesta, tarkoitan sillä vain näytölle tulostamista. Et tarvitse näissä harjoituksissa tulostinta tai paperia :)</p>
+<p>Esimerkki tyhjien rivien käytöstä luettavuuden helpottamiseksi:</p>
+<pre class="hljs"><code><span class="hljs-comment"># greeting.rb</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FriendlyGreeter</span></span>
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">say_hello</span><span class="hljs-params">(name)</span></span>
+    launch_ze_missiles(<span class="hljs-string">'&lt;some random country&gt;'</span>)
+
+    <span class="hljs-string">"Hulloooo, <span class="hljs-subst">#{name}</span>! Hope you are having an awesome day!"</span>
+  <span class="hljs-keyword">end</span>
+
+  <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">launch_ze_missiles</span><span class="hljs-params">(target_country)</span></span>
+    puts <span class="hljs-string">"But i am lé tired :-&lt;"</span>
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span>
+
+puts FriendlyGreeter.new.say_hello(<span class="hljs-string">"Jill"</span>)</code></pre><p>Voit taas kokeilla ohjelmaa joko kopioimalla sen pry-tulkkiin, tai tallentamalla sen tiedostoon greeting.rb, ja sanomalla</p>
+<blockquote>
+<p>ruby greeting.rb</p>
+</blockquote>
+<p>Jatkossa en erikseen sano, miten ohjelman voi suorittaa. Tämä tapahtuu aina komennolla <code>ruby foo</code>, missä <code>foo</code> on tiedoston nimi, johon ohjelma on kirjoitettu.</p>
+<p>Huomasithan, että merkkijonot Rubyssä pitää aina ympäröidä sitaateilla, joko kaksin- (<code>&quot;</code>) tai yksinkertaisilla (<code>&#39;</code>). Tässä vaiheessa ei ole väliä kumpaa muotoa käytät, mutta käytä mieluusti jompaa kumpaa johdonmukaisesti.</p>
+<p>Tekstin lisäksi pitää käsitellä usein <strong>numeroita</strong>. Esimerkkejä:</p>
+<pre class="hljs"><code><span class="hljs-comment"># numbers.rb</span>
+puts <span class="hljs-number">1</span> + <span class="hljs-number">2</span>
+
+<span class="hljs-comment"># Huom! se on (30 / 3) + 4, ei 30 / (3 + 4). Ihan kuten koulussakin</span>
+puts <span class="hljs-number">30</span> / <span class="hljs-number">3</span> + <span class="hljs-number">4</span>
+
+puts <span class="hljs-number">10</span> / <span class="hljs-number">3.0</span>    <span class="hljs-comment"># 3.3333333...</span>
+puts <span class="hljs-number">10</span> / <span class="hljs-number">3</span>      <span class="hljs-comment"># 3 -- jakolasku kokonaisluvuilla, koska jakaja ja jaettava ovat kokonaislukuja</span>
+puts <span class="hljs-number">10</span>.divmod <span class="hljs-number">3</span> <span class="hljs-comment"># [3, 1]</span></code></pre><p>Nyt tiedämme numeroista ja merkijonoista. Mitä jos meillä on jotain monta kappaletta? No sitä varten on listat. Tai Rubyssä puhumme yleensä <em>taulukoista</em>. Niiden avulla voi tehdä monenlaisia asioita, ja ne ovat varsin keskeisiä oikeastaan kaikissa ohjelmissa:</p>
+<pre class="hljs"><code><span class="hljs-comment"># arrays.rb</span>
+some_stuff = [<span class="hljs-string">'kitten'</span>, <span class="hljs-string">'dog'</span>, <span class="hljs-string">'llama'</span>]
+
+puts some_stuff        <span class="hljs-comment"># tulostaa kunkin merkkijonon omalle rivilleen</span>
+puts some_stuff.length <span class="hljs-comment"># 3, koska listassa 3 alkiota</span>
+
+<span class="hljs-comment"># lähes kaikki ohjelmointikielet aloittavat taulukon</span>
+<span class="hljs-comment"># indeksoinnin nollasta, joten 1. alkio on löytyy indeksistä 0!</span>
+puts some_stuff[<span class="hljs-number">0</span>]     <span class="hljs-comment"># kitten</span>
+puts some_stuff[<span class="hljs-number">1</span>]     <span class="hljs-comment"># dog</span>
+puts some_stuff[<span class="hljs-number">2</span>]     <span class="hljs-comment"># llama</span>
+puts some_stuff[-<span class="hljs-number">1</span>]    <span class="hljs-comment"># -1 tarkoittaa viimeistä alkiota =&gt; llama</span>
+
+puts some_stuff.sort   <span class="hljs-comment"># tulostaa dog, kitten ja llama tässä järjestyksessä</span>
+
+<span class="hljs-comment"># Taulukot voivat sisältää erilaisia tietotyyppejä</span>
+puts [<span class="hljs-string">'dog'</span>, <span class="hljs-number">42</span>].length
+
+<span class="hljs-comment"># Yow dawg, heard you like arrays so I put array in your array</span>
+not_even_funny = [<span class="hljs-number">2</span>, [<span class="hljs-string">'bananas'</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]]
+
+<span class="hljs-comment"># tulostaa sekä 4 että 5, koska viimeinen alkio on taulukko [4, 5]</span>
+puts not_even_funny[-<span class="hljs-number">1</span>]</code></pre><p>Taulukon sisältöön viitataan siis numeerisilla indekseillä (~osoite) siten, että indeksissä 0 on aina taulukon 1 alkio. Taulukossa jossa on n alkiota viimeinen indeksi on siten n-1.</p>
+<p>Olet ehkä jo arvannut, että Ruby ei huomioi rivejä, jotka alkavat merkillä <code>#</code>. Ne ovat <em>kommentteja</em>. Tietokone hyppää niiden ohi samoin kuin välilyöntien, ja ne on tarkoitettu vain koodia lukeville ihmisille.</p>
+<p>Nyt siis meillä on <em>merkkijonoja</em> (tekstiä), <em>numeroita</em> ja <em>taulukoita</em>. Olemme myös nähneet muutamia funktioita. Mutta miksi jotkut niistä funktioista ovat tietoja ennen, kuten <code>puts</code>, ja jotkut tietojen jälkeen pisteen kera, kuten <code>length</code>? Jälkimmäinen on esimerkki <em>metodista</em>. Voit ajatella metodia funktiona, joka on tiiviisti sidottu johonkin tietoon -- esimerkiksi funktiota <code>puts</code> voi kutsua minkätyyppisille tiedoille hyvänsä, kun taas <code>upcase</code> toimii vain merkkijonoille. Tässä vaiheessa sillä ei ole niin merkitystä puhutaanko funktioista vai metodeista. Oleellista on se, että molemmat tekevät asioita tiedolle -- muuntavat sitä, tallentavat sen johonkin (kuten kirjoittaminen tiedostoon), laskevat asioita jne. Usein ne palauttavat jonkin arvon, joka on tuotettu jollain tavalla funktiolle annetuista arvoista.</p>
+<p>Näimme jotain muutakin. Koodissa oleva <code>some_stuff</code> on <em>muuttuja</em>. Niitä
+käytetään esimerkiksi antamaan käsitteille kuvaavia nimiä, välttämään
+tarpeetonta toistoa silloin, kun jonkin laskeminen on verrattain aikaavievää,
+tallentamaan nykyinen tila jne.</p>
+<p>Seuraava esimerkki on toiston välttämisestä:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> (<span class="hljs-number">5</span>/<span class="hljs-number">9.0</span>) * (<span class="hljs-number">77</span> - <span class="hljs-number">32</span>) &gt; <span class="hljs-number">24</span>
+  puts <span class="hljs-string">"It's quite warm, <span class="hljs-subst">#{(<span class="hljs-number">5</span>/<span class="hljs-number">9.0</span>) * (<span class="hljs-number">77</span> - <span class="hljs-number">32</span>)}</span>°C!"</span>
+<span class="hljs-keyword">else</span>
+  puts <span class="hljs-string">"meh, I'll play games at home"</span>
+<span class="hljs-keyword">end</span></code></pre><p>Edelläolevassa esimerkissä toistuu tarpeettomasti lauseke, jolla Fahrenheit-lukema 77 muunnetaan Celsius-asteiksi.
+Sama onnistuu huomattavasti mukavammin käyttämällä sopivaa muuttujaa:</p>
+<pre class="hljs"><code>degrees_celcius = (<span class="hljs-number">5</span>/<span class="hljs-number">9.0</span>) * (<span class="hljs-number">77</span> - <span class="hljs-number">32</span>)
+
+<span class="hljs-keyword">if</span> degrees_celcius &gt; <span class="hljs-number">24</span>
+  puts <span class="hljs-string">"It's quite warm, <span class="hljs-subst">#{degrees_celcius}</span>°C!"</span>
+<span class="hljs-keyword">else</span>
+  puts <span class="hljs-string">"meh, I'll play games at home"</span>
+<span class="hljs-keyword">end</span></code></pre><p>Jälkimmäinen versio on siinäkin mielessä paljon parempi, että jos lukema 77 muuttuu, muutos tarvitsee tehdä vain yhteen paikkaan. Toinen hyvin yleinen syy muuttujien käyttöön on asioiden nimeäminen, jotta koodista tulee luettavampaa. Katsotaanpa lähemmin seuraavaa:</p>
+<pre class="hljs"><code>users.select { |u| !u.admin? &amp;&amp; u.created &gt;= Time.now - <span class="hljs-number">7</span>.days }.each <span class="hljs-keyword">do</span> |u|
+  puts <span class="hljs-string">"User: "</span> + u
+<span class="hljs-keyword">end</span></code></pre><p>Ellei lukija ole entuudestaan kokenut niin Railsin kuin Rubyn suhteen, koodista ei ole kovinkaan helppoa nähdä mitä oikeastaan tulostetaan. Tarkastellaan seuraavaksi versiota, joka jakaa toiminnallisuuden kahteen osaan käyttäen samalla kuvaavia muuttujanimiä:</p>
+<pre class="hljs"><code>min_creation_time = Time.now - <span class="hljs-number">7</span>.days
+recent_non_admins = users.select { |u| !u.admin? &amp;&amp; u.created &gt;=  min_creation_time }
+
+recent_non_admins.each <span class="hljs-keyword">do</span> |user|
+  puts <span class="hljs-string">"User: "</span> + user
+<span class="hljs-keyword">end</span></code></pre><p>Koodin voisi kirjoittaa vieläkin siistimmin, mutta meillä ei ole vielä siihen työkaluja. Saavutimme kuitenkin jo jotain tärkeää:
+<code>recent_normal_users</code> kertoo lukijalle, että muuttuja sisältää taulukon hiljattain luotuja käyttäjiä, jotka eivät ole järjestelmän ylläpitäjiä (non_admins). Jos haluat vain muuttaa käyttäjien tulostamista, voit hyvin jättää huomiotta mutkikkaamman lausekkeen jolla käyttäjät luetaan muuttujaan, samoin sen miten se tarkkaanottaen tapahtuu. Voit keskittyä vain siihen osaan, missä käyttäjät tulostetaan.</p>
+<p>Termi muuttuja voi tuntua vähän hassulta, jos kerran muuttujan sisältämä arvo on koko ajan sama. Nimi tuleekin juuri siitä, että muuttujan sisältämä arvo voi muuttua. Esimerkiksi lauseke <code>kissan_nimi = &#39;Fluffy the Cute One&#39;</code> sijoittaa muuttujaan <code>kissan_nimi</code> arvon <code>Fluffy the Cute One</code>. Jos <code>kissan_nimi</code> oli aiemmin jotain muuta, muuttujalla on nyt uusi arvo. Yksinkertainen esimerkki:</p>
+<pre class="hljs"><code>thing = <span class="hljs-string">'Banana, naturally'</span>
+puts <span class="hljs-string">"Thing is now <span class="hljs-subst">#{thing}</span>"</span>
+
+thing = <span class="hljs-string">'cute kitteh'</span>
+puts <span class="hljs-string">"Thing is now <span class="hljs-subst">#{thing}</span>"</span></code></pre><p>Vaikka tulostuslausekkeet ovat tismalleen samanlaiset, ensimmäinen tulostaa
+jotain muuta kuin jälkimmäinen. Huomaa myös, että sijoittaminen ensimmäistä
+kertaa (muuttujan &quot;luominen&quot;) tapahtuu ihan samaan tapaan kuin olemassaolevan
+muuttujan arvon muuttaminen. Ruby ei välitä: yhtäsuuruusmerkkiä <code>=</code> käyttämällä
+kerrot Ruby-kielellä, että tämä tarkoittaa nyt tätä.</p>
+<h3 id="luettavuudesta"><a class="header-link" href="#luettavuudesta"></a>Luettavuudesta</h3>
+<p>Tietokoneohjelmien kirjoittaminen on vaikeaa, mutta lukeminen on vielä
+vaikeampaa, jopa oman ohjelmakoodin. Jo muutaman viikon kuluttua on helppo
+unohtaa mitä jokin kohta koodissasi oikein tekee. Jotkut puhuvat hyvin
+kommentoidusta koodista, mutta vielä tärkeämpää on kirjoittaa luettavaa
+koodia. Kommenttien ongelma on siinä, että ohjelmointikielten tulkit ja
+kääntäjät <em>jättävät ne huomioimatta</em>, ja siten ne jäävät myös helposti
+päivittämättä. Koodi, jossa kommentit ovat vanhentuneita ja harhaanjohtavia on
+huonompaa kuin koodi, jossa ei ole kommentteja. Tätä ongelmaa voi välttää
+paljolti käyttämällä hyviä (kuvaavia) nimiä kirjoittamilleen asioille. Usein puhutaan
+<em>itsedokumentoivasta</em> koodista (engl. self-documenting code).</p>
+<p>Kommentit ovat toisinaan tarpeellisia asioiden selittämiseksi tai
+muistutukseksi, mutta niitä tarvitaan verrattain harvoin, jos nimeät asiat
+hyvin. Kun siis kirjoitat kommentin muotoa &quot;tämä tekee foo jos bar&quot;, niin mieti
+ensin voisitko nimetä koodisi siten, että kommentti muuttuisi tarpeettomaksi.</p>
+<p>Voiko nimet valita sitten täysin vapaasti? Käytännössä kyllä. Kaikki
+muuttujanimet ovat täysin mielivaltaisia -- kone ei niistä ymmärrä mitään. Siinä
+missä esim. <code>a</code> ja <code>z</code> eivät ole järin kuvaavia, ne ovat ihan kelvollisia
+(kielen näkökulmasta) nimiä muuttujille. Niin on myös</p>
+<p><code>a_really_funny_kissa_with_hayfever_danced_over_the_shiny_rainbow</code>.</p>
+<p>Muuttujien nimiin ei siis liity minkäänlaista merkitystä. Tietokone näkee vain
+jonon symboleita, tai ei tarkemmin edes niitä, vaan sarjan numeroita (koska
+tietokone käsittelee aivan kaikkea numeerisesti). Koodi <code>a = 1; b = 2; a + b</code>
+toimii <em>tismalleen</em> samalla tavalla kuin <code>sad_panda = 1; möhköfantti = 2; sad_panda + möhköfantti</code>.
+Muuttujien nimet ovat lukijaa varten.</p>
+<h4 id="s-nn-t-asioiden-nime-miselle"><a class="header-link" href="#s-nn-t-asioiden-nime-miselle"></a>Säännöt asioiden nimeämiselle</h4>
+<p>Kaikki nimet ovat Rubyn näkökulmasta kelvollisia, kunhan se koostuu kirjaimista <code>&#39;a&#39;..&#39;z&#39;</code>, numeroista <code>0..9</code> ja alaviivasta <code>_</code>. Ainoa rajoite nimille on, että se ei voi <em>alkaa</em> numerolla. Toisin sanoen <code>kitteh_42</code> on kelvollinen nimi, kun taas <code>42_kitteh</code> ei ole. Sama sääntö koskee myös metodeja ja funktioita.</p>
+<div class="tip">
+<p>
+Rybyssä alaviivaa käytetään sanojen erottamiseen. Käytä aina pieniä kirjaimia. ISOT_KIRJAIMET ja ns. &quot;CamelCaseNamingConvention&quot; on varattu vakioille, luokille ja muille asioille, joista puhumme myöhemmin.</p>
+
+<p>On myös <em>mahdollista</em> käyttää suomenkieltä asioiden nimeämiseen jos haluat. Se on aivan mahdollista siksikin, että ns. UTF-merkistö on yleistynyt ohjelmointikielienkin joukossa. Näinollen esimerkiksi muuttujanimi <code>ämpäri</code> on nykyään mahdollinen, toisin kuin vielä vuosikymmen sitten. Kaikki kielet eivät vieläkään sallisi muita kirjaimia kuin a..z. En kuitenkaan suosittele sitä, koska englanninkieli on selvästikin ohjelmointikielten <em>lingua franca</em>, yleiskieli. Minkä hyvänsä muun luonnollisen kielen käyttö tulee herättämään yleistä pahennusta, ja muut tulevat mulkoilemaan sinua sillä silmällä. Tiedäthän, nenänvartta pitkin ja silleen. Valinta on kuitenkin sinun :)</p>
+</div>
+
+<h3 id="yhteenveto"><a class="header-link" href="#yhteenveto"></a>Yhteenveto</h3>
+<p>Nyt siis tiedämme -- tai olemme ainakin nähneet -- kolmenlaisia asioita:</p>
+<ol class="list">
+<li>Data (tieto, informaatio). Tietotyyppejä on erilaisia, ja olemme tavanneet näistä kolme. Vastaavat Ruby-tyypit sulkeissa:<ul class="list">
+<li>Merkkijonot (String)</li>
+<li>Numerot (Fixnum, Float)</li>
+<li>Taulukot (Array), jotka voivat sisältää mitä vain tietotyyppejä, mukaanlukien taulukoita[^fn-array]</li>
+</ul>
+</li>
+<li>Funktioita/metodeja, joilla tiedolle voidaan tehdä operaatioita<ul class="list">
+<li>Edellisessä esimerkissä käytettiin <em>taulukkometodeja</em> pituuden hakemiseen (<code>length</code>), ja <code>sort</code> palautti siihen liittyvän taulukon, aakkosjärjestyksessä. <code>upcase</code> taas palautti merkkijonon isoilla kirjaimilla.</li>
+</ul>
+</li>
+<li>Tutustuimme pintapuolisesti muuttujiin, jotka ovat vain nimiä asioille tietokoneen muistissa</li>
+</ol>
+<h2 id="-lyk-s-toiminta"><a class="header-link" href="#-lyk-s-toiminta"></a>Älykäs toiminta</h2>
+<p>Kuvittele ohjelmoivasi robottia, joka jauhaa ja tarjoilee kahvia. Sellaista oikein hyvää kahvia, jossa on päällä vähän
+kermaa, kanelia ja suklaalastuja sekä ripaus sokeria pinnalla. Ja kardemummaa. Ei saa unohtaa kardemummaa.</p>
+<p>Kuvittele myös, että osaisin oikeasti piirtää kuvia, ja tässä olisi kiva, taiteellinen kuvitus missä joviaali robottimme tarjoilee kupposen kuumaa kahvia. No niin.</p>
+<p>Oletetaan, että samainen robotti on ohjelmoitu tarjoamaan täsmälleen 80cl kahvia ja 40cl kermaa jokaiseen kupilliseen. Koodi saattaisi näyttää tällaiselta:</p>
+<pre class="hljs"><code>bot = Robot.new(<span class="hljs-string">"Jeeves the Valiant Valet"</span>)
+
+bot.pour_coffee(<span class="hljs-number">800</span>) <span class="hljs-comment"># Robottimme käyttää ehkä millilitroja nesteiden yksikköinä</span>
+bot.spray_whipped_cream(<span class="hljs-number">400</span>)
+bot.sprinkle_chocolate_chips(<span class="hljs-number">5</span>) <span class="hljs-comment"># grammoja luultavasti</span>
+bot.sprinkle_cinnamon(<span class="hljs-number">1</span>) <span class="hljs-comment"># grammoja nämäkin (mikä on kanelin LD50???)</span>
+bot.frost_with_sugar
+bot.lotsa_cardamom(<span class="hljs-number">100</span>)  <span class="hljs-comment"># ...</span></code></pre><p>Jos kaikki on hyvin, metallinen ystävämme surisisi iloisesti ympäriinsä hyvää kahvia tarjoillen. Kaikki tähän mennessä hyvin.</p>
+<p>Nyt kuvittele, että joku raasu tönäisisi vahingossa kahvikuppia. Silloin tuo kiehuvan kuuma neste päätyisi lattialle sotkien mattosi, tai vielä pahempaa, se voisi satuttaa pörröistä <a href="http://www.scottishfoldlove.com/">skottilaskostasi</a> :( Mitä tehdä?</p>
+<p>Välttääksemme jatkossa aiheuttamasta karvaita kokemuksia kissalle, voimme tehdä asioita <em>ehdollisesti</em>. Mikäli jokin ehto täyttyy, tee näin. Muutoin tee noin.</p>
+<p>Jokaisessa ohjelmointikielessä on jonkinlainen tapa tähän. Niistä yleisin on <code>if</code>-lause:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> &lt;ehtolause&gt;
+  <span class="hljs-comment"># suoritettava koodi, kun ehto on tosi</span>
+<span class="hljs-keyword">else</span>
+  <span class="hljs-comment"># suoritettava koodi, kun ehto ei ole tosi</span>
+<span class="hljs-keyword">end</span></code></pre><p>Huomaa että merkintätapa <code>&lt;juttuloita&gt;</code> tarkoittaa, että <code>juttuloita</code> ei pidä kirjoittaa sellaisenaan, vaan korvata se vastaavalla lausekkeella. Tässä tapauksessa <code>&lt;ehtolause&gt;</code> tarkoittaa jotain Ruby-koodia, joka vastaa arvoa <code>true</code> tai <code>false</code>. Esimerkkejä: <code>my_number &lt; 42</code>,
+<code>a_string == &quot;cat&quot;</code>, <code>array.size &gt; 3</code>.</p>
+<p>Oletetaan että kaikki Jeeves-robottimme juomia kaatavat toiminnot käyttävät sisäistä apumetodia<code>inject</code>:</p>
+<pre class="hljs"><code>nozzle.inject(<span class="hljs-string">'coffee'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">800</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'pour'</span>)
+nozzle.inject(<span class="hljs-string">'cream'</span>, <span class="hljs-symbol">amount:</span> <span class="hljs-number">400</span>, <span class="hljs-symbol">manner:</span> <span class="hljs-string">'spray'</span>)</code></pre><p>Välttääksemme onnettomuuksia meidän täytyy tunnistaa, onko kuppi suutinten
+alla vai ei. Muokkaisimme siis metodia <code>inject</code> seuraavasti:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">inject</span><span class="hljs-params">(substance, options)</span></span>
+  ...
+  <span class="hljs-keyword">if</span> sensor.cup_detected?
+    actually_inject_stuff(substance, options)
+  <span class="hljs-keyword">else</span>
+    system.alert(<span class="hljs-string">"Please do set your favourite container of hot beverages "</span>
+                 <span class="hljs-string">"to appropriate position and alignment"</span>)
+  <span class="hljs-keyword">end</span>
+<span class="hljs-keyword">end</span></code></pre><p>Nyt olemme korjanneet ongelman! Jos metodi <code>sensors.cup_detected?</code> palauttaa arvon
+<code>true</code>, kutsumme metodia <code>actually_inject_stuff</code>. Muutoin se huomauttaa käyttäjälle asiasta. Emme kuitenkaan korjanneet sitä <em>ihan</em> vielä. Miksi?</p>
+<p>Jos kuppia siirretään metodia <code>actually_inject_stuff</code> suoritettaessa, emme huomaa sitä, koska tarkistimme tilanteen vain ehtolauseen alussa. Voimme tehdä tämän vielä paremmin, mutta tarvitsemme siihen vielä if-lausetta kehittyneempiä rakenteita.</p>
+<h3 id="tosi-vai-ep-tosi"><a class="header-link" href="#tosi-vai-ep-tosi"></a>Tosi vai epätosi</h3>
+<div class="tip">
+<code>nil</code> tarkoittaa yksinkertaisuudessaan <em>arvon puuttumista</em>. Esimerkiksi pyydettäessä tyhjän taulukon ensimmäistä arvoa Ruby palauttaa <code>nil</code> koska kaikkien Ruby-kielisten lausekkeiden pitää palauttaa <em>jotain</em>. Se siis vain tarkoittaa, että arvoa ei ole olemassa.
+</div>
+
+<p>Aiemmin sanoin, että <code>if</code> suorittaa ensimmäisen haaran
+vain, jos ehto on tosi. Mikä sitten on totta? Rubyssä mikä hyvänsä, jonka arvo EI ole <code>false</code> tai <code>nil</code>:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> <span class="hljs-number">0</span>
+  puts <span class="hljs-string">"tämä tulostuu"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">if</span> <span class="hljs-string">""</span>
+  puts <span class="hljs-string">"näet myös minut"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">if</span> []
+  puts <span class="hljs-string">"ja minut"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">nil</span>
+  puts <span class="hljs-string">"..mutta minua ei tulosteta!"</span>
+<span class="hljs-keyword">end</span></code></pre><p>Yleisen tapa tuottaa jokin totuusarvo tapahtuu vertailemalla asioita. Esimerkkejä:</p>
+<pre class="hljs"><code><span class="hljs-comment"># conditions.rb</span>
+<span class="hljs-number">2</span> &lt; <span class="hljs-number">3</span>          <span class="hljs-comment"># true</span>
+<span class="hljs-number">3</span> &lt; <span class="hljs-number">3</span>          <span class="hljs-comment"># false</span>
+<span class="hljs-number">40</span> &gt;= <span class="hljs-number">38</span> + <span class="hljs-number">2</span>   <span class="hljs-comment"># true</span>
+<span class="hljs-string">'banana'</span> == <span class="hljs-number">4</span>  <span class="hljs-comment"># false, huomaa kaksinkertainen '=='</span>
+foo = <span class="hljs-number">5</span>        <span class="hljs-comment"># sijoitus muuttujaan 5, ei vertailu!</span>
+foo == <span class="hljs-number">5</span>       <span class="hljs-comment"># vertailu, true, koska foo:n arvo on viisi</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">'cat'</span>    <span class="hljs-comment"># true</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">'feline'</span> <span class="hljs-comment"># false</span>
+<span class="hljs-string">'cat'</span> == <span class="hljs-string">'Cat'</span>    <span class="hljs-comment"># false</span>
+<span class="hljs-string">'cute kitten'</span> == <span class="hljs-string">'cute '</span> + <span class="hljs-string">'kitten'</span> <span class="hljs-comment"># true</span></code></pre><p>Syy sille miksi sekä <code>foo == 5</code> että <code>&#39;cute kitten&#39; == &#39;cute &#39; + &#39;kitten&#39;</code>
+ovat tosia johtuu tietenkin siitä, että Ruby ei vertaa keskenään <em>literaalia koodia</em> minkä kirjoitit, vaan Ruby
+<em>evaluoi</em> eli laskee vertailuoperaattorin molemmin puolin olevan lausekkeen arvon. Vertailuoperaattoreita ovat tässä esim. <code>==</code> ja <code>&gt;</code>.</p>
+<div class="tip">
+Usein kuulet puhuttavan termistä &quot;boolean&quot;, kun puhutaan asioista jotka voivat olla tosia tai epätosia. Se johtuu matemaatikko George Boolesta, ja siten ohjelmistotieteilijät puhuvat usein &quot;Boolen logiikasta&quot;. Puhumme tästä vielä lisää siitä, kun pääsemme mutkikkaampiin ehtolauseisiin.
+</div>
+
+<p>Lähes mikä hyvänsä kieliopillisesti oikea koodi mitä kirjoitat Rubyssä, on <em>lauseke</em> (engl. expression) tai lista useita sellaisia. Jokaisella lausekkeella on jokin arvo. Esimerkiksi yksinkertaisen lausekkeen <code>2</code> arvo on vain <code>2</code>. <code>&quot;kitten&quot;</code>:in arvo on <code>&quot;kitten&quot;</code>, kuten minkä hyvänsä literaalin arvo on sama kuin itse literaali. Lauseke <code>38+2</code>, joka koostuu kahdesta numeerisesta literaalista, <em>evaluoituu</em> 40:ksi. Se on siten yhtä suuri literaaliarvon <code>40</code> kanssa. Helpommin sanottuna tulkki vertailee lausekkeiden arvoja,
+ei sitä miten ne on kirjoitettu.</p>
+<p>Helppo tapa tulla sinuiksi lausekkeiden kanssa on kokeilla leikkimällä Pry:llä, käyttäen erilaisia lausekkeita ja komentoja. Suositankin tekemään niin nyt, ja kokeilemaan esimerkiksi vertailuoperaatioita. Huomaa myös, että koska jokainen rivi minkä kirjoitat on jonkinlainen lauseke, joten Pry palauttaa jokaisella rivillä jonkin arvon. Jos lausekkeella ei ole mielekästä arvoa (kuten tulostettaessa tekstiä), arvo on <code>nil</code>.</p>
+<h3 id="yhteenveto-1"><a class="header-link" href="#yhteenveto-1"></a>Yhteenveto</h3>
+<p>Yleiskielessä puhumme esimerkiksi &quot;mikroaaltouunin ohjelmoinnnista&quot; tai &quot;ohjelmoitavasta pesukoneesta&quot;. Tässä asiayhteydessä kyse ei kuitenkaan tarkkaan ottaen ole ohjelmoinnista vaan yksinkertaisesti joidenkin komentojen <em>sekvensoinnista</em>, eli asioiden suorittamisesta peräjälkeen, joka kerta samalla tavalla.</p>
+<p>Kun puhumme tietokoneista, tarvitsemme kolme perusasiaa, jotta voimme tehdä periaatteessa <strong>mitä hyvänsä</strong> (ja tarkoitan termillä mitä hyvänsä todella mitä vain, mikä on ylipäätään edes teoreettisesti mahdollista):</p>
+<ol class="list">
+<li>Tee joukko asioita. Ensiksi suorita jotain, sitten joitain muita juttuja.</li>
+<li>Tee jotain ehdollisesti. Kun tämä on voimassa, tee näin. Muutoin tee jotain muuta (tai älä tee mitään)</li>
+<li>Toisto</li>
+</ol>
+<p>Ajattele tätä hetki: mitä toimintoja ja millaisen käyttöliittymän mikroaaltouunin tulisi tarjota, jos se olisi aidosti käyttäjän ohjelmoitavissa, siis jos ohjelmoitavuus tarkoittaisi samaa kuin em. 3 asiaa?</p>
+<h2 id="toistaminen"><a class="header-link" href="#toistaminen"></a>Toistaminen</h2>
+<p>Kuvittele, että sinulla on lista asioita tehtävinä, ja haluat muotoilla ne siististi:</p>
+<pre class="hljs"><code><span class="hljs-comment"># todo.rb</span>
+todo_list = [<span class="hljs-string">'siivoa keittiö'</span>, <span class="hljs-string">'osta maitoa'</span>, <span class="hljs-string">'varaa aikaa Rubyn opetteluun'</span>, <span class="hljs-string">'harkitse kissan hankkimista'</span>]
+
+<span class="hljs-comment"># muista, että listan indeksointi alkaa nollasta</span>
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">0</span>].capitalize
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">1</span>].capitalize
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">2</span>].capitalize
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">3</span>].capitalize</code></pre><p>Koodi tulostaisi kyllä kaikki tehtävät, mutta se näyttää tarpeettoman kankealta. Siinä on tarpeetonta toistoa, ja mieti miltä se näyttäisi, jos siinä olisi 100 tehtävää. Varmasti pystymme parempaan!</p>
+<p>Rubyssä kaikki tietotyypit jotka voivat <em>sisältää</em> juttuja -- ohjelmistotieteilijät puhuvat <em>kokoelmista</em> (engl. <em>collections</em>) tai asioista, joiden yli voit <em>iteroida</em> -- tukevat metodia <code>each</code>. Taulukot ovat kokoelmia asioista, joten voimme korvata ylläolevan huomattavasti siistimmällä versiolla:</p>
+<pre class="hljs"><code><span class="hljs-comment"># todo2.rb</span>
+todo_list = [<span class="hljs-string">'siivoa keittiö'</span>, <span class="hljs-string">'osta maitoa'</span>, <span class="hljs-string">'varaa aikaa Rubyn opetteluun'</span>, <span class="hljs-string">'harkitse kissan hankkimista'</span>]
+
+todo_list.each <span class="hljs-keyword">do</span> |entry|
+  puts <span class="hljs-string">"TODO: "</span> + entry.capitalize
+<span class="hljs-keyword">end</span></code></pre><p>Älä murehdi tässä vaiheessa merkinnästä <code>|..|</code>. Nyt toistorakenteen <code>each</code> ansiosta meidän ei tarvitse tietää ensinkään, mikä on taulukon koko. Koodi toimisi yhtä lailla vaikka siinä olisi vain yksi tietue, 100 miljardia, tai jopa tyhjä lista; silloin se vain ei tulostaisi mitään.</p>
+<p>Samoin jos haluamme vaihtaa tiedon esitystapaa, se muutos tarvitsee tehdä vain kerran yhdelle riville, ja muutos vaikuttaa
+jokaiseen tulostettavaan riviin.</p>
+<p>Puhutaan nyt hieman lisää kielen syntaksista, ts. Rubyn kieliopista. Siihen tottuu nopeasti. Toinen esimerkki:</p>
+<pre class="hljs"><code><span class="hljs-comment"># countdown.rb</span>
+puts <span class="hljs-string">"Lähtölaskenta alkaa"</span>
+[<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>].each <span class="hljs-keyword">do</span> |n|
+  sleep <span class="hljs-number">0</span>.<span class="hljs-number">5</span>
+  puts n
+<span class="hljs-keyword">end</span>
+puts <span class="hljs-string">"Lähtö!"</span></code></pre><p><code>do</code> aloittaa <em>koodilohkon</em> (engl. <em>block</em>). Ruby-lohko on vain pätkä Ruby-koodia siinä missä mikä hyvänsä muukin koodi. Se on olemassa enimmäkseen siksi, jotta ohjelmoija voi käsitellä useita rivejä loogisesti yhtenä kokonaisuutena. Tässä tapauksesa sekä rivit <code>sleep</code> että <code>puts</code> suoritetaan joka kerta, kun <code>each</code> käy taulukkoa läpi; <code>do..end</code> rakenne kertoo, mikä kaikki osa koodia suoritetaan
+osana toistorakennetta. Koodi <code>puts &quot;Lähtö!&quot;</code> suoritetaan vain kerran, koska se ei ole enää osa <code>each</code>ia.</p>
+<p>Mielenkiintoinen osa on putkimerkkien <code>|..|</code> välissä. Ruby automaattisesti sijoittaa vuorollaan <em>kunkin kokoelman alkioista</em> (siitä nimi <em>each</em>) annettuun muuttujaaan (nimi putkimerkkien välissä), ja välittää sen lohkolle. Lohko saa siis <em>jokaisen kokoelman alkion</em>  vuorollaan, annetussa järjestyksessä. Näin ollen kuvatussa tapauksessa <code>puts</code>:ia kutsutaan viisi kertaa, <code>n</code> saaden kaikki arvot 5, 4, 3, 2 ja 1. Kokeile annettua koodia, ja kokeile sitä myös muuttamalla listan arvoja. Voit myös korvata koko listan range-tyyppisellä rakenteella, jolloin sinun ei tarvitse luetella kaikkia arvoja: esim <code>(1..10).reverse_each</code> (sama kuin each, mutta tuottaa rangen arvot käänteisessä järjestyksessä).</p>
+<p>On olemassa muitakin toistorakenteita, joskaan ei ihan yhtä yleisiä. Tarkoitus ei ole käsitellä niitä kaikkia tässä, vain kaikkein hyödyllisimmät.</p>
+<p>Yksi varsin tärkeä toistorakenne kykenee sekä toistoon että ehdolliseen suoritukseen tarkistaen ehdon aina ennen uuden kierroksen aloittamista. Se on hieman kuin <code>each</code> steroideilla:</p>
+<pre class="hljs"><code><span class="hljs-comment"># while.rb</span>
+start_time = Time.now
+<span class="hljs-keyword">while</span> (Time.now - start_time) &lt; <span class="hljs-number">5</span>
+  puts <span class="hljs-string">"Minun pitäisi perehtyä tähän Rubyyn."</span>
+  sleep(rand)
+<span class="hljs-keyword">end</span></code></pre><p>Osaatko arvata, mitä ohjelma tekee? Ensiksi se tallentaa senhetkisen kellonajan muuttujaan <code>start_time</code>. Sitten se suorittaa silmukkaa niin pitkään, kunnes kellonajan ja aloitusajan ero on vähintään 5 sekuntia (<code>start_time</code> ei muutu kun se on kerran asetettu, kun taas <code>Time.now</code> palauttaa joka kerta eri arvon, koska se palauttaa senhetkisen kellonajan).</p>
+<p>Vielä yksinkertaisemmin, koodi toistaa silmukkaa 5 sekunnin ajan, pysähtyen satunnaiseksi ajaksi joka kierroksella. Koska <code>rand</code> palauttaa ilman parametreja satunnaisluvun väliltä <code>0.0 .. 1.0</code>, ohjelma nukkuu kierrosten välissä keskimäärin 0.5 sekuntia.</p>
+<p>Huomaa myös, että samoin kuin mikä muukin vertailu, <code>while</code> ei välitä ehdosta kunhan se on jotain, millä on totuusarvo. Rubyssä mikä hyvänsä lauseke on tosi, kunhan sen arvo on <em>muuta</em> kuin <code>false</code> tai <code>nil</code>. Ehtolauseke voi tarkistaa, onko vedenpinnan korkeus vesisäiliössä jonkin rajan alapuolella, tai onko Fluffy-kissalla tarpeeksi tonnikalaa. Se voi tarkistaa onko kiertoradan periapsis (matalin piste) riittävän korkealla, tai mitä hyvänsä. Ainoa millä on väliä on ehtolauseen paluuarvo.</p>
+<p>Ohessa muutamia harjoituksia. Mieti jokaista riviä ja mikä on sen totuusarvo ehtolauseessa (esim. <code>if</code> tai <code>while</code>):</p>
+<pre class="hljs"><code><span class="hljs-number">2</span> == <span class="hljs-number">2</span>
+<span class="hljs-string">'kissa'</span> == <span class="hljs-string">"kissa"</span>
+<span class="hljs-string">'koira'</span> != <span class="hljs-string">'kissa'</span>
+<span class="hljs-number">1</span> &lt; <span class="hljs-number">0</span>
+<span class="hljs-number">3</span> == <span class="hljs-number">12</span> / <span class="hljs-number">4</span>
+<span class="hljs-string">'false'</span>
+<span class="hljs-keyword">false</span>
+[<span class="hljs-keyword">false</span>]
+<span class="hljs-string">''</span>
+<span class="hljs-keyword">nil</span>
+[]
+<span class="hljs-number">0</span></code></pre><p>On tärkeää ymmärtää, että while-silmukka toistaa koodia välillä <code>while</code> .. <code>end</code> niin pitkään kun ehto on tosi. Ehto tarkistetaan ensimmäisellä kerralla ja uudestaan joka kerta sen jälkeen, kun silmukan viimeinen rivi on suoritettu, ja <em>vain silloin</em>. Silmukan suorittaminen ei lopu esim. silloin, jos ehtolauseen arvo muuttuisi epätodeksi silmukan suorittamisen aikana. Huomaa myös, että simukka on niinsanottu ikuinen silmukka, jos ehto ei ole koskaan epätosi. Esimerkiksi seuraava ohjelma ei koskaan lopeta suoritusta:</p>
+<pre class="hljs"><code><span class="hljs-keyword">while</span> <span class="hljs-keyword">true</span>
+  puts <span class="hljs-string">"tämä toistuu loputtomiin"</span>
+  sleep <span class="hljs-number">0</span>.<span class="hljs-number">2</span>
+<span class="hljs-keyword">end</span></code></pre><div class="tip">
+Sen päätteleminen päättyykö joidenkin silmukoiden suorittaminen koskaan ei ole aina triviaalia. Ohjelmistotieteessä tämä tunnetaan nimellä <a href="https://en.wikipedia.org/wiki/Halting_problem">Halting problem</a>
+</div>
+
+<p>Ainoa tapa lopettaa ohjelma tällaisessa tilanteessa on lopettaa se pakkokeinoin. Onneksi se onnistuu tässä tapauksessa vain sanomalla terminaalissa <code>ctrl+c</code>. Voit kokeilla tätäkin jos haluat.</p>
+<p>Tässä vaiheessa on hyvä vetää syvään henkeä, koska olemme saavuttaneet merkittävän etapin: tiedät nyt kaikki tarpeelliset käsitteet, mitä tarvitaan  <em>mielivaltaisen tietokone-ohjelman toteuttamiseen</em>. Luit oikein, minkä hyvänsä! Siistiä, eikö?</p>
+<p>Isompien ohjelmien tekeminen vain näillä tiedoilla olisi melkoisen vaikeaa, mutta kuitenkin varsin mahdollista!</p>
+<p>Voimme laskea juttuja, liittää yhteen merkkijonoja, sijoittaa arvoja muuttujiin. Voimme tehdä päätöksiä riippuen juttujen arvoista, ja voimme toistaa juttuja.</p>
+<p>Nämä ovat <em>kaikkien</em> tietokone-ohjelmien rakennusaineita. Kaikki muu on vain yksityiskohtia, ja em. ajatusten soveltamista.</p>
+<div class="tip">
+<p>Toisinaan ihmiset puhuvat &quot;ohjelmoinnista&quot; ja &quot;koodaamisesta&quot; sekaisin. Kuitenkaan esimerkiksi HTML:n kirjoittaminen ei ole ohjelmointia, vaikka sitä voidaan kutsua koodaamiseksi. Koodaaminen on väljästi vain asioiden esittämistä jossain toisessa muodossa, mikä voi olla ohjelmointia (Ruby) tai asian esittämistä jossain toisessa muodossa (HTML). Kuitenkaan koska esim. HTML:ssä ei ole ehtolauseita eikä toistoa, se ei voi olla ohjelmointikieli, eikä siten HTML:n kirjoittaminen ole ohjelmointia, vaikka se onkin koodausta. Kaikki ohjelmointi on siten koodausta, mutta kaikki koodaus ei ole ohjelmointia. Huh!
+</p>
+
+<p>
+On myös varsin epämielekästä sanoa, että HTML:ssä olisi mitään &quot;toimintoja&quot; tai että se &quot;suorittaisi&quot; mitään, vaikka tietystä näkökulmasta voitaneen ajatella esim. <em>title</em> -elementin olevan &quot;funktio&quot;, joka näyttää dokumentin otsikon. Tavallaan. Mutta sinun pitäisi vähintäänkin irvistää hieman, jos joku sanoo niin. Mainittu virhekäsitys lienee yleinen siksi, että HTML:n sekaan voidaan upottaa kyllä ohjelmointikieltä (esim.  JavaScript), mutta JavaScript ei silti ole osa HTML:ää. Se on ohjelmointikieli.
+</p>
+</div>
+
+<h3 id="yhteenveto-2"><a class="header-link" href="#yhteenveto-2"></a>Yhteenveto</h3>
+<p>Opimme nyt viimeisimpänä toiston. Meillä on kahdenlaisia toistorakenteita/silmukoita:</p>
+<ol class="list">
+<li><code>each</code> toimii kaikkien kokoelmien (kuten taulukko) kanssa, eikä sen kanssa tarvitse tietää kuinka monta alkiota kokoelmassa on</li>
+<li><code>while</code> toistaa silmukkaa niin pitkään, kun sen yhteydessä annettu ehtolause on tosi</li>
+</ol>
+<p><code>while</code> on sikäli ilmaisuvoimaisin, että sen avulla voidaan toteuttaa mikä hyvänsä silmukka, mutta <code>each</code> on usein kätevämpi ja tiiviimpi, kun pitää käsitellä kokoelman kaikki alkiot jotenkin.</p>
+<p>Voisit hakea tässä vaiheessa kupin lämmintä lempijuomaasi, olet sen ansainnut! Miettien hieman samalla juuri oppimiasi asioita. Ole hyvä ja rapsuta samalla lemmikkikoiraasi tai kissaasi, jos sinulla sellainen on. Hevosen taputtaminen on ok sekin :3</p>
+<p>[^fn-array] Jep, sisäkkäisyydellä ei ole rajaa, eli taulukko voi sisältää toisia taulukoita: <code>[1, [2, 3], [4, [[5], [6]]]]</code> ja toisinaan vielä mutkikkaammatkin taulukot ovat tarpeen.</p>
+<h3 id="harjoituksia"><a class="header-link" href="#harjoituksia"></a>Harjoituksia</h3>
+<h4 id="vinkkej-"><a class="header-link" href="#vinkkej-"></a>Vinkkejä</h4>
+<p>Allaolevissa harjoituksissa on tarpeen tietää seuraavaa:</p>
+<ul class="list">
+<li>Toistaaksesi jotain tarkalleen n kertaa, voit sanoa <code>n.times { |i| # koodi, jota toistetaan n kertaa }</code>. <code>i</code> tässä lohkossa on laskuri, joka saa järjestyksessä vuorollaan kaikki arvot väliltä 0 .. n-1. Silmukka siis toistuu n kertaa (muista, että ohjelmoidessa laskenta alkaa yleensä aina luvusta 0).</li>
+<li><code>puts</code> tulostaa automaattisesti rivinvaihdon merkkijonon perään, kun taas <code>print</code> ei. <code>puts</code> ilman parametria tulostaa pelkän rivinvaihdon, mikä on toisinaan kätevää.</li>
+<li><code>||</code> tarkoittaa loogista &quot;tai&quot;-operaatiota. Siten lauseke <code>if 2 &gt; 3 || 2 &gt; 1</code> on tosi, koska ainakin operaattorin toinen puoli (2 &gt; 1) on tosi</li>
+<li><code>&amp;&amp;</code> on looginen &quot;ja&quot;. Lauseke <code>foo &amp;&amp; bar</code>on tosi vain silloin, kun operaattorin molemmat puolet (<code>foo</code> että <code>bar</code>) ovat tosia.</li>
+</ul>
+<p><strong>Tärkeää</strong>: yleisesti helpoin tapa ratkaista ongelma on tehdä ensiksi ratkaisu, joka vie ratkaisua edes jotenkin oikeaan suuntaan, vaikka ei olisikaan heti toimiva versio. Itse asiassa kukaan tietämäni ammattilainen ei kirjoita mitään ohjelmaa heti toimivaksi, vaan pienissä osissa sinne päin, tarkentaen ja korjaten ongelmia vähitellen. Tässä tapa miten luultavasti ratkaisisin ensimmäisen tehtävän, jos kieli olisi minulle täysin uusi:</p>
+<ol class="list">
+<li>Tulosta vain yksi &#39;.&#39; -merkki -- kyllä, luit ihan oikein :) Silloin osaan tulostaa tekstiä, ja varmasti suorittaa ohjelman</li>
+<li>Tulosta yksi rivi &#39;.&#39; -merkkejä, siten että kerron rivin pituuden numeerisesti sen sijaan, että kopioisin merkkien määrän</li>
+<li>Tulosta yksi rivi &#39;.&#39; -merkkejä, siten että tulostettavan rivin pituus on muuttujassa.</li>
+<li>Kääri edellinen ratkaisu toistorakenteeseen, joka toistaa em. koodin halutun määrän kertoja (tässä 5 kertaa). Sitten ohjelma onkin valmis!</li>
+</ol>
+<h4 id="harjoitusteht-v-t"><a class="header-link" href="#harjoitusteht-v-t"></a>Harjoitustehtävät</h4>
+<p>Kirjoita ohjelma, joka</p>
+<div class="tip">
+Rubussä on monta tapaa toistaa asioita. <code>Integer#times</code> on näistä vain yksi (merkintä tarkoittaa, että mille vain kokonaisluvulle on olemassa metodi <code>times</code> kuten <code>42.times</code>). Samoin huomaa, että jos koodisi merkkien <code>{ .. }</code> välissä koostuu useammasta kuin yhdestä rivistä, aaltosulkeet <code>{ .. }</code> on tapana korvata merkinnällä <code>do .. end</code>. Ne toimivat täsmälleen samoin koodilohkoissa, mutta <code>do .. end</code> on idiomaattinen tapa kirjoittaa lohko, jos se koostuu useasta rivistä.
+</div>
+
+<ul class="list">
+<li>tulostaa 5x10 suorakaiteen käyttäen merkkiä &#39;.&#39;. Älä vain kopioi allaolevaa sellaisenaan, vaan käytä toistorakennetta. Tuloksen pitäisi näyttää tältä:<pre class="hljs"><code><span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.</code></pre></li>
+<li><p>tulostaa täytetyn suorakaiteen siten, että pituus ja korkeus annetaan komentoriviparametreina. Esim. <code>ruby rectangle.rb 4 7</code> tulostaisi</p>
+<pre class="hljs"><code><span class="hljs-meta">#######</span>
+<span class="hljs-meta">#.....#</span>
+<span class="hljs-meta">#.....#</span>
+<span class="hljs-meta">#######</span></code></pre><p>Komentoriviparametrit voit lukea aina muuttujasta <code>ARGV</code>. Ruby tarjoaa sen kaikille ohjelmille, vaikka et sitä käyttäisi. Jos parametreja ei ole (kuten 1. tehtävässä), taulukko on yksinkertaisesti tyhjä (huomaa ero tyhjän taulukon ja <code>nil</code>in välillä!)</p>
+</li>
+<li><p>tulosta täytetty kolmio. Ohjelman pitäisi ottaa parametrina kannan pituus / korkeus, siten että <code>ruby triangle.rb 8</code>tulostaa</p>
+<pre class="hljs"><code><span class="hljs-meta">#</span>
+<span class="hljs-meta">##</span>
+<span class="hljs-meta">#.#</span>
+<span class="hljs-meta">#..#</span>
+<span class="hljs-meta">#...#</span>
+<span class="hljs-meta">#....#</span>
+<span class="hljs-meta">#.....#</span>
+<span class="hljs-meta">########</span></code></pre></li>
+<li>entä jos kolmio pitäisi kääntää toisinpäin, kuten alla?<pre class="hljs"><code>       <span class="hljs-comment">#</span>
+      <span class="hljs-comment">##</span>
+     <span class="hljs-comment">#.#</span>
+    <span class="hljs-comment">#..#</span>
+   <span class="hljs-comment">#...#</span>
+  <span class="hljs-comment">#....#</span>
+ <span class="hljs-comment">#.....#</span>
+<span class="hljs-comment">######</span><span class="hljs-comment">##</span></code></pre></li>
+</ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+</body>
+</html>

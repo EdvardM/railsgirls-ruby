@@ -66,9 +66,9 @@ practically no limits to what one can accomplish with programming, even the
 most complex ones contain components that consist of more simple components,
 until the component deals with just basic language primitives.</p>
 <p>Those basic primitives are things that every program contains, and quite
-complex things can be done easily by using just those. Primitive such as
+complex things can be done easily by using just those. Primitives such as
 variables, conditional statements, loops and basic data types like arrays,
-numbers and strings (you can think of simple text being made of one or more strings).</p>
+numbers and strings.</p>
 <p>This guide is intended to make those primitives familiar to any reader.</p>
 <h3 id="why-yet-another-tutorial-"><a class="header-link" href="#why-yet-another-tutorial-"></a>Why yet another tutorial?</h3>
 <p>There are several better tutorials, but I find even the shortest of those tag
@@ -146,11 +146,12 @@ nothing by itself. Even simple text needs to printed for someone to be able to
 read it. Here the <strong>string</strong> <code>&quot;Oh my, cinnamon buns!&quot;</code> is the data, as well as
 <code>&quot;Kittens are &quot;</code>, <code>&quot;so fluffy&quot;</code> and so on. <code>puts</code> is the function that <em>does
 something with data</em>, which is just printing whatever is fed to the function.
-<code>upcase</code> is also a kind of function, acting on the string itself.</p>
+<code>upcase</code> is also a kind of function, acting on the string itself. Note that when we talk of strings, we basically mean text, as opposed to say, numbers: <code>1</code> is a number you can do arithmetic with like add, multiply etc, while <code>&quot;1&quot;</code> is a string. <code>&quot;1&quot; + 2</code> makes no sense in Ruby (which is good).</p>
 <p>While the first example just prints a string, the second joins (or
 <em>concatenates</em>) two strings together by using <code>+</code> operator (in Ruby that&#39;s
 also a function!). Note that I needed to add trailing space to the string
 <code>&quot;Kittens are &quot;</code>, otherwise it would have printed <code>Kittens areso fluffy</code>.</p>
+<p>Also note that &quot;printing&quot; here has nothing to do with printing on paper, when I say &quot;print&quot; it just needs printing lines to your terminal window or console, not to printer. You don&#39;t need to waste paper here :)</p>
 <p>The last part prints something to the screen in rather demanding manner, due
 to <code>upcase</code> function that is &quot;tied&quot; to strings only.</p>
 <p>Also note that you can have either zero or any number of blank lines between
@@ -220,12 +221,12 @@ to eg. give shorter, descriptive names, or to avoid repeating things that are
 relatively expensive to compute, saving current state
 etc. But arguably the most common reason to use those is to give things
 descriptive names. Consider the following:</p>
-<pre class="hljs"><code>users.select { |u| !u.admin? &amp;&amp; u.created &gt;= <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days }.each <span class="hljs-keyword">do</span> |u|
+<pre class="hljs"><code>users.select { |u| !u.admin? &amp;&amp; u.created &gt;= Time.now - <span class="hljs-number">7</span>.days }.each <span class="hljs-keyword">do</span> |u|
   puts u
 <span class="hljs-keyword">end</span></code></pre><p>Unless the reader is quite familiar with Ruby, it is not easy to see
 what is actually printed. Next consider the version that splits up that a bit,
 using hopefully human-readable variable names:</p>
-<pre class="hljs"><code>min_creation_time = <span class="hljs-constant">Time</span>.now - <span class="hljs-number">7</span>.days
+<pre class="hljs"><code>min_creation_time = Time.now - <span class="hljs-number">7</span>.days
 recent_non_admins = users.select { |u| !u.admin? &amp;&amp; u.created &gt;=  min_creation_time }
 
 recent_non_admins.each <span class="hljs-keyword">do</span> |user|
@@ -323,7 +324,7 @@ So there.</p>
 <p>With the picture in your head, imagine you had programmed the robot to pour
 exactly 80cl of coffee and 40cl of cream to each cup. The code might look roughly
 like this:</p>
-<pre class="hljs"><code>bot = <span class="hljs-constant">Robot</span>.new(<span class="hljs-string">"Jeeves the Valiant Valet"</span>)
+<pre class="hljs"><code>bot = Robot.new(<span class="hljs-string">"Jeeves the Valiant Valet"</span>)
 
 bot.pour_coffee(<span class="hljs-number">800</span>) <span class="hljs-comment"># Our robot uses millilitres as the basic unit for fluids</span>
 bot.spray_whipped_cream(<span class="hljs-number">400</span>)
@@ -372,12 +373,26 @@ injecting stuff. But at least we check it now just before each phase.</p>
 <h3 id="of-things-true-and-false"><a class="header-link" href="#of-things-true-and-false"></a>Of things True and False</h3>
 <div class="tip">
 <code>nil</code> simply means a <em>lack of a value</em>. For example, getting the first
-element of an empty array returns nil in Ruby, as all expressions need to return <em>something</em>.
+element of an empty array returns <code>nil</code> in Ruby, as all expressions need to return <em>something</em>; it just means &quot;there is no value whatsover&quot;.
 </div>
 
-<p>I mentioned before that <code>if</code> executes the first section only if the condition
-is true. What is true, then? In Ruby, anything that is equal to <code>false</code> or <code>nil</code>.</p>
-<p>Maybe one of the most common way to get a value that is <code>true</code> or <code>false</code> is
+<p>I mentioned before that <code>if</code> executes the first branch only if the condition
+is true. What is true, then? In Ruby, anything that is NOT equal to <code>false</code> or <code>nil</code>:</p>
+<pre class="hljs"><code><span class="hljs-keyword">if</span> <span class="hljs-number">0</span>
+  puts <span class="hljs-string">"this will be printed"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">if</span> <span class="hljs-string">""</span>
+  puts <span class="hljs-string">"you'll see me too"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">if</span> []
+  puts <span class="hljs-string">"as well as me"</span>
+<span class="hljs-keyword">end</span>
+
+<span class="hljs-keyword">if</span> <span class="hljs-keyword">nil</span>
+  puts <span class="hljs-string">"..but I won't be printed!"</span>
+<span class="hljs-keyword">end</span></code></pre><p>Maybe one of the most common way to get a value that is <code>true</code> or <code>false</code> is
 by comparing things. Like any programming language, Ruby gives us many ways to
 do just that, and return a respective value:</p>
 <pre class="hljs"><code><span class="hljs-comment"># conditions.rb</span>
@@ -396,7 +411,7 @@ get to more complex conditions.
 </div>
 
 <p>The reason why both <code>40 &gt;= 38 + 2</code> and <code>&#39;cute kitten&#39; == &#39;cute &#39; + &#39;kitten&#39;</code>
-work is because they don&#39;t compare the <em>literal code</em> you typed, but Ruby
+are true is obviously because Ruby does not compare the <em>literal code</em> you typed, but Ruby
 <em>evaluates</em> the code in the both sides of the comparison operator, like <code>==</code>
 or <code>&gt;</code>.</p>
 <p>Almost any valid code you write in Ruby is an <em>expression</em> (or list of several
@@ -419,22 +434,22 @@ able to do <strong>anything</strong> (and by anything, I really mean anything th
 theoretically possible):</p>
 <ol class="list">
 <li>Do stuff in sequence. Doing some task first, then some other tasks.</li>
-<li>Do something conditionally. Given this, do this. Otherwise, do something else</li>
+<li>Do something conditionally. Given this, do this. Otherwise, do something else (or do nothing)</li>
 <li>Repetition</li>
 </ol>
 <p>Think about this a bit: what the washing machine user interface
-should allow you to do, if it was truly programmable?</p>
+should allow you to do, if it was truly programmable by user?</p>
 <p>Next we will talk about the missing third part.</p>
 <h2 id="repeating-things"><a class="header-link" href="#repeating-things"></a>Repeating things</h2>
 <p>Imagine you have a list things to do, and you want to format those nicely when printing:</p>
 <pre class="hljs"><code><span class="hljs-comment"># todo.rb</span>
 todo_list = [<span class="hljs-string">'clean up the kitchen'</span>, <span class="hljs-string">'buy some milk'</span>, <span class="hljs-string">'make time for learning Ruby'</span>, <span class="hljs-string">'consider acquiring a kitten'</span>]
 
-<span class="hljs-comment"># remember that indexes start from zero</span>
-puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">0</span>]
-puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">1</span>]
-puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">2</span>]
-puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">3</span>]</code></pre><p>That code would print all the items, but it sure looks awkward. It&#39;s
+<span class="hljs-comment"># remember that array indexes start from zero</span>
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">0</span>].capitalize
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">1</span>].capitalize
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">2</span>].capitalize
+puts <span class="hljs-string">"TODO item: "</span> + todo_list[<span class="hljs-number">3</span>].capitalize</code></pre><p>That code would print all the items, but it sure looks awkward. It&#39;s
 repetitive, and imagine what it would look like if there are 100 entries.
 Surely we can do better.</p>
 <p>In Ruby, all data types that <em>contain</em> stuff (CS folks talk about
@@ -445,52 +460,55 @@ version:</p>
 todo_list = [<span class="hljs-string">'clean up the kitchen'</span>, <span class="hljs-string">'buy some milk'</span>, <span class="hljs-string">'make time for learning Ruby'</span>, <span class="hljs-string">'consider acquiring a kitten'</span>]
 
 todo_list.each <span class="hljs-keyword">do</span> |entry|
-  puts <span class="hljs-string">"TODO item: "</span> + entry
+  puts <span class="hljs-string">"TODO item: "</span> + entry.capitalize
 <span class="hljs-keyword">end</span></code></pre><p>Don&#39;t worry about funny pipe characters (&#39;|&#39;) yet. First consider the
-benefits: due to the loop we don&#39;t need to care about array size. That code
+benefits: due to the <code>each</code> loop we don&#39;t need to care about array size. That code
 would work with list containing only one entry, with list containing
-100000000000 entries and even an empty list; it would just print nothing.</p>
-<p>Now let&#39;s talk about the syntax a bit. It&#39;s not that hard, once you get used
+100 000 000 000 entries and even an empty list; it would just print nothing.</p>
+<p>Also note that we don&#39;t nead to repeat the formatting part. If we make changes to formatting, that needs to be done with one line only.</p>
+<p>Now let&#39;s talk about the <em>syntax</em> -- formal grammar of a programming language -- a bit. It&#39;s not that hard, once you get used
 to it. Another example:</p>
 <pre class="hljs"><code><span class="hljs-comment"># countdown.rb</span>
-put <span class="hljs-string">"countdown started"</span>
+puts <span class="hljs-string">"Countdown started"</span>
 [<span class="hljs-number">5</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>].each <span class="hljs-keyword">do</span> |n|
+  sleep <span class="hljs-number">0</span>.<span class="hljs-number">5</span>
   puts n
 <span class="hljs-keyword">end</span>
 puts <span class="hljs-string">"go!"</span></code></pre><p>That <code>do</code> starts a <em>block</em>. A Ruby block is just, well, blob of code like any
-other ruby code. The interesting stuff is between pipes. Ruby automatically
+other ruby code. It exists mostly to allow programmer to treat several lines of code as logically one part. Here, both lines <code>sleep</code> and <code>puts</code> are repeated every time when <code>each</code> loops over the list.</p>
+<p>The interesting stuff is between pipe <code>|</code> characters. Ruby automatically
 passes <em>each item</em> (yeah, that&#39;s why the name) in the collection to that block
-in turn, assigning it to the given variable name, and executes that block <em>for
+in turn, assigning it to the given variable name (name between pipe chars), and executes that block <em>for
 each entry</em>. So, here <code>puts</code> is called five times, with <code>n</code> being assigned
-to each of the numbers in turn.</p>
-<p>There are other kinds of loops, though they are maybe not that common. However, the
+to each of the numbers in turn. Try it! Also, try changing the numbers in the list.</p>
+<p>There are other kinds of loops, though perhaps a tad less common. However, the
 idea is not to present all of those here, only the most common and useful ones.</p>
 <p>One very important loop has the ability to both repeat and check a condition
 every time before it starts a new iteration.  It&#39;s kind of like <code>each</code> with steroids.
 Enter <code>while</code>:</p>
 <pre class="hljs"><code><span class="hljs-comment"># while.rb</span>
-start_time = <span class="hljs-constant">Time</span>.now
-<span class="hljs-keyword">while</span> (<span class="hljs-constant">Time</span>.now - start_time) &lt; <span class="hljs-number">3</span>
+start_time = Time.now
+<span class="hljs-keyword">while</span> (Time.now - start_time) &lt; <span class="hljs-number">3</span>
   puts <span class="hljs-string">"I should really learn this Ruby stuff."</span>
-  sleep <span class="hljs-number">0</span>.<span class="hljs-number">5</span>
+  sleep <span class="hljs-number">0</span>.<span class="hljs-number">4</span>
 <span class="hljs-keyword">end</span></code></pre><p>Can you guess what it does? First it gets the current time, and stores that to
 variable <code>start_time</code>. Then it loops over until difference between current
-time and <code>start_time</code> is at least 3 (<code>start_time</code> does not change, while <code>Time.now</code>
+time and <code>start_time</code> is at least 3 seconds (<code>start_time</code> does not change once it has been assigned, whereas <code>Time.now</code>
 returns a different value every time, because it returns the current time).</p>
-<p>Put more simply, it repeats the loop for 3 seconds, sleeping half a second
-after each print.</p>
-<p>Note that it does not matter for <code>while</code> what the condition is. Remember that in Ruby,
-anything is true except things that reduce to <code>false</code> or <code>nil</code>.  The condition
-could compare water level in a reservoir if it is below certain limit. It
-could check if there is enough tuna for Fluffy the Cat. It could check the
-periapsis for current orbital trajectory, or whatever. The only thing that matters
-is the value of the evaluated condition.</p>
-<p>Here are some exercises: for each line, think if it would evaluate as true (in <code>if</code> or <code>while</code> context).</p>
+<p>Put more simply, it repeats the loop for 3 seconds, pysähtyen hieman alle puoleksi sekunniksi jokaisen tulostuksen jälkeen.</p>
+<p>Note that it does not matter for <code>while</code> what the condition is, as long as it
+produces anything &quot;truthy&quot;, and that in Ruby, anything is true except things
+that reduce to <code>false</code> or <code>nil</code>.  The condition could compare water level in a
+reservoir if it is below certain limit. It could check if there is enough tuna
+for Fluffy the Cat. It could check the periapsis for current orbital trajectory,
+or whatever. The only thing that matters is the value of the evaluated
+condition.</p>
+<p>Here are some exercises. For each line, think if it would evaluate as true (in <code>if</code> or <code>while</code> context):</p>
 <pre class="hljs"><code><span class="hljs-number">2</span> == <span class="hljs-number">2</span>
 <span class="hljs-string">'cat'</span> == <span class="hljs-string">"cat"</span>
 <span class="hljs-string">'dog'</span> != <span class="hljs-string">'cat'</span>
 <span class="hljs-number">1</span> &lt; <span class="hljs-number">0</span>
-<span class="hljs-number">3</span> == <span class="hljs-number">3.0</span>
+<span class="hljs-number">3</span> == <span class="hljs-number">12</span> / <span class="hljs-number">4</span>
 <span class="hljs-string">'false'</span>
 <span class="hljs-keyword">false</span>
 <span class="hljs-string">''</span>
@@ -499,8 +517,7 @@ is the value of the evaluated condition.</p>
 <span class="hljs-number">0</span>
 [<span class="hljs-keyword">false</span>]</code></pre><p>It is important to understand that while loop iterates over the code between
 <code>while</code>... <code>end</code> as long as condition is true. The condition is re-checked
-<em>every time</em> after it reaches the last line in while, and jumps back to the
-beginning, and only then. The loop will not be aborted if the  condition
+<em>every time</em> after it has finished the last line, and only then. The loop will not be aborted if the condition
 somehow would change during the execution of while body. Also note that the
 loop <em>will repeat indefinitely</em> if the condition never becomes false. For
 example, this code never terminates:</p>
@@ -508,11 +525,12 @@ example, this code never terminates:</p>
   puts <span class="hljs-string">"repeating this ad infinitum"</span>
   sleep <span class="hljs-number">0</span>.<span class="hljs-number">2</span>
 <span class="hljs-keyword">end</span></code></pre><p>The only way to end the program is by terminating it by force. Fortunately,
-you can do this simply by pressing <code>CTRL+C</code> in the terminal .Try that if you like.</p>
+you can do this simply by pressing <code>CTRL+C</code> in the terminal. Try that if you like.</p>
 <div class="tip">
 <p>People sometimes use the terms &quot;programming&quot; and &quot;coding&quot; in a mixed
-manner. For example, HTML is not strictly programming, though it can called
-<em>coding</em>. You cannot have conditionals in HTML, nor can you repeat things.</p>
+manner. For example, writing HTML is not programming, though it can be called
+coding. Coding is merely transcripting a concept or idea to some another form, which can be programming (Ruby) or using another form of representation, like a markup language (say, HTML). However, as you cannot have conditionals in HTML, nor can you repeat things in it, HTML is not programming. So, all programming is coding, but not all coding is programming. Whew!
+</p>
 
 <p>It is also somewhat of a stretch to say that any part of HTML is about &quot;acting&quot; or &quot;executing&quot;, but
 one could think of say, <em>title</em> element being a &quot;function&quot; to show the document title. Sort
@@ -522,11 +540,13 @@ you can insert (embed) programming languages to HTML, but that part is not then 
 
 <p>Now you should take a deep breath, as we have reached a very important
 milestone: you know all the concepts required to code <em>any kind of computer
-program</em>. Ever. Neat, huh? Some programs would be hard with this information
-only, but they would be doable.</p>
+program</em>. Ever. Neat, huh?</p>
+<p>Most large programs would be pretty hard to do with this information
+only, but they would be still doable!</p>
 <p>We have actions like calculating things, joining strings, assigning values to
 variables. We have the ability to make decisions based on values of things.
 And we have the ability to repeat stuff.</p>
+<p>These are the building blocks of <em>all</em> programs. Everything else is just details, and application of those ideas.</p>
 <h3 id="wrapping-up-2"><a class="header-link" href="#wrapping-up-2"></a>Wrapping up</h3>
 <p>We now learned of the last part, repetition. We had two kinds of loops:</p>
 <ol class="list">
@@ -537,49 +557,50 @@ And we have the ability to repeat stuff.</p>
 convenient and less verbose when you have a collection to process.</p>
 <p>Go get a nice, warm cup of your favourite beverage now! You&#39;ve deserved it.
 Maybe ponder all this stuff a bit. Also please pet your doggy dog or cat if you
-have one. Patting a horse is ok too.</p>
+have one. Patting a horse is ok too :3</p>
 <p>[^fn-array] Yeah, there&#39;s no limit to nesting. You could have [1, [2, 3], [4, [[5], [6]]]] and there are actually use cases for even more complex situations.</p>
 <h3 id="exercises-1"><a class="header-link" href="#exercises-1"></a>Exercises</h3>
 <p>For the following exercises, you need to be aware of the following things:</p>
 <ul class="list">
-<li>To repeat something exactly n times, you can say <code>n.times { |i| # code that is repeated n times}</code>. <code>i</code> in the code block is a counter that gets each of the values from 0 to n-1 every time the loop is executed (remember that in programming, counting usually starts from zero!).</li>
-<li><code>puts</code> automatically prints a newline after the string, while <code>print</code> doesn&#39;t. <code>puts</code> alone without any parameters just prints a newline, which comes handy</li>
-<li><code>||</code> means logical or. So the statement <code>if 2 &gt; 3 || 2 &gt; 1</code> is true, because the latter part after <code>||</code> is true</li>
+<li>To repeat something exactly n times, you can say <code>n.times { |i| # code that is repeated n times }</code>. <code>i</code> in the code block is a counter that gets each of the values from 0 to n-1 every time the loop is executed. So the loop is repeated n times. Remember that in programming, counting usually starts from zero.</li>
+<li><code>puts</code> automatically prints a newline after the string, while <code>print</code> doesn&#39;t (try it!). <code>puts</code> alone without any parameters just prints a newline, which comes handy</li>
+<li><code>||</code> means logical or. So the statement <code>if 2 &gt; 3 || 2 &gt; 1</code> is true, because 2 &gt; 1 is true</li>
+<li><code>&amp;&amp;</code> means logical and, if you need it. So an expression <code>foo &amp;&amp; bar</code> is true only when both the values <code>foo</code> and <code>bar</code> evaluate to true.</li>
 </ul>
 <p>Write a program that</p>
 <div class="tip">
-There are several ways to repeat things in Ruby. Integer#times is just one. Also note that if your code between <code>{ .. }</code> spans more than one line, it is recommended to use <code>do .. end</code> instead of braces. But it&#39;s just a matter of style! Both will do fine. Computer won&#39;t even see the difference. It&#39;s all the same.
+There are several ways to repeat things in Ruby. Integer#times is just one (this means that for any integral number, there is a method <code>times</code> like <code>42.times). Also note that if your code between</code>{ .. }<code>spans more than one line, it is recommended to use</code>do .. end` instead of braces.
 </div>
 
 
 <ul class="list">
-<li>prints out a 5x10 rectangle using <code>.</code> characters. Don&#39;t just copy-paste or type the square manually, but use loops. The result should look like this:<pre class="hljs"><code><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
-</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
-</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
-</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.
-</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-attribute">...</span><span class="hljs-built_in">.</span></code></pre></li>
-<li>prints out filled rectangle, dimensions given as command line parameters. Eg. <code>ruby rectangle.rb 4 7</code> would print<pre class="hljs"><code><span class="hljs-preprocessor">#######</span>
-<span class="hljs-preprocessor">#.....#</span>
-<span class="hljs-preprocessor">#.....#</span>
-<span class="hljs-preprocessor">#######</span></code></pre></li>
-<li>extra: print out a filled triangle. Program should take a number of rows, so that <code>ruby triangle.rb 8</code> would print<pre class="hljs"><code><span class="hljs-preprocessor">#</span>
-<span class="hljs-preprocessor">##</span>
-<span class="hljs-preprocessor">#.#</span>
-<span class="hljs-preprocessor">#..#</span>
-<span class="hljs-preprocessor">#...#</span>
-<span class="hljs-preprocessor">#....#</span>
-<span class="hljs-preprocessor">#.....#</span>
-<span class="hljs-preprocessor">########</span></code></pre></li>
-<li>extra: what if the triangle needs to be flipped around, like below?<pre class="hljs"><code>       <span class="hljs-comment">#</span>
+<li>prints out a 5x10 rectangle using <code>.</code> characters. Don&#39;t just copy-paste or type the square manually, but use loops. The result should look like this:<pre class="hljs"><code><span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.
+<span class="hljs-attr">...</span><span class="hljs-attr">...</span><span class="hljs-attr">...</span>.</code></pre></li>
+<li>prints out filled rectangle, dimensions given as command line parameters. Eg. <code>ruby rectangle.rb 4 7</code> would print<pre class="hljs"><code><span class="hljs-meta">#######</span>
+<span class="hljs-meta">#.....#</span>
+<span class="hljs-meta">#.....#</span>
+<span class="hljs-meta">#######</span></code></pre>Command line parameters are available through array <code>ARGV</code> offered by Ruby for that very purpose.</li>
+<li>print out a filled triangle. Program should take a number of rows / base length, so that <code>ruby triangle.rb 8</code> would print<pre class="hljs"><code><span class="hljs-meta">#</span>
+<span class="hljs-meta">##</span>
+<span class="hljs-meta">#.#</span>
+<span class="hljs-meta">#..#</span>
+<span class="hljs-meta">#...#</span>
+<span class="hljs-meta">#....#</span>
+<span class="hljs-meta">#.....#</span>
+<span class="hljs-meta">########</span></code></pre></li>
+<li>what if the triangle needs to be flipped around, like below?<pre class="hljs"><code>       <span class="hljs-comment">#</span>
       <span class="hljs-comment">##</span>
      <span class="hljs-comment">#.#</span>
     <span class="hljs-comment">#..#</span>
    <span class="hljs-comment">#...#</span>
   <span class="hljs-comment">#....#</span>
  <span class="hljs-comment">#.....#</span>
-<span class="hljs-comment">######</span><span class="hljs-comment">##</span></code></pre></li>
+<span class="hljs-comment">######</span><span class="hljs-comment">##</span></code></pre><h2 id="functions-schmunctions"><a class="header-link" href="#functions-schmunctions"></a>Functions schmunctions</h2>
+</li>
 </ul>
-<h2 id="functions-schmunctions"><a class="header-link" href="#functions-schmunctions"></a>Functions schmunctions</h2>
 <p>Like mentioned before, functions are means of doing things with data. They can
 be very simple (like joining two strings together) or highly complex, and
 naturally functions can call other functions.</p>
@@ -640,14 +661,14 @@ function call <code>longest_string([&#39;apple&#39;, &#39;banana&#39;, &#39;mang
 with the value <code>&quot;banana&quot;</code>, and from the callers (<code>puts</code>) point of view
 your program would work exactly the same.</p>
 <p>Let&#39;s look at another function, just to get the feel of it:</p>
-<pre class="hljs"><code><span class="hljs-constant">BAD_LANGUAGES</span> = [<span class="hljs-string">'java'</span>, <span class="hljs-string">'php'</span>, <span class="hljs-string">'basic'</span>, <span class="hljs-string">'perl'</span>, <span class="hljs-string">'c++'</span>, <span class="hljs-string">'pascal'</span>, <span class="hljs-string">'mumps'</span>]
-<span class="hljs-constant">OK_LANGUAGES</span> = [<span class="hljs-string">'ruby'</span>, <span class="hljs-string">'python'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'scala'</span>, <span class="hljs-string">'clojure'</span>]
+<pre class="hljs"><code>BAD_LANGUAGES = [<span class="hljs-string">'java'</span>, <span class="hljs-string">'php'</span>, <span class="hljs-string">'basic'</span>, <span class="hljs-string">'perl'</span>, <span class="hljs-string">'c++'</span>, <span class="hljs-string">'pascal'</span>, <span class="hljs-string">'mumps'</span>]
+OK_LANGUAGES = [<span class="hljs-string">'ruby'</span>, <span class="hljs-string">'python'</span>, <span class="hljs-string">'c'</span>, <span class="hljs-string">'scala'</span>, <span class="hljs-string">'clojure'</span>]
 
 <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">opinion_on</span><span class="hljs-params">(language)</span></span>
   lang = language.downcase
-  <span class="hljs-keyword">if</span> <span class="hljs-constant">BAD_LANGUAGES</span>.<span class="hljs-keyword">include</span>?(lang)
+  <span class="hljs-keyword">if</span> BAD_LANGUAGES.<span class="hljs-keyword">include</span>?(lang)
     <span class="hljs-string">"Uh-oh. You don't want to do this"</span>
-  <span class="hljs-keyword">elsif</span> <span class="hljs-constant">OK_LANGUAGES</span>.<span class="hljs-keyword">include</span>?(lang)
+  <span class="hljs-keyword">elsif</span> OK_LANGUAGES.<span class="hljs-keyword">include</span>?(lang)
     <span class="hljs-string">"You're in a good company"</span>
   <span class="hljs-keyword">else</span>
     lang + <span class="hljs-string">", huh? You must be weird. Or really, really awesome!"</span>
@@ -780,9 +801,9 @@ to implement some detail. For more comprehensive list of common refactorings, se
 <li>Add command line parameter to differentiate between whether you want to add value or show stuff (defaulting to show), and also for the filename to use. &#39;show&#39; will just print all lines. From this on, all versions that display stuff should do that with &#39;show&#39;.</li>
 <li><p>given number of entries in a file, prints out average (mean) of those numbers. You can use the following data
 for testing:</p>
-<pre class="hljs"><code> <span class="hljs-number">2015</span>-<span class="hljs-number">09</span>-<span class="hljs-number">02</span> <span class="hljs-number">22</span>:<span class="hljs-number">23</span>:<span class="hljs-number">00</span>;<span class="hljs-number">70</span>
- <span class="hljs-number">2015</span>-<span class="hljs-number">09</span>-<span class="hljs-number">03</span> <span class="hljs-number">14</span>:<span class="hljs-number">58</span>:<span class="hljs-number">14</span>;<span class="hljs-number">63</span>
- <span class="hljs-number">2015</span>-<span class="hljs-number">09</span>-<span class="hljs-number">04</span> <span class="hljs-number">16</span>:<span class="hljs-number">01</span>:<span class="hljs-number">25</span>;<span class="hljs-number">35</span></code></pre><p> Your program should print <code>56.0</code>. Use some other filename to avoid overwriting your own data, and skip blank lines.</p>
+<pre class="hljs"><code> 2015<span class="hljs-selector-tag">-09-02</span> 22<span class="hljs-selector-pseudo">:23</span><span class="hljs-selector-pseudo">:00</span>;70
+ 2015<span class="hljs-selector-tag">-09-03</span> 14<span class="hljs-selector-pseudo">:58</span><span class="hljs-selector-pseudo">:14</span>;63
+ 2015<span class="hljs-selector-tag">-09-04</span> 16<span class="hljs-selector-pseudo">:01</span><span class="hljs-selector-pseudo">:25</span>;35</code></pre><p> Your program should print <code>56.0</code>. Use some other filename to avoid overwriting your own data, and skip blank lines.</p>
 </li>
 <li>prints latest entry date, value of entry and average for last 5 entries (or all, if there are less)</li>
 <li>handles situations like<ul class="list">
@@ -805,13 +826,13 @@ is 140 (negative)</li>
 <li><p>as in previous step, but now including <strong>projected values</strong> after one week, at the end of month and after one month. Estimate this using recent rate (eg. last 3 days) and longer interval (eg. 14 days). In projections, indicate both. So the program could print</p>
 <pre class="hljs"><code> Projected estimates:
     Using <span class="hljs-keyword">last</span> <span class="hljs-number">3</span> days:
-       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> week: <span class="hljs-number">80.3</span>
-       - <span class="hljs-keyword">at</span> <span class="hljs-operator">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">month</span>: <span class="hljs-title">78</span>.<span class="hljs-title">0</span></span>
-       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> month: <span class="hljs-number">75.5</span>
+       - <span class="hljs-keyword">after</span> <span class="hljs-literal">one</span> week: <span class="hljs-number">80.3</span>
+       - <span class="hljs-keyword">at</span> <span class="hljs-keyword">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">month</span>: <span class="hljs-title">78</span>.<span class="hljs-title">0</span></span>
+       - <span class="hljs-keyword">after</span> <span class="hljs-literal">one</span> month: <span class="hljs-number">75.5</span>
     Using <span class="hljs-keyword">last</span> <span class="hljs-number">14</span> days:
-       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> week: <span class="hljs-number">82.5</span>
-       - <span class="hljs-keyword">at</span> <span class="hljs-operator">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">month</span>: <span class="hljs-title">79</span>.<span class="hljs-title">6</span></span>
-       - <span class="hljs-keyword">after</span> <span class="hljs-constant">one</span> month: <span class="hljs-number">79.2</span></code></pre></li>
+       - <span class="hljs-keyword">after</span> <span class="hljs-literal">one</span> week: <span class="hljs-number">82.5</span>
+       - <span class="hljs-keyword">at</span> <span class="hljs-keyword">the</span> <span class="hljs-function"><span class="hljs-keyword">end</span> <span class="hljs-title">of</span> <span class="hljs-title">month</span>: <span class="hljs-title">79</span>.<span class="hljs-title">6</span></span>
+       - <span class="hljs-keyword">after</span> <span class="hljs-literal">one</span> month: <span class="hljs-number">79.2</span></code></pre></li>
 <li><p>can track multiple types of entries, each entry type in it&#39;s own file (use custom directory for the
 code and separate directory for data files)</p>
 </li>
