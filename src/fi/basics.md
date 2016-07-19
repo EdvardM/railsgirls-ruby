@@ -232,6 +232,14 @@ end
 Edelläolevassa esimerkissä toistuu tarpeettomasti lauseke, jolla Fahrenheit-lukema 77 muunnetaan Celsius-asteiksi.
 Sama onnistuu huomattavasti mukavammin käyttämällä sopivaa muuttujaa:
 
+{tip-begin}
+Usein haluamme rakentaa merkkijonoja siten, että osa siitä rakennetaan ohjelmallisesti. Koodi
+`#{(5/9.0) * (77 - 32)}` ei tulostu sellaisenaan, vaan Ruby
+'purkaa' merkkien `#{}` sisällä oleva arvon ennen sen sijoittamista osaksi merkkijonoa. Tällöin
+tulee käyttää kaksoislaunausmerkkejä `"..."` -- lauseke `puts '1 + 0 = #{1 + 0}'` _ei_ tulosta `1 + 0 = 1`, vaan
+se tulostaisi kirjaimellisesti `1 + 0 = #{1 + 0}`.
+{tip-end}
+
 ```ruby
 degrees_celcius = (5/9.0) * (77 - 32)
 
@@ -619,7 +627,7 @@ Allaolevissa harjoituksissa on tarpeen tietää seuraavaa:
 
 Kirjoita ohjelma, joka
 {tip-begin}
-Rubussä on monta tapaa toistaa asioita. `Integer#times` on näistä vain yksi (merkintä tarkoittaa, että mille vain kokonaisluvulle on olemassa metodi `times` kuten `42.times`). Samoin huomaa, että jos koodisi merkkien `{ .. }` välissä koostuu useammasta kuin yhdestä rivistä, aaltosulkeet `{ .. }` on tapana korvata merkinnällä `do .. end`. Ne toimivat täsmälleen samoin koodilohkoissa, mutta `do .. end` on idiomaattinen tapa kirjoittaa lohko, jos se koostuu useasta rivistä.
+Rubyssä on monta tapaa toistaa asioita. `Integer#times` on näistä vain yksi (merkintä tarkoittaa, että mille vain kokonaisluvulle on olemassa metodi `times` kuten `42.times`). Samoin huomaa, että jos koodisi merkkien `{ .. }` välissä koostuu useammasta kuin yhdestä rivistä, aaltosulkeet `{ .. }` on tapana korvata merkinnällä `do .. end`. Ne toimivat täsmälleen samoin koodilohkoissa, mutta `do .. end` on idiomaattinen tapa kirjoittaa lohko, jos se koostuu useasta rivistä.
 {tip-end}
 
 * tulostaa 5x10 suorakaiteen käyttäen merkkiä '.'. Älä vain kopioi allaolevaa sellaisenaan, vaan käytä toistorakennetta. Tuloksen pitäisi näyttää tältä:

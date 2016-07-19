@@ -221,7 +221,15 @@ tallentamaan nykyinen tila jne.</p>
   puts <span class="hljs-string">"It's quite warm, <span class="hljs-subst">#{(<span class="hljs-number">5</span>/<span class="hljs-number">9.0</span>) * (<span class="hljs-number">77</span> - <span class="hljs-number">32</span>)}</span>°C!"</span>
 <span class="hljs-keyword">else</span>
   puts <span class="hljs-string">"meh, I'll play games at home"</span>
-<span class="hljs-keyword">end</span></code></pre><p>Edelläolevassa esimerkissä toistuu tarpeettomasti lauseke, jolla Fahrenheit-lukema 77 muunnetaan Celsius-asteiksi.
+<span class="hljs-keyword">end</span></code></pre><div class="tip">
+Usein haluamme rakentaa merkkijonoja siten, että osa siitä rakennetaan ohjelmallisesti. Koodi
+<code>#{(5/9.0) * (77 - 32)}</code> ei tulostu sellaisenaan, vaan Ruby
+&#39;purkaa&#39; merkkien <code>#{}</code> sisällä oleva arvon ennen sen sijoittamista osaksi merkkijonoa. Tällöin
+tulee käyttää kaksoislaunausmerkkejä <code>&quot;...&quot;</code> -- lauseke <code>puts &#39;1 + 0 = #{1 + 0}&#39;</code> <em>ei</em> tulosta <code>1 + 0 = 1</code>, vaan
+se tulostaisi kirjaimellisesti <code>1 + 0 = #{1 + 0}</code>.
+</div>
+
+<p>Edelläolevassa esimerkissä toistuu tarpeettomasti lauseke, jolla Fahrenheit-lukema 77 muunnetaan Celsius-asteiksi.
 Sama onnistuu huomattavasti mukavammin käyttämällä sopivaa muuttujaa:</p>
 <pre class="hljs"><code>degrees_celcius = (<span class="hljs-number">5</span>/<span class="hljs-number">9.0</span>) * (<span class="hljs-number">77</span> - <span class="hljs-number">32</span>)
 
@@ -488,7 +496,7 @@ On myös varsin epämielekästä sanoa, että HTML:ssä olisi mitään &quot;toi
 <h4 id="harjoitusteht-v-t"><a class="header-link" href="#harjoitusteht-v-t"></a>Harjoitustehtävät</h4>
 <p>Kirjoita ohjelma, joka</p>
 <div class="tip">
-Rubussä on monta tapaa toistaa asioita. <code>Integer#times</code> on näistä vain yksi (merkintä tarkoittaa, että mille vain kokonaisluvulle on olemassa metodi <code>times</code> kuten <code>42.times</code>). Samoin huomaa, että jos koodisi merkkien <code>{ .. }</code> välissä koostuu useammasta kuin yhdestä rivistä, aaltosulkeet <code>{ .. }</code> on tapana korvata merkinnällä <code>do .. end</code>. Ne toimivat täsmälleen samoin koodilohkoissa, mutta <code>do .. end</code> on idiomaattinen tapa kirjoittaa lohko, jos se koostuu useasta rivistä.
+Rubyssä on monta tapaa toistaa asioita. <code>Integer#times</code> on näistä vain yksi (merkintä tarkoittaa, että mille vain kokonaisluvulle on olemassa metodi <code>times</code> kuten <code>42.times</code>). Samoin huomaa, että jos koodisi merkkien <code>{ .. }</code> välissä koostuu useammasta kuin yhdestä rivistä, aaltosulkeet <code>{ .. }</code> on tapana korvata merkinnällä <code>do .. end</code>. Ne toimivat täsmälleen samoin koodilohkoissa, mutta <code>do .. end</code> on idiomaattinen tapa kirjoittaa lohko, jos se koostuu useasta rivistä.
 </div>
 
 <ul class="list">
