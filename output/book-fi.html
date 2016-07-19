@@ -85,27 +85,29 @@ on erinomainen ja kaukana kuivasta, mutta se on pitkä (suosittelen kuitenkin!).
 voisi päästä alkuun. Luotan siihen, että puuttuvat osat on helppo selittää sitä
 mukaa kun niitä tarvitaan. Aloitetaan siis!</p>
 <h3 id="k-ytetyt-merkinn-t"><a class="header-link" href="#k-ytetyt-merkinn-t"></a>Käytetyt merkinnät</h3>
+<p>Mikä hyvänsä, joka näyttää sellaiselta kuin</p>
+<pre class="hljs"><code><span class="hljs-comment"># somefile.rb</span>
+puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># tässä meillä on Ruby-koodia</span></code></pre><p>voidaan kirjoittaa suoraan ruby-kehotteeseen. Silloin Ruby <em>tulkitsee</em> ja suorittaa kirjoittamasi koodin.</p>
 <div class="tip">
-<p>Tyypillisesti tällaisissa oppaissa on lyhyt kuvaus siitä, miten Ruby asennetaan, ja miten komentokehotetta käytetään. Näistä on hyviä oppaita verkossa vaikka kuinka, joten en käsittele niitä tässä. Komentokehote löytyy Windows-ympäristössä juuri sillä nimellä, ja Macissa sekä Linuxissa tämä tunnetaan nimellä &quot;Terminaali&quot;.</p>
+<p>ruby-kehote tai ruby-tulkki (<em>engl. interpreter</em>) tarkoittaa kehotetta, mikä tulee Ruby-asennuksessa mukana. Sen saa esille komennolla <code>irb</code> tai <code>pry</code>, ks. kohta &quot;Työkalut&quot;.</p>
 
-<p>Hakusanoilla &quot;installing Ruby for X&quot; missä X on käyttöjärjestelmäsi (Linux, Mac, Windows tai joku muu) löytyy paljon hyviä asennusohjeita.
+<p>Tyypillisesti tällaisissa oppaissa on lyhyt kuvaus siitä, miten Ruby asennetaan, ja miten komentokehotetta käytetään. Näistä on hyviä oppaita verkossa vaikka kuinka, joten en käsittele niitä tässä. Komentokehote löytyy Windows-ympäristössä nimellä &quot;Command prompt&quot; (cmd.exe), Macissa ja Linuxissa nimellä &quot;Terminal&quot;.</p>
+
+<p>Hakusanoilla &quot;installing Ruby for X&quot; missä X on käyttöjärjestelmäsi (Linux, Mac, Windows tai joku muu) löytyy paljon hyviä asennusohjeita. Hieman jäljempänä on kuitenkin lyhyt ohje asentamiseen Mac- tai Linux-ympäristössä.
 </p>
 </div>
 
-<p>Mikä hyvänsä, joka näyttää sellaiselta kuin</p>
-<pre class="hljs"><code><span class="hljs-comment"># somefile.rb</span>
-puts <span class="hljs-string">"Howdy"</span> <span class="hljs-comment"># tässä meillä on Ruby-koodia</span></code></pre><p>voidaan kirjoittaa Ruby-tulkkiin. Silloin Ruby tulkitsee ja suorittaa kirjoittamasi koodin.</p>
 <p>Jos kirjoitettua koodia on luontevampi suorittaa tallentamalla koodi ensiksi tiedostoon (esimerkiksi siksi, että koodilistaus on pitkä), ehdotan tiedostonimeä ohjelmalistauksen alussa. Ylläolevassa esimerkissä ehdotan tiedostolle nimeä <code>somefile.rb</code>. Voit käyttää mitä hyvänsä muuta nimeä, mutta huomioi tämä myöhemmin suoritat ohjelmaa. Tiedostopääte <code>.rb</code> ei ole pakollinen, mutta se on yleisesti käytetty merkintätapa Ruby-kielisille ohjelmille (ja siten suositeltava).</p>
 <p>Teksti, joka on muotoa</p>
 <blockquote>
 <p>cd projects/ruby-tutorial</p>
 </blockquote>
-<p>on taas tarkoitettu kirjoitettavaksi terminaaliin, <strong>ei</strong> siis pry-kehotteeseen. Nämä ovat komentoja, millä kerrot tietokoneen <em>käyttöjärjestelmälle</em>, mitä haluat tehdä. Huomaa myös, että &#39;$&#39; jää automaattisesti kopioidusta tekstistä pois (kuten pitääkin), jos kopioit tekstin leikepöydälle. Copy-pasten pitäisi siis toimia mutkattomasti.</p>
+<p>on taas tarkoitettu kirjoitettavaksi käyttöjärjestelmän terminaaliin, <strong>ei</strong> siis ruby-kehotteeseen. Nämä ovat komentoja, millä kerrot tietokoneen <em>käyttöjärjestelmälle</em>, mitä haluat tehdä. Huomaa myös, että &#39;$&#39; jää automaattisesti kopioidusta tekstistä pois (kuten pitääkin), jos kopioit tekstin leikepöydälle. Copy-pasten pitäisi siis toimia mutkattomasti.</p>
 <h3 id="ty-kalut"><a class="header-link" href="#ty-kalut"></a>Työkalut</h3>
 <p>Mikä hyvänsä <strong>tekstieditori</strong> käy Ruby-kielisten ohjelmien kirjoittamiseen (<em>ei siis</em> Word tai vastaavat, ne ovat ohjelmia, joilla käsitellään muotoiltua tekstiä; koodieditorit tallentavat merkit &#39;sellaisenaan&#39;), mutta jos kokemusta ohjelmoinnista on vähän, suosittelen lämpimästi Atom-editoria (<a href="https://atom.io/">https://atom.io/</a>). Se on helppokäyttöinen, mutta silti riittävä jopa ammattikäyttöön.</p>
 <p>Lyhyiden ohjelmapätkien kokeiluun kannattaa käyttää joko Ruby-asennuksen mukana tulevaa tulkkia eli <code>irb</code>-työkalua (interactive Ruby interpreter). Hieman parempi työkalu samaan tarkoitukseen on <strong>Pry</strong>, jonka asentamiseen ohjeet hieman alempana.</p>
 <div class="tip">
-Ohjelmointikielet ovat yleensä joko käännettäviä tai tulkattavia. Molemmissa on etunsa. Tulkattavan kielen hyvä puoli on siinä, että sellaisia kieliä voidaan suorittaa suoraan ilman erillistä käännösvaihetta. Yleensä tällaisissa kielissä tulee myös mukana <em>interaktiivinen</em> tulkki, jolla voi helposti kokeilla ohjelman osia erikseen. Ruby on tulkattava ohjelmointikieli.
+Ohjelmointikielet ovat yleensä joko käännettäviä tai tulkattavia. Molemmissa on etunsa. Tulkattavan kielen hyvä puoli on siinä, että sellaisia kieliä voidaan suorittaa suoraan ilman erillistä käännösvaihetta. Yleensä tällaisissa kielissä tulee myös mukana <em>interaktiivinen tulkki</em>, jolla voi helposti kokeilla ohjelman eri osia erikseen. Ruby on tulkattava ohjelmointikieli.
 </div>
 
 <p>Suosittelen samoin pitämään ainakin kolmea ikkunaa avoinna samanaikaisesti kirjoittaessasi ohjelmia. Keskeisin näistä on
@@ -116,7 +118,7 @@ tekstieditori (esim. Atom), jolla enimmäkseen kirjoitat koodia. Sen lisäksi pi
 <p>ruby -v</p>
 </blockquote>
 <p>palauttaa versionumeron 1.9.3 tai enemmän, niin hyvä; tässä oppaassa kuvattujen ohjelmien pitäisi toimia vallan mainiosti. Jos Rubyä ei löydy tai haluat asentaa sen itse, suositan versiota 2.3.0 tai uudempaa.</p>
-<p>Jos käytät OS X:ää tai Linuxia, RVM tai rbenv on hyvä ja helppo tapa asentaa Ruby. Voit asentaa RVM:n komennolla</p>
+<p>Jos käytät OS X:ää (Mac OS) tai Linuxia, RVM tai rbenv on hyvä ja helppo tapa asentaa Ruby. Voit asentaa RVM:n komennolla</p>
 <blockquote>
 <p>curl -sSL <a href="https://get.rvm.io">https://get.rvm.io</a> | bash -s stable --ruby</p>
 </blockquote>
@@ -124,7 +126,7 @@ tekstieditori (esim. Atom), jolla enimmäkseen kirjoitat koodia. Sen lisäksi pi
 <blockquote>
 <p>curl -sSL <a href="http://bit.ly/1LaIHjX">http://bit.ly/1LaIHjX</a> | bash</p>
 </blockquote>
-<p>Jos taas haluat asentaa mainitut työkalut käsin tai curl-komento ei ole saatavilla (esim. koska Windows), komento</p>
+<p>Jos taas haluat asentaa mainitut työkalut käsin tai curl-komento ei ole saatavilla (esim. Windows), komento</p>
 <blockquote>
 <p>gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print</p>
 </blockquote>

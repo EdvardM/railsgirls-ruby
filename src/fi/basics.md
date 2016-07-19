@@ -39,13 +39,6 @@ mukaa kun niitä tarvitaan. Aloitetaan siis!
 
 ### Käytetyt merkinnät
 
-{tip-begin}
-<p>Tyypillisesti tällaisissa oppaissa on lyhyt kuvaus siitä, miten Ruby asennetaan, ja miten komentokehotetta käytetään. Näistä on hyviä oppaita verkossa vaikka kuinka, joten en käsittele niitä tässä. Komentokehote löytyy Windows-ympäristössä juuri sillä nimellä, ja Macissa sekä Linuxissa tämä tunnetaan nimellä "Terminaali".</p>
-
-<p>Hakusanoilla "installing Ruby for X" missä X on käyttöjärjestelmäsi (Linux, Mac, Windows tai joku muu) löytyy paljon hyviä asennusohjeita.
-</p>
-{tip-end}
-
 Mikä hyvänsä, joka näyttää sellaiselta kuin
 
 ```ruby
@@ -53,7 +46,17 @@ Mikä hyvänsä, joka näyttää sellaiselta kuin
 puts "Howdy" # tässä meillä on Ruby-koodia
 ```
 
-voidaan kirjoittaa Ruby-tulkkiin. Silloin Ruby tulkitsee ja suorittaa kirjoittamasi koodin.
+voidaan kirjoittaa suoraan ruby-kehotteeseen. Silloin Ruby _tulkitsee_ ja suorittaa kirjoittamasi koodin.
+
+
+{tip-begin}
+<p>ruby-kehote tai ruby-tulkki (_engl. interpreter_) tarkoittaa kehotetta, mikä tulee Ruby-asennuksessa mukana. Sen saa esille komennolla `irb` tai `pry`, ks. kohta "Työkalut".</p>
+
+<p>Tyypillisesti tällaisissa oppaissa on lyhyt kuvaus siitä, miten Ruby asennetaan, ja miten komentokehotetta käytetään. Näistä on hyviä oppaita verkossa vaikka kuinka, joten en käsittele niitä tässä. Komentokehote löytyy Windows-ympäristössä nimellä "Command prompt" (cmd.exe), Macissa ja Linuxissa nimellä "Terminal".</p>
+
+<p>Hakusanoilla "installing Ruby for X" missä X on käyttöjärjestelmäsi (Linux, Mac, Windows tai joku muu) löytyy paljon hyviä asennusohjeita. Hieman jäljempänä on kuitenkin lyhyt ohje asentamiseen Mac- tai Linux-ympäristössä.
+</p>
+{tip-end}
 
 Jos kirjoitettua koodia on luontevampi suorittaa tallentamalla koodi ensiksi tiedostoon (esimerkiksi siksi, että koodilistaus on pitkä), ehdotan tiedostonimeä ohjelmalistauksen alussa. Ylläolevassa esimerkissä ehdotan tiedostolle nimeä `somefile.rb`. Voit käyttää mitä hyvänsä muuta nimeä, mutta huomioi tämä myöhemmin suoritat ohjelmaa. Tiedostopääte `.rb` ei ole pakollinen, mutta se on yleisesti käytetty merkintätapa Ruby-kielisille ohjelmille (ja siten suositeltava).
 
@@ -61,7 +64,7 @@ Teksti, joka on muotoa
 
 > cd projects/ruby-tutorial
 
-on taas tarkoitettu kirjoitettavaksi terminaaliin, **ei** siis pry-kehotteeseen. Nämä ovat komentoja, millä kerrot tietokoneen _käyttöjärjestelmälle_, mitä haluat tehdä. Huomaa myös, että '$' jää automaattisesti kopioidusta tekstistä pois (kuten pitääkin), jos kopioit tekstin leikepöydälle. Copy-pasten pitäisi siis toimia mutkattomasti.
+on taas tarkoitettu kirjoitettavaksi käyttöjärjestelmän terminaaliin, **ei** siis ruby-kehotteeseen. Nämä ovat komentoja, millä kerrot tietokoneen _käyttöjärjestelmälle_, mitä haluat tehdä. Huomaa myös, että '$' jää automaattisesti kopioidusta tekstistä pois (kuten pitääkin), jos kopioit tekstin leikepöydälle. Copy-pasten pitäisi siis toimia mutkattomasti.
 
 ### Työkalut
 
@@ -70,7 +73,7 @@ Mikä hyvänsä **tekstieditori** käy Ruby-kielisten ohjelmien kirjoittamiseen 
 Lyhyiden ohjelmapätkien kokeiluun kannattaa käyttää joko Ruby-asennuksen mukana tulevaa tulkkia eli `irb`-työkalua (interactive Ruby interpreter). Hieman parempi työkalu samaan tarkoitukseen on **Pry**, jonka asentamiseen ohjeet hieman alempana.
 
 {tip-begin}
-Ohjelmointikielet ovat yleensä joko käännettäviä tai tulkattavia. Molemmissa on etunsa. Tulkattavan kielen hyvä puoli on siinä, että sellaisia kieliä voidaan suorittaa suoraan ilman erillistä käännösvaihetta. Yleensä tällaisissa kielissä tulee myös mukana _interaktiivinen_ tulkki, jolla voi helposti kokeilla ohjelman osia erikseen. Ruby on tulkattava ohjelmointikieli.
+Ohjelmointikielet ovat yleensä joko käännettäviä tai tulkattavia. Molemmissa on etunsa. Tulkattavan kielen hyvä puoli on siinä, että sellaisia kieliä voidaan suorittaa suoraan ilman erillistä käännösvaihetta. Yleensä tällaisissa kielissä tulee myös mukana _interaktiivinen tulkki_, jolla voi helposti kokeilla ohjelman eri osia erikseen. Ruby on tulkattava ohjelmointikieli.
 {tip-end}
 
 Suosittelen samoin pitämään ainakin kolmea ikkunaa avoinna samanaikaisesti kirjoittaessasi ohjelmia. Keskeisin näistä on
@@ -84,7 +87,7 @@ Näiden lisäksi on suositeltavaa pitää auki selainikkunaa, jossa on avoinna k
 
 palauttaa versionumeron 1.9.3 tai enemmän, niin hyvä; tässä oppaassa kuvattujen ohjelmien pitäisi toimia vallan mainiosti. Jos Rubyä ei löydy tai haluat asentaa sen itse, suositan versiota 2.3.0 tai uudempaa.
 
-Jos käytät OS X:ää tai Linuxia, RVM tai rbenv on hyvä ja helppo tapa asentaa Ruby. Voit asentaa RVM:n komennolla
+Jos käytät OS X:ää (Mac OS) tai Linuxia, RVM tai rbenv on hyvä ja helppo tapa asentaa Ruby. Voit asentaa RVM:n komennolla
 
 > curl -sSL https://get.rvm.io | bash -s stable --ruby
 
@@ -92,7 +95,7 @@ Asentaaksesi Pry:n ja muutaman muun mukavan työkalun, suorita
 
 > curl -sSL http://bit.ly/1LaIHjX | bash
 
-Jos taas haluat asentaa mainitut työkalut käsin tai curl-komento ei ole saatavilla (esim. koska Windows), komento
+Jos taas haluat asentaa mainitut työkalut käsin tai curl-komento ei ole saatavilla (esim. Windows), komento
 
 > gem install -q --no-ri --no-rdoc pry pry-doc pry-coolline awesome_print
 
